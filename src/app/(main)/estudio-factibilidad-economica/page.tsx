@@ -1,8 +1,9 @@
+
 "use client";
 
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription, CardFooter } from "@/components/ui/card";
-import { Download, Printer, Bot, BarChart, Settings, DollarSign, CheckCircle, Target, Eye, Rocket, BookOpen, Scale } from "lucide-react";
+import { Download, Printer, Bot, BarChart, Settings, DollarSign, CheckCircle, Target, Rocket } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { Separator } from "@/components/ui/separator";
 import { formatCurrency } from "@/lib/utils";
@@ -11,26 +12,26 @@ import { Logo } from "@/components/logo";
 const estudioData = {
   projectName: "Implementación de Sistema ERP Kyron para 'Cliente Ejemplo, C.A.'",
   date: new Date(),
-  summary: "El presente estudio evalúa la viabilidad económica, técnica y operativa para la implementación del ecosistema de gestión Kyron en 'Cliente Ejemplo, C.A.'. El objetivo es centralizar la contabilidad, automatizar el cumplimiento fiscal y optimizar las operaciones para lograr un retorno de inversión (ROI) estimado del 250% en 24 meses.",
+  summary: "El presente estudio evalúa la viabilidad económica, técnica y operativa para la implementación del ecosistema de gestión Kyron en 'Cliente Ejemplo, C.A.'. El objetivo es centralizar la contabilidad, automatizar el cumplimiento fiscal y optimizar las operaciones para lograr un retorno de inversión (ROI) estimado del 253% en 24 meses, basado en ahorros directos y aumento de eficiencia.",
   marketAnalysis: {
-    target: "Empresas en Venezuela con necesidad de modernizar su gestión y asegurar el cumplimiento fiscal.",
-    competition: "Sistemas contables tradicionales (A2, Valery) y desarrollos a medida.",
-    advantage: "Plataforma integral (ERP + IA + Blockchain), actualizaciones automáticas de ley y garantía de cero riesgo fiscal."
+    target: "Empresas en Venezuela con necesidad de modernizar su gestión, asegurar el cumplimiento fiscal y optimizar sus operaciones en un entorno económico complejo.",
+    competition: "Sistemas contables tradicionales (ej. A2, Valery), desarrollos a medida (costosos y difíciles de mantener) y procesos manuales (alto riesgo de error).",
+    advantage: "Kyron ofrece una plataforma integral (ERP + IA + Blockchain), con actualizaciones automáticas de ley y garantía de cero riesgo fiscal. Nuestra ventaja radica en la unificación total de la gestión, eliminando la fragmentación y proporcionando datos en tiempo real para la toma de decisiones."
   },
   technicalAnalysis: {
-    platform: "Software como Servicio (SaaS) basado en la nube, con infraestructura redundante y escalable.",
-    integration: "API REST para integración con sistemas existentes (si aplica).",
-    security: "Cifrado de extremo a extremo (AES-256), 2FA, auditoría en Blockchain e inmutabilidad de registros.",
-    implementationTime: "4-6 semanas (incluyendo migración de datos y capacitación)."
+    platform: "Software como Servicio (SaaS) basado en la nube, con infraestructura redundante y escalable en AWS. Garantiza un 99.9% de uptime.",
+    integration: "API RESTful disponible para integración con sistemas de terceros existentes (CRM, sistemas de producción, etc.), permitiendo un flujo de datos consolidado.",
+    security: "Cifrado de extremo a extremo (AES-256), autenticación de dos factores (2FA), auditoría de transacciones en Blockchain para inmutabilidad y cumplimiento de normativas de protección de datos.",
+    implementationTime: "4-6 semanas, incluyendo migración de datos maestros, configuración de módulos y capacitación de personal clave."
   },
   financialAnalysis: {
     investment: 15000,
     annualSavings: 35000,
     projectedRevenueIncrease: 20000,
     paybackPeriod: "8 meses",
-    roi: "253%"
+    roi: "253"
   },
-  conclusion: "El proyecto es altamente viable y estratégico. La inversión se justifica por los ahorros en multas, la optimización de procesos y la capacidad para tomar decisiones basadas en datos en tiempo real. Se recomienda proceder con la fase de implementación."
+  conclusion: "El proyecto es altamente viable y estratégico. La inversión se justifica plenamente por los significativos ahorros operativos, la eliminación de riesgo por multas fiscales, y el aumento de la eficiencia que impacta directamente en la capacidad de generar mayores ingresos. Se recomienda proceder con la fase de implementación de inmediato para capitalizar estos beneficios."
 };
 
 export default function EstudioFactibilidadEconomicaPage() {
@@ -41,27 +42,28 @@ export default function EstudioFactibilidadEconomicaPage() {
         <p><strong>Proyecto:</strong> ${estudioData.projectName}</p>
         <p><strong>Fecha:</strong> ${estudioData.date.toLocaleDateString('es-ES')}</p>
         <br>
-        <h2>Resumen Ejecutivo</h2>
+        <h2>1. Resumen Ejecutivo</h2>
         <p>${estudioData.summary}</p>
         <br>
-        <h2>Análisis de Mercado</h2>
+        <h2>2. Análisis de Mercado</h2>
         <p><strong>Mercado Objetivo:</strong> ${estudioData.marketAnalysis.target}</p>
         <p><strong>Competencia:</strong> ${estudioData.marketAnalysis.competition}</p>
         <p><strong>Ventaja Competitiva:</strong> ${estudioData.marketAnalysis.advantage}</p>
         <br>
-        <h2>Análisis Técnico y Operativo</h2>
+        <h2>3. Análisis Técnico y Operativo</h2>
         <p><strong>Plataforma y Arquitectura:</strong> ${estudioData.technicalAnalysis.platform}</p>
         <p><strong>Seguridad y Cumplimiento:</strong> ${estudioData.technicalAnalysis.security}</p>
         <p><strong>Integración:</strong> ${estudioData.technicalAnalysis.integration}</p>
         <p><strong>Tiempo de Implementación:</strong> ${estudioData.technicalAnalysis.implementationTime}</p>
         <br>
-        <h2>Análisis Financiero</h2>
-        <p><strong>Inversión Inicial:</strong> ${formatCurrency(estudioData.financialAnalysis.investment, '$')}</p>
-        <p><strong>Ahorro Anual Estimado:</strong> ${formatCurrency(estudioData.financialAnalysis.annualSavings, '$')}</p>
-        <p><strong>Período de Recuperación:</strong> ${estudioData.financialAnalysis.paybackPeriod}</p>
-        <p><strong>Retorno de Inversión (ROI):</strong> ${estudioData.financialAnalysis.roi}%</p>
+        <h2>4. Análisis Financiero</h2>
+        <p><strong>Inversión Inicial Total:</strong> ${formatCurrency(estudioData.financialAnalysis.investment, '$')}</p>
+        <p><strong>Ahorro Anual Estimado (Optimización + Reducción de Multas):</strong> ${formatCurrency(estudioData.financialAnalysis.annualSavings, '$')}</p>
+        <p><strong>Incremento de Ingresos Proyectado (Eficiencia):</strong> ${formatCurrency(estudioData.financialAnalysis.projectedRevenueIncrease, '$')}</p>
+        <p><strong>Período de Recuperación (Payback):</strong> ${estudioData.financialAnalysis.paybackPeriod}</p>
+        <p><strong>Retorno de Inversión (ROI) a 24 meses:</strong> ${estudioData.financialAnalysis.roi}%</p>
         <br>
-        <h2>Conclusiones y Recomendaciones</h2>
+        <h2>5. Conclusiones y Recomendaciones</h2>
         <p>${estudioData.conclusion}</p>
         <br><br>
         <p>Preparado por: <strong>Unidad de Análisis de Datos e IA de System Kyron</strong></p>
@@ -83,7 +85,7 @@ export default function EstudioFactibilidadEconomicaPage() {
                 "xmlns='http://www.w3.org/TR/REC-html40'>"+
                 "<head><meta charset='utf-8'><title>Export HTML to Word</title></head><body>";
             const footer = "</body></html>";
-            const sourceHTML = header + content.replace(/\n/g, '<br/>') + footer;
+            const sourceHTML = header + content.replace(/<p>/g, '<p style="text-align: justify; margin-bottom: 1em;">').replace(/<h2>/g, '<h2 style="margin-top: 2em;">') + footer;
 
             const source = 'data:application/vnd.ms-word;charset=utf-8,' + encodeURIComponent(sourceHTML);
             const fileDownload = document.createElement("a");
@@ -156,15 +158,15 @@ export default function EstudioFactibilidadEconomicaPage() {
         </CardHeader>
         <CardContent className="pt-8 space-y-10">
             <section>
-                <h2 className="text-2xl font-semibold mb-4 flex items-center gap-3"><Target/>Resumen Ejecutivo</h2>
+                <h2 className="text-2xl font-semibold mb-4 flex items-center gap-3"><Target/>1. Resumen Ejecutivo</h2>
                 <p className="text-muted-foreground text-justify">{estudioData.summary}</p>
             </section>
             
             <Separator />
 
             <section>
-                <h2 className="text-2xl font-semibold mb-4 flex items-center gap-3"><BarChart/>Análisis de Mercado</h2>
-                <div className="grid md:grid-cols-3 gap-6">
+                <h2 className="text-2xl font-semibold mb-4 flex items-center gap-3"><BarChart/>2. Análisis de Mercado</h2>
+                <div className="grid md:grid-cols-1 gap-6">
                     <div className="p-4 bg-secondary/50 rounded-lg">
                         <h4 className="font-semibold text-primary mb-2">Mercado Objetivo</h4>
                         <p className="text-sm text-muted-foreground">{estudioData.marketAnalysis.target}</p>
@@ -183,7 +185,7 @@ export default function EstudioFactibilidadEconomicaPage() {
             <Separator />
             
              <section>
-                <h2 className="text-2xl font-semibold mb-4 flex items-center gap-3"><Settings/>Análisis Técnico y Operativo</h2>
+                <h2 className="text-2xl font-semibold mb-4 flex items-center gap-3"><Settings/>3. Análisis Técnico y Operativo</h2>
                 <div className="grid md:grid-cols-2 gap-6">
                      <div className="p-4 bg-secondary/50 rounded-lg">
                         <h4 className="font-semibold text-primary mb-2">Plataforma y Arquitectura</h4>
@@ -207,7 +209,7 @@ export default function EstudioFactibilidadEconomicaPage() {
              <Separator />
 
              <section>
-                <h2 className="text-2xl font-semibold mb-4 flex items-center gap-3"><DollarSign/>Análisis Financiero</h2>
+                <h2 className="text-2xl font-semibold mb-4 flex items-center gap-3"><DollarSign/>4. Análisis Financiero</h2>
                  <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 text-center">
                     <Card>
                         <CardHeader><CardTitle className="text-base text-muted-foreground">Inversión Inicial</CardTitle></CardHeader>
@@ -231,9 +233,9 @@ export default function EstudioFactibilidadEconomicaPage() {
              <Separator />
 
              <section>
-                <h2 className="text-2xl font-semibold mb-4 flex items-center gap-3"><CheckCircle/>Conclusiones y Recomendaciones</h2>
+                <h2 className="text-2xl font-semibold mb-4 flex items-center gap-3"><Rocket/>5. Conclusiones y Recomendaciones</h2>
                 <div className="p-6 bg-green-900/10 border-l-4 border-green-500 rounded-r-lg">
-                    <p className="text-muted-foreground text-justify">{estudioData.conclusion}</p>
+                    <p className="text-muted-foreground text-justify font-medium">{estudioData.conclusion}</p>
                 </div>
             </section>
         </CardContent>
