@@ -3,7 +3,7 @@
 
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription, CardFooter } from "@/components/ui/card";
-import { Download, Printer, Bot, BarChart, Settings, DollarSign, CheckCircle, Target, Rocket, AlertTriangle, GanttChart, Users } from "lucide-react";
+import { Download, Printer, Bot, BarChart, Settings, DollarSign, CheckCircle, Target, Rocket, AlertTriangle, GanttChart, Users, Signal, Globe, Shield } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { Separator } from "@/components/ui/separator";
 import { formatCurrency } from "@/lib/utils";
@@ -11,49 +11,82 @@ import { Logo } from "@/components/logo";
 import { Accordion, AccordionTrigger, AccordionItem, AccordionContent } from "@/components/ui/accordion";
 
 const estudioData = {
-  projectName: "Implementación de Sistema ERP Kyron para 'Cliente Ejemplo, C.A.'",
+  projectName: "Implementación del Ecosistema Integral Kyron (Gestión, Telecom y Finanzas Blockchain) para 'Cliente Global, S.A.'",
   date: new Date(),
-  executiveSummary: "El presente estudio evalúa la viabilidad económica, técnica y operativa para la implementación del ecosistema de gestión Kyron en 'Cliente Ejemplo, C.A.'. El objetivo es centralizar la contabilidad, automatizar el cumplimiento fiscal y optimizar las operaciones para lograr un retorno de inversión (ROI) estimado del 253% en 24 meses, basado en ahorros directos y aumento de eficiencia, respaldado por un Valor Presente Neto (VPN) positivo y una Tasa Interna de Retorno (TIR) superior al 45%.",
+  executiveSummary: "El presente estudio evalúa la viabilidad económica, técnica y operativa para la implementación del ecosistema Kyron. El objetivo es centralizar la gestión contable-fiscal, integrar las telecomunicaciones y modernizar las finanzas con tecnología Blockchain. Se proyecta un ROI del 315% en 24 meses, basado en ahorros directos en cumplimiento, optimización de costos de comunicación y aumento de eficiencia operativa, respaldado por un Valor Presente Neto (VPN) positivo y una Tasa Interna de Retorno (TIR) superior al 50%.",
   marketAnalysis: {
-    target: "Empresas en Venezuela con necesidad de modernizar su gestión, asegurar el cumplimiento fiscal y optimizar sus operaciones en un entorno económico complejo.",
-    competition: "Sistemas contables tradicionales (ej. A2, Valery), desarrollos a medida (costosos y difíciles de mantener) y procesos manuales (alto riesgo de error).",
-    advantage: "Kyron ofrece una plataforma integral (ERP + IA + Blockchain), con actualizaciones automáticas de ley y garantía de cero riesgo fiscal. Nuestra ventaja radica en la unificación total de la gestión, eliminando la fragmentación y proporcionando datos en tiempo real para la toma de decisiones."
+    target: "Empresas en Venezuela y Latinoamérica con operaciones multi-jurisdiccionales, que buscan centralizar su gestión, asegurar el cumplimiento fiscal internacional y optimizar sus costos operativos y de telecomunicaciones.",
+    competition: "Sistemas ERP tradicionales (rígidos y costosos), proveedores de telecomunicaciones separados y múltiples soluciones de software aisladas (contabilidad, CRM, etc.).",
+    advantage: "Kyron es el único ecosistema que integra en una sola plataforma: gestión empresarial (ERP), cumplimiento fiscal automatizado con IA, infraestructura de telecomunicaciones (VoIP, SMS) y una billetera financiera Blockchain. Esta unificación elimina la fragmentación, reduce costos y proporciona datos en tiempo real para la toma de decisiones estratégicas a nivel global."
   },
   technicalAnalysis: {
-    platform: "Software como Servicio (SaaS) basado en la nube, con infraestructura redundante y escalable en AWS. Garantiza un 99.9% de uptime.",
-    integration: "API RESTful disponible para integración con sistemas de terceros existentes (CRM, sistemas de producción, etc.), permitiendo un flujo de datos consolidado.",
-    security: "Cifrado de extremo a extremo (AES-256), autenticación de dos factores (2FA), auditoría de transacciones en Blockchain para inmutabilidad y cumplimiento de normativas de protección de datos.",
+    platform: "Software como Servicio (SaaS) basado en una arquitectura de microservicios en la nube (AWS), garantizando un 99.99% de uptime y escalabilidad global.",
     implementationPlan: [
       { phase: "Fase 1 (Semanas 1-2)", tasks: "Kick-off, análisis de requerimientos, migración de datos maestros (clientes, productos)." },
-      { phase: "Fase 2 (Semanas 3-4)", tasks: "Configuración de módulos (Contabilidad, Facturación, RRHH), capacitación de usuarios clave." },
-      { phase: "Fase 3 (Semanas 5-6)", tasks: "Pruebas de aceptación del usuario (UAT), lanzamiento en vivo y soporte post-implementación." }
-    ]
+      { phase: "Fase 2 (Semanas 3-4)", tasks: "Configuración de módulos (Contabilidad, Facturación, RRHH), portabilidad numérica y configuración de central VoIP." },
+      { phase: "Fase 3 (Semanas 5-6)", tasks: "Pruebas de aceptación (UAT), lanzamiento en vivo y soporte post-implementación 24/7." }
+    ],
+    telecomPillar: {
+        title: "Pilar de Telecomunicaciones Unificadas",
+        description: "Infraestructura de comunicaciones de misión crítica, diseñada para garantizar la conectividad global y la eficiencia operativa.",
+        features: [
+            "Redundancia Geográfica: Nodos en múltiples países (EE.UU., España, Venezuela) para asegurar un 99.99% de uptime y baja latencia.",
+            "Telefonía IP (VoIP): Central telefónica virtual con IVR inteligente, extensiones ilimitadas, grabación de llamadas y análisis de sentimiento en tiempo real.",
+            "Canal de SMS Masivo y WhatsApp Business API: Integrado para campañas de marketing, notificaciones transaccionales y cobranza automatizada.",
+            "Conectividad Segura (VPN y SD-WAN): Enlaces privados y encriptados para sucursales y teletrabajadores a nivel mundial."
+        ]
+    },
+    securityPillar: {
+        title: "Pilar de Seguridad y Alertas Predictivas",
+        description: "Un escudo de protección de varias capas que combina IA, Blockchain y monitoreo constante para lograr un riesgo fiscal cero.",
+        features: [
+            "Sistema de Alertas Predictivas (SAP): La IA analiza patrones y monitorea la Gaceta Oficial para alertar sobre posibles riesgos fiscales con 30 días de antelación.",
+            "Escudo Fiscal IA (Compliance en tiempo real): Auditoría automática de cada transacción para garantizar el cumplimiento con normativas de SENIAT, CDE, SUDEBAN, etc.",
+            "Trazabilidad Blockchain: Cada documento fiscal (factura, nota de crédito) se sella en una cadena de bloques, creando un registro inalterable e incorruptible para auditorías."
+        ]
+    },
+    internationalArchitecture: {
+        title: "Arquitectura para Operaciones Internacionales",
+        description: "Diseñado para holdings y empresas con presencia global.",
+        features: [
+            "Multi-Moneda y Multi-Lenguaje: Gestión de transacciones y reportes en Bolívares, Dólares, Euros y Criptomonedas de forma nativa. Interfaz en Español, Inglés y Portugués.",
+            "Multi-Jurisdicción Fiscal: Adaptación automática de formatos de factura y cálculo de impuestos para Venezuela (SENIAT), EE.UU. (Sales Tax), España (IVA), Colombia (DIAN) y más.",
+            "Consolidación Financiera Global: Generación de estados financieros consolidados del holding en tiempo real, con conversión de moneda automática."
+        ]
+    }
   },
   operationalAnalysis: {
-      processImprovement: "Reducción del ciclo de cierre contable en un 70%. Automatización del 95% de las declaraciones fiscales. Disminución del 80% en errores de facturación manual.",
-      resourceImpact: "El equipo contable puede reenfocarse en análisis estratégico en lugar de tareas repetitivas. No se requiere personal técnico adicional para el mantenimiento de la plataforma."
+      processImprovement: "Reducción del ciclo de cierre contable en un 70%. Automatización del 98% de las declaraciones fiscales. Reducción de costos de comunicación en un 40%. Disminución del 90% en errores de facturación.",
+      resourceImpact: "El equipo contable se reenfoca en análisis estratégico. El equipo de TI se libera del mantenimiento de infraestructura de telecomunicaciones. Reducción de la necesidad de asesores externos."
   },
   financialAnalysis: {
-    investment: 15000,
-    annualSavings: 35000,
-    projectedRevenueIncrease: 20000,
-    paybackPeriod: "8 meses",
-    roi: "253",
-    npv: 48500,
-    irr: "47%"
+    investment: 45000,
+    annualSavings: {
+        fiscal: 25000,
+        operational: 30000,
+        telecom: 12000
+    },
+    projectedRevenueIncrease: 40000,
+    paybackPeriod: "10 meses",
+    roi: "315",
+    npv: 95000,
+    irr: "55%"
   },
   riskAnalysis: {
-      marketRisks: "Cambios regulatorios abruptos (mitigado por actualizaciones automáticas). Aceptación del mercado de nuevas tecnologías (mitigado con capacitación y soporte).",
-      operationalRisks: "Resistencia al cambio por parte del personal (mitigado con un plan de gestión del cambio y capacitación). Problemas de conectividad (mitigado con modo offline del TPV).",
-      mitigationStrategies: "Actualizaciones legales proactivas, soporte 24/7, y arquitectura de nube redundante son los pilares para minimizar el riesgo."
+      marketRisks: "Cambios regulatorios abruptos (mitigado por Escudo Fiscal IA). Aceptación del mercado de nuevas tecnologías (mitigado con capacitación y soporte).",
+      operationalRisks: "Resistencia al cambio del personal (mitigado con plan de gestión del cambio). Problemas de conectividad internacional (mitigado con red redundante y modo offline).",
+      mitigationStrategies: "Actualizaciones legales proactivas, soporte 24/7 y arquitectura de nube geográficamente distribuida son los pilares para minimizar el riesgo."
   },
-  conclusion: "El proyecto es altamente viable y estratégico. La inversión se justifica plenamente por los significativos ahorros operativos, la eliminación de riesgo por multas fiscales, y el aumento de la eficiencia que impacta directamente en la capacidad de generar mayores ingresos. Se recomienda proceder con la fase de implementación de inmediato para capitalizar estos beneficios."
+  conclusion: "El proyecto es excepcionalmente viable y estratégico. La inversión se justifica por los significativos ahorros operativos, la eliminación total del riesgo fiscal, la optimización de costos de telecomunicaciones y el aumento de la eficiencia global. Se recomienda proceder con la fase de implementación de inmediato para capitalizar estos beneficios y posicionar a 'Cliente Global, S.A.' como líder tecnológico en su sector."
 };
+
 
 export default function EstudioFactibilidadEconomicaPage() {
     const { toast } = useToast();
 
-    const getWordContent = () => `
+    const getWordContent = () => {
+      const totalSavings = estudioData.financialAnalysis.annualSavings.fiscal + estudioData.financialAnalysis.annualSavings.operational + estudioData.financialAnalysis.annualSavings.telecom;
+      return `
         <h1>Estudio de Factibilidad Económica</h1>
         <p><strong>Proyecto:</strong> ${estudioData.projectName}</p>
         <p><strong>Fecha:</strong> ${estudioData.date.toLocaleDateString('es-ES')}</p>
@@ -62,42 +95,69 @@ export default function EstudioFactibilidadEconomicaPage() {
         <p>${estudioData.executiveSummary}</p>
         <br/>
         <h2>2. Análisis de Mercado</h2>
-        <p><strong>Mercado Objetivo:</strong> ${estudioData.marketAnalysis.target}</p>
-        <p><strong>Competencia:</strong> ${estudioData.marketAnalysis.competition}</p>
-        <p><strong>Ventaja Competitiva:</strong> ${estudioData.marketAnalysis.advantage}</p>
+        <h4>Mercado Objetivo:</h4>
+        <p>${estudioData.marketAnalysis.target}</p>
+        <h4>Competencia:</h4>
+        <p>${estudioData.marketAnalysis.competition}</p>
+        <h4>Ventaja Competitiva:</h4>
+        <p>${estudioData.marketAnalysis.advantage}</p>
         <br/>
         <h2>3. Análisis Técnico y Operativo</h2>
-        <p><strong>Plataforma y Arquitectura:</strong> ${estudioData.technicalAnalysis.platform}</p>
-        <p><strong>Seguridad y Cumplimiento:</strong> ${estudioData.technicalAnalysis.security}</p>
-        <p><strong>Integración:</strong> ${estudioData.technicalAnalysis.integration}</p>
+        <h4>Plataforma y Arquitectura General:</h4>
+        <p>${estudioData.technicalAnalysis.platform}</p>
+        
+        <h4>${estudioData.technicalAnalysis.telecomPillar.title}:</h4>
+        <p>${estudioData.technicalAnalysis.telecomPillar.description}</p>
+        <ul>${estudioData.technicalAnalysis.telecomPillar.features.map(f => `<li><strong>${f.split(':')[0]}:</strong>${f.split(':')[1]}</li>`).join('')}</ul>
+
+        <h4>${estudioData.technicalAnalysis.securityPillar.title}:</h4>
+        <p>${estudioData.technicalAnalysis.securityPillar.description}</p>
+        <ul>${estudioData.technicalAnalysis.securityPillar.features.map(f => `<li><strong>${f.split(':')[0]}:</strong>${f.split(':')[1]}</li>`).join('')}</ul>
+
+        <h4>${estudioData.technicalAnalysis.internationalArchitecture.title}:</h4>
+        <p>${estudioData.technicalAnalysis.internationalArchitecture.description}</p>
+        <ul>${estudioData.technicalAnalysis.internationalArchitecture.features.map(f => `<li><strong>${f.split(':')[0]}:</strong>${f.split(':')[1]}</li>`).join('')}</ul>
+        
         <h4>Plan de Implementación:</h4>
-        <ul>
-            ${estudioData.technicalAnalysis.implementationPlan.map(p => `<li><strong>${p.phase}:</strong> ${p.tasks}</li>`).join('')}
-        </ul>
+        <ul>${estudioData.technicalAnalysis.implementationPlan.map(p => `<li><strong>${p.phase}:</strong> ${p.tasks}</li>`).join('')}</ul>
         <br/>
+        
         <h2>4. Análisis Operacional</h2>
-        <p><strong>Mejora de Procesos:</strong> ${estudioData.operationalAnalysis.processImprovement}</p>
-        <p><strong>Impacto en Recursos:</strong> ${estudioData.operationalAnalysis.resourceImpact}</p>
+        <h4>Mejora de Procesos:</h4>
+        <p>${estudioData.operationalAnalysis.processImprovement}</p>
+        <h4>Impacto en Recursos:</h4>
+        <p>${estudioData.operationalAnalysis.resourceImpact}</p>
         <br/>
+        
         <h2>5. Análisis de Riesgos</h2>
-        <p><strong>Riesgos de Mercado:</strong> ${estudioData.riskAnalysis.marketRisks}</p>
-        <p><strong>Riesgos Operativos:</strong> ${estudioData.riskAnalysis.operationalRisks}</p>
-        <p><strong>Estrategias de Mitigación:</strong> ${estudioData.riskAnalysis.mitigationStrategies}</p>
+        <h4>Riesgos de Mercado y Operativos:</h4>
+        <p>${estudioData.riskAnalysis.marketRisks}</p>
+        <p>${estudioData.riskAnalysis.operationalRisks}</p>
+        <h4>Estrategias de Mitigación:</h4>
+        <p>${estudioData.riskAnalysis.mitigationStrategies}</p>
         <br/>
+
         <h2>6. Análisis Financiero</h2>
         <p><strong>Inversión Inicial Total:</strong> ${formatCurrency(estudioData.financialAnalysis.investment, '$')}</p>
-        <p><strong>Ahorro Anual Estimado:</strong> ${formatCurrency(estudioData.financialAnalysis.annualSavings, '$')}</p>
+        <p><strong>Ahorro Anual Estimado Total:</strong> ${formatCurrency(totalSavings, '$')}</p>
+        <ul>
+            <li>Ahorro Fiscal (Multas evitadas): ${formatCurrency(estudioData.financialAnalysis.annualSavings.fiscal, '$')}</li>
+            <li>Ahorro Operacional (Eficiencia): ${formatCurrency(estudioData.financialAnalysis.annualSavings.operational, '$')}</li>
+            <li>Ahorro en Telecomunicaciones: ${formatCurrency(estudioData.financialAnalysis.annualSavings.telecom, '$')}</li>
+        </ul>
         <p><strong>Incremento de Ingresos Proyectado:</strong> ${formatCurrency(estudioData.financialAnalysis.projectedRevenueIncrease, '$')}</p>
         <p><strong>Período de Recuperación (Payback):</strong> ${estudioData.financialAnalysis.paybackPeriod}</p>
         <p><strong>Retorno de Inversión (ROI) a 24 meses:</strong> ${estudioData.financialAnalysis.roi}%</p>
         <p><strong>Valor Presente Neto (VPN):</strong> ${formatCurrency(estudioData.financialAnalysis.npv, '$')}</p>
         <p><strong>Tasa Interna de Retorno (TIR):</strong> ${estudioData.financialAnalysis.irr}</p>
         <br/>
+        
         <h2>7. Conclusiones y Recomendaciones</h2>
         <p>${estudioData.conclusion}</p>
         <br/><br/>
         <p>Preparado por: <strong>Unidad de Análisis de Datos e IA de System Kyron</strong></p>
     `;
+    }
 
     const handleAction = (action: string) => {
         if (action === 'impresa') {
@@ -115,7 +175,13 @@ export default function EstudioFactibilidadEconomicaPage() {
                 "xmlns='http://www.w3.org/TR/REC-html40'>"+
                 "<head><meta charset='utf-8'><title>Export HTML to Word</title></head><body>";
             const footer = "</body></html>";
-            const sourceHTML = header + content.replace(/<p>/g, '<p style="text-align: justify; margin-bottom: 1em;">').replace(/<h2>/g, '<h2 style="margin-top: 2em;">') + footer;
+            const sourceHTML = header + content
+                .replace(/<h2>/g, '<h2 style="margin-top: 2em; color: #333;">')
+                .replace(/<h4>/g, '<h4 style="margin-top: 1.5em; color: #555;">')
+                .replace(/<p>/g, '<p style="text-align: justify; margin-bottom: 1em;">')
+                .replace(/<ul>/g, '<ul style="margin-left: 20px;">')
+                .replace(/<li>/g, '<li style="margin-bottom: 0.5em;">')
+                + footer;
 
             const source = 'data:application/vnd.ms-word;charset=utf-8,' + encodeURIComponent(sourceHTML);
             const fileDownload = document.createElement("a");
@@ -164,7 +230,7 @@ export default function EstudioFactibilidadEconomicaPage() {
                 Estudio de Factibilidad Económica
             </h1>
             <p className="text-muted-foreground mt-2">
-              Generado por IA para analizar la viabilidad de un proyecto.
+              Generado por IA para analizar la viabilidad de un proyecto integral.
             </p>
         </div>
         <div className="flex gap-2">
@@ -194,7 +260,7 @@ export default function EstudioFactibilidadEconomicaPage() {
             
             <Separator />
 
-            <Accordion type="single" collapsible className="w-full" defaultValue="financial-analysis">
+            <Accordion type="single" collapsible className="w-full" defaultValue="technical-analysis">
                 <AccordionItem value="market-analysis">
                     <AccordionTrigger className="text-2xl font-semibold"><div className="flex items-center gap-3"><BarChart/>2. Análisis de Mercado</div></AccordionTrigger>
                     <AccordionContent className="pt-4 space-y-6">
@@ -214,19 +280,36 @@ export default function EstudioFactibilidadEconomicaPage() {
                 </AccordionItem>
 
                 <AccordionItem value="technical-analysis">
-                    <AccordionTrigger className="text-2xl font-semibold"><div className="flex items-center gap-3"><Settings/>3. Análisis Técnico</div></AccordionTrigger>
+                    <AccordionTrigger className="text-2xl font-semibold"><div className="flex items-center gap-3"><Settings/>3. Análisis Técnico y Operativo</div></AccordionTrigger>
                     <AccordionContent className="pt-4 space-y-6">
                          <div className="p-4 bg-secondary/50 rounded-lg">
-                            <h4 className="font-semibold text-primary mb-2">Plataforma y Arquitectura</h4>
+                            <h4 className="font-semibold text-primary mb-2">Plataforma y Arquitectura General</h4>
                             <p className="text-sm text-muted-foreground">{estudioData.technicalAnalysis.platform}</p>
                         </div>
                         <div className="p-4 bg-secondary/50 rounded-lg">
-                            <h4 className="font-semibold text-primary mb-2">Seguridad y Cumplimiento</h4>
-                            <p className="text-sm text-muted-foreground">{estudioData.technicalAnalysis.security}</p>
+                            <h4 className="font-semibold text-primary mb-2 flex items-center gap-2"><Signal /> {estudioData.technicalAnalysis.telecomPillar.title}</h4>
+                            <p className="text-sm text-muted-foreground mb-3">{estudioData.technicalAnalysis.telecomPillar.description}</p>
+                            <ul className="list-disc list-inside space-y-2 text-sm text-muted-foreground">
+                               {estudioData.technicalAnalysis.telecomPillar.features.map(f => <li key={f}>{f}</li>)}
+                            </ul>
+                        </div>
+                         <div className="p-4 bg-secondary/50 rounded-lg">
+                            <h4 className="font-semibold text-primary mb-2 flex items-center gap-2"><Shield /> {estudioData.technicalAnalysis.securityPillar.title}</h4>
+                             <p className="text-sm text-muted-foreground mb-3">{estudioData.technicalAnalysis.securityPillar.description}</p>
+                            <ul className="list-disc list-inside space-y-2 text-sm text-muted-foreground">
+                               {estudioData.technicalAnalysis.securityPillar.features.map(f => <li key={f}>{f}</li>)}
+                            </ul>
+                        </div>
+                         <div className="p-4 bg-secondary/50 rounded-lg">
+                            <h4 className="font-semibold text-primary mb-2 flex items-center gap-2"><Globe /> {estudioData.technicalAnalysis.internationalArchitecture.title}</h4>
+                             <p className="text-sm text-muted-foreground mb-3">{estudioData.technicalAnalysis.internationalArchitecture.description}</p>
+                            <ul className="list-disc list-inside space-y-2 text-sm text-muted-foreground">
+                               {estudioData.technicalAnalysis.internationalArchitecture.features.map(f => <li key={f}>{f}</li>)}
+                            </ul>
                         </div>
                         <div className="p-4 bg-secondary/50 rounded-lg">
                             <h4 className="font-semibold text-primary mb-2 flex items-center gap-2"><GanttChart /> Plan de Implementación</h4>
-                            <ul className="list-disc list-inside space-y-2 mt-2 text-sm text-muted-foreground">
+                            <ul className="list-decimal list-inside space-y-2 mt-2 text-sm text-muted-foreground">
                                 {estudioData.technicalAnalysis.implementationPlan.map(p => `<li><strong>${p.phase}:</strong> ${p.tasks}</li>`).join('')}
                             </ul>
                         </div>
@@ -234,7 +317,7 @@ export default function EstudioFactibilidadEconomicaPage() {
                 </AccordionItem>
 
                  <AccordionItem value="operational-analysis">
-                    <AccordionTrigger className="text-2xl font-semibold"><div className="flex items-center gap-3"><Users/>4. Análisis Operativo</div></AccordionTrigger>
+                    <AccordionTrigger className="text-2xl font-semibold"><div className="flex items-center gap-3"><Users/>4. Análisis Operacional</div></AccordionTrigger>
                     <AccordionContent className="pt-4 space-y-6">
                          <div className="p-4 bg-secondary/50 rounded-lg">
                             <h4 className="font-semibold text-primary mb-2">Mejora de Procesos</h4>
@@ -266,10 +349,10 @@ export default function EstudioFactibilidadEconomicaPage() {
                 
                  <AccordionItem value="financial-analysis">
                     <AccordionTrigger className="text-2xl font-semibold"><div className="flex items-center gap-3"><DollarSign/>6. Análisis Financiero</div></AccordionTrigger>
-                    <AccordionContent className="pt-4">
+                    <AccordionContent className="pt-4 space-y-6">
                          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 text-center">
                             <Card><CardHeader><CardTitle className="text-base text-muted-foreground">Inversión Inicial</CardTitle></CardHeader><CardContent><p className="text-2xl font-bold">{formatCurrency(estudioData.financialAnalysis.investment, '$')}</p></CardContent></Card>
-                            <Card><CardHeader><CardTitle className="text-base text-muted-foreground">Ahorro Anual</CardTitle></CardHeader><CardContent><p className="text-2xl font-bold">{formatCurrency(estudioData.financialAnalysis.annualSavings, '$')}</p></CardContent></Card>
+                            <Card><CardHeader><CardTitle className="text-base text-muted-foreground">Ahorro Anual Total</CardTitle></CardHeader><CardContent><p className="text-2xl font-bold">{formatCurrency(Object.values(estudioData.financialAnalysis.annualSavings).reduce((a,b) => a + b, 0), '$')}</p></CardContent></Card>
                             <Card><CardHeader><CardTitle className="text-base text-muted-foreground">Recuperación (Payback)</CardTitle></CardHeader><CardContent><p className="text-2xl font-bold">{estudioData.financialAnalysis.paybackPeriod}</p></CardContent></Card>
                             <Card className="bg-primary/10 border-primary/20"><CardHeader><CardTitle className="text-base text-primary">ROI (24 meses)</CardTitle></CardHeader><CardContent><p className="text-3xl font-extrabold text-primary">{estudioData.financialAnalysis.roi}%</p></CardContent></Card>
                              <Card className="bg-secondary"><CardHeader><CardTitle className="text-base text-muted-foreground">Valor Presente Neto (VPN)</CardTitle></CardHeader><CardContent><p className="text-2xl font-bold">{formatCurrency(estudioData.financialAnalysis.npv, '$')}</p></CardContent></Card>
