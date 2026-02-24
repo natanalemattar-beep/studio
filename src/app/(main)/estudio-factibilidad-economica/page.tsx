@@ -1,4 +1,3 @@
-
 "use client";
 
 import { Button } from "@/components/ui/button";
@@ -37,6 +36,37 @@ const estudioData = {
 export default function EstudioFactibilidadEconomicaPage() {
     const { toast } = useToast();
 
+    const getWordContent = () => `
+        <h1>Estudio de Factibilidad Económica</h1>
+        <p><strong>Proyecto:</strong> ${estudioData.projectName}</p>
+        <p><strong>Fecha:</strong> ${estudioData.date.toLocaleDateString('es-ES')}</p>
+        <br>
+        <h2>Resumen Ejecutivo</h2>
+        <p>${estudioData.summary}</p>
+        <br>
+        <h2>Análisis de Mercado</h2>
+        <p><strong>Mercado Objetivo:</strong> ${estudioData.marketAnalysis.target}</p>
+        <p><strong>Competencia:</strong> ${estudioData.marketAnalysis.competition}</p>
+        <p><strong>Ventaja Competitiva:</strong> ${estudioData.marketAnalysis.advantage}</p>
+        <br>
+        <h2>Análisis Técnico y Operativo</h2>
+        <p><strong>Plataforma y Arquitectura:</strong> ${estudioData.technicalAnalysis.platform}</p>
+        <p><strong>Seguridad y Cumplimiento:</strong> ${estudioData.technicalAnalysis.security}</p>
+        <p><strong>Integración:</strong> ${estudioData.technicalAnalysis.integration}</p>
+        <p><strong>Tiempo de Implementación:</strong> ${estudioData.technicalAnalysis.implementationTime}</p>
+        <br>
+        <h2>Análisis Financiero</h2>
+        <p><strong>Inversión Inicial:</strong> ${formatCurrency(estudioData.financialAnalysis.investment, '$')}</p>
+        <p><strong>Ahorro Anual Estimado:</strong> ${formatCurrency(estudioData.financialAnalysis.annualSavings, '$')}</p>
+        <p><strong>Período de Recuperación:</strong> ${estudioData.financialAnalysis.paybackPeriod}</p>
+        <p><strong>Retorno de Inversión (ROI):</strong> ${estudioData.financialAnalysis.roi}%</p>
+        <br>
+        <h2>Conclusiones y Recomendaciones</h2>
+        <p>${estudioData.conclusion}</p>
+        <br><br>
+        <p>Preparado por: <strong>Unidad de Análisis de Datos e IA de System Kyron</strong></p>
+    `;
+
     const handleAction = (action: string) => {
         if (action === 'impresa') {
             window.print();
@@ -45,10 +75,27 @@ export default function EstudioFactibilidadEconomicaPage() {
                 description: "El estudio de factibilidad se ha enviado a la impresora.",
             });
         } else if (action === 'descargado') {
-             window.print();
-             toast({
-                title: "Preparando Descarga",
-                description: "Se ha abierto el diálogo de impresión. Por favor, selecciona 'Guardar como PDF' para descargar el documento."
+            const filename = 'Estudio_Factibilidad_Kyron.doc';
+            const content = getWordContent();
+            
+            const header = "<html xmlns:o='urn:schemas-microsoft-com:office:office' "+
+                "xmlns:w='urn:schemas-microsoft-com:office:word' "+
+                "xmlns='http://www.w3.org/TR/REC-html40'>"+
+                "<head><meta charset='utf-8'><title>Export HTML to Word</title></head><body>";
+            const footer = "</body></html>";
+            const sourceHTML = header + content.replace(/\n/g, '<br/>') + footer;
+
+            const source = 'data:application/vnd.ms-word;charset=utf-8,' + encodeURIComponent(sourceHTML);
+            const fileDownload = document.createElement("a");
+            document.body.appendChild(fileDownload);
+            fileDownload.href = source;
+            fileDownload.download = filename;
+            fileDownload.click();
+            document.body.removeChild(fileDownload);
+
+            toast({
+                title: "Descarga Iniciada",
+                description: `El documento se está descargando como ${filename}.`
             });
         }
     }
@@ -93,7 +140,7 @@ export default function EstudioFactibilidadEconomicaPage() {
                 <Printer className="mr-2"/> Imprimir
             </Button>
             <Button onClick={() => handleAction('descargado')}>
-                <Download className="mr-2"/> Descargar PDF
+                <Download className="mr-2"/> Descargar (.doc)
             </Button>
         </div>
       </header>
@@ -176,7 +223,7 @@ export default function EstudioFactibilidadEconomicaPage() {
                     </Card>
                      <Card className="bg-primary/10 border-primary/20">
                         <CardHeader><CardTitle className="text-base text-primary">Retorno de Inversión (ROI)</CardTitle></CardHeader>
-                        <CardContent><p className="text-3xl font-extrabold text-primary">{estudioData.financialAnalysis.roi}</p></CardContent>
+                        <CardContent><p className="text-3xl font-extrabold text-primary">{estudioData.financialAnalysis.roi}%</p></CardContent>
                     </Card>
                 </div>
             </section>
