@@ -227,7 +227,7 @@ export default function EstudioFactibilidadEconomicaPage() {
                         <div className="p-4 bg-secondary/50 rounded-lg">
                             <h4 className="font-semibold text-primary mb-2 flex items-center gap-2"><GanttChart /> Plan de Implementación</h4>
                             <ul className="list-disc list-inside space-y-2 mt-2 text-sm text-muted-foreground">
-                                {estudioData.technicalAnalysis.implementationPlan.map(p => <li key={p.phase}><strong>{p.phase}:</strong> {p.tasks}</li>)}
+                                {estudioData.technicalAnalysis.implementationPlan.map(p => `<li><strong>${p.phase}:</strong> ${p.tasks}</li>`).join('')}
                             </ul>
                         </div>
                     </AccordionContent>
@@ -297,5 +297,3 @@ export default function EstudioFactibilidadEconomicaPage() {
     </div>
   );
 }
-
-    
