@@ -1,3 +1,4 @@
+
 import { User, Gavel, ShoppingCart, Briefcase, Users, Megaphone, Cpu, Banknote, Signal, Shield, HardHat, UserCheck, TrendingUp, Globe } from "lucide-react";
 
 export const loginGroups = [
@@ -17,16 +18,6 @@ export const loginGroups = [
             { href: "/login-informatica", loginHref: "/login-informatica", label: "Ingeniería e IT", icon: Cpu, description: "Infraestructura, seguridad y desarrollo." },
             { href: "/login-telecom", loginHref: "/login-telecom", label: "Telecomunicaciones 5G", icon: Signal, description: "Tu propia operadora virtual. Gestiona tu línea telefónica 5G, planes de datos, y comunicaciones unificadas a nivel global." },
             { href: "/login-marketing", loginHref: "/login-marketing", label: "Marketing y Crecimiento", icon: Megaphone, description: "Análisis de mercado y gestión de campañas." },
-        ]
-    },
-    {
-        title: "Módulos Estratégicos",
-        options: [
-            { href: "/zero-risk", loginHref: "/login-empresa", label: "Protección y Alertas IA", icon: Shield, description: "Sistema de Cero Riesgo Fiscal con monitoreo proactivo." },
-            { href: "/ingenieria-ia", loginHref: "/login-informatica", label: "Ingeniería y Proyectos", icon: HardHat, description: "Planificación de proyectos de construcción con IA." },
-            { href: "/permisos", loginHref: "/login-escritorio-juridico", label: "Gestión de Permisos", icon: UserCheck, description: "Centraliza y gestiona licencias y habilitaciones." },
-            { href: "/analisis-rentabilidad", loginHref: "/login-empresa", label: "Análisis de Rentabilidad", icon: TrendingUp, description: "Inteligencia de negocio para maximizar la utilidad." },
-            { href: "/facturacion-internacional", loginHref: "/login-ventas", label: "Facturación Internacional", icon: Globe, description: "Emite facturas conformes a normativas de múltiples países." },
         ]
     },
     {
