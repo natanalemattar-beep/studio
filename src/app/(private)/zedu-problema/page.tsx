@@ -1,3 +1,4 @@
+
 "use client";
 
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
@@ -39,7 +40,7 @@ export default function ZeduProblemaPage() {
             <h3>DEFINE EL PROBLEMA</h3>
             <p>${problemaData.definicion}</p>
             <br/>
-            <h3>POR QUÉ ES IMPORTANTE RESOLVER ESTE PROBLEMA</h3>
+            <h3>¿POR QUÉ ES IMPORTANTE RESOLVER ESTE PROBLEMA?</h3>
             <p>${problemaData.importancia}</p>
             <br/>
             <h3>ORIGEN DEL PROBLEMA</h3>
@@ -58,7 +59,7 @@ export default function ZeduProblemaPage() {
             const content = getDocumentContent();
             const header = "<html xmlns:o='urn:schemas-microsoft-com:office:office' xmlns:w='urn:schemas-microsoft-com:office:word' xmlns='http://www.w3.org/TR/REC-html40'><head><meta charset='utf-8'><title>Modelo ZEDU Parte 3</title></head><body>";
             const footer = "</body></html>";
-            const sourceHTML = header + content.replace(/<h2>/g, '<h2 style="font-size: 16pt; margin-top: 20px;">').replace(/<h3>/g, '<h3 style="font-size: 14pt;">').replace(/<p>/g, '<p style="font-size: 12pt;">') + footer;
+            const sourceHTML = header + content.replace(/<h2>/g, '<h2 style="font-size: 16pt; margin-top: 20px;">').replace(/<h3>/g, '<h3 style="font-size: 14pt;">').replace(/<p>/g, '<p style="font-size: 12pt;">').replace(/<ul>/g, '<ul style="font-size: 12pt;">') + footer;
 
             const source = 'data:application/vnd.ms-word;charset=utf-8,' + encodeURIComponent(sourceHTML);
             const fileDownload = document.createElement("a");
@@ -106,18 +107,18 @@ export default function ZeduProblemaPage() {
       <div id="printable-content" className="space-y-6">
             <Card>
                 <CardHeader>
-                    <CardTitle className="flex items-center gap-3 text-xl"><AlertTriangle className="text-primary"/> Causas del Problema</CardTitle>
+                    <CardTitle className="flex items-center gap-3 text-xl"><AlertTriangle className="text-primary"/> CAUSAS DEL PROBLEMA</CardTitle>
                 </CardHeader>
                 <CardContent>
                     <ul className="list-disc list-inside space-y-2">
-                        {problemaData.causas.map(causa => <li key={causa}>{causa}</li>)}
+                        {problemaData.causas.map((causa, index) => <li key={index}>{causa}</li>)}
                     </ul>
                 </CardContent>
             </Card>
 
             <Card>
                 <CardHeader>
-                    <CardTitle className="flex items-center gap-3 text-xl"><ChevronsRight className="text-primary"/> Consecuencias del Problema</CardTitle>
+                    <CardTitle className="flex items-center gap-3 text-xl"><ChevronsRight className="text-primary"/> CONSECUENCIAS DEL PROBLEMA</CardTitle>
                 </CardHeader>
                 <CardContent>
                     <p>{problemaData.consecuencias}</p>
@@ -126,7 +127,7 @@ export default function ZeduProblemaPage() {
 
             <Card>
                 <CardHeader>
-                    <CardTitle className="flex items-center gap-3 text-xl"><Search className="text-primary"/> Define el Problema</CardTitle>
+                    <CardTitle className="flex items-center gap-3 text-xl"><Search className="text-primary"/> DEFINE EL PROBLEMA</CardTitle>
                 </CardHeader>
                 <CardContent>
                     <p className="text-muted-foreground">{problemaData.definicion}</p>
@@ -135,7 +136,7 @@ export default function ZeduProblemaPage() {
             
             <Card>
                 <CardHeader>
-                    <CardTitle className="flex items-center gap-3 text-xl"><CheckCircle className="text-primary"/> Por qué es Importante Resolver este Problema</CardTitle>
+                    <CardTitle className="flex items-center gap-3 text-xl"><CheckCircle className="text-primary"/> ¿POR QUÉ ES IMPORTANTE RESOLVER ESTE PROBLEMA?</CardTitle>
                 </CardHeader>
                 <CardContent>
                     <p>{problemaData.importancia}</p>
@@ -144,7 +145,7 @@ export default function ZeduProblemaPage() {
             
             <Card>
                 <CardHeader>
-                    <CardTitle className="flex items-center gap-3 text-xl"><Sun className="text-primary"/> Origen del Problema</CardTitle>
+                    <CardTitle className="flex items-center gap-3 text-xl"><Sun className="text-primary"/> ORIGEN DEL PROBLEMA</CardTitle>
                 </CardHeader>
                 <CardContent>
                     <p>{problemaData.origen}</p>
