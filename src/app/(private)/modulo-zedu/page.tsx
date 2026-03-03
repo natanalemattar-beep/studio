@@ -24,24 +24,22 @@ const poblacionData = {
 };
 
 const problemaData = {
-    definicion: "Falta de una plataforma centralizada que integre la gestión académica, administrativa y comunicacional en los colegios, generando ineficiencia, desarticulación y una brecha digital en la comunidad educativa.",
-    importancia: "Una gestión desintegrada dificulta la toma de decisiones, sobrecarga al personal con tareas manuales, limita la participación de los padres y no prepara a los estudiantes para un entorno digital.",
-    causas: "Sistemas obsoletos, resistencia al cambio, falta de inversión en tecnología, datos fragmentados en múltiples plataformas (Excel, WhatsApp, sistemas aislados).",
-    consecuencias: "Pérdida de tiempo, errores en registros, comunicación deficiente con representantes, falta de visibilidad del rendimiento estudiantil, vulnerabilidad de los datos.",
-    origen: "Los colegios han adoptado herramientas tecnológicas de forma reactiva y aislada, sin una estrategia de integración a largo plazo, creando un 'Frankenstein' de sistemas que no se comunican entre sí."
+    definicion: "Falta de una plataforma centralizada que integre la gestión empresarial, fiscal y de cumplimiento en Venezuela, generando ineficiencia, riesgo de multas y desarticulación operativa.",
+    importancia: "Una gestión desintegrada dificulta la toma de decisiones, sobrecarga al personal, limita la visibilidad financiera y aumenta la vulnerabilidad ante fiscalizaciones del SENIAT.",
+    causas: "Sistemas obsoletos, resistencia al cambio, complejidad de la legislación venezolana, datos fragmentados en múltiples plataformas (Excel, WhatsApp, sistemas aislados).",
+    consecuencias: "Pérdida de tiempo y dinero, errores en declaraciones de impuestos, sanciones del SENIAT, comunicación deficiente entre departamentos y falta de datos para la toma de decisiones estratégicas.",
+    origen: "Las empresas han adoptado herramientas tecnológicas de forma reactiva, creando un 'Frankenstein' de sistemas que no se comunican entre sí, incapaces de afrontar la dinámica fiscal del país."
 };
 
 const solucionData = {
-    proyecto: "Desarrollar e implementar 'System Kyron Educativo', un ecosistema digital integral (plataforma web y app móvil) que unifica la gestión académica, el control administrativo-contable y la comunicación instantánea para colegios, conectando a directivos, docentes, estudiantes y representantes en un solo lugar.",
-    propuestasExistentes: "Sistemas de gestión escolar genéricos (sin adaptación a la normativa venezolana), plataformas de comunicación como WhatsApp (informales y desorganizadas), sistemas contables no especializados en educación.",
-    diferenciadores: "Plataforma todo-en-uno, adaptada a la legislación venezolana, con módulos de contabilidad, RRHH, y comunicación integrados. Interfaz intuitiva y accesible desde cualquier dispositivo. Enfocada en la colaboración y la transparencia."
+    proyecto: "Desarrollar e implementar 'System Kyron', un ecosistema digital integral (plataforma web y app móvil) que unifica la gestión contable-fiscal (automatización SENIAT), recursos humanos, ventas, inventario y más, conectando todos los departamentos de una empresa en un solo Centro de Mando.",
+    propuestasExistentes: "Sistemas ERP internacionales (costosos y no adaptados a Venezuela), software contable local (obsoleto, sin integración en la nube), gestorías tradicionales (manuales y lentas).",
+    diferenciadores: "Especialización 100% en Venezuela, enfoque 'Todo en Uno' que elimina la fragmentación, e Inteligencia Fiscal Predictiva para garantizar 'Cero Riesgo Fiscal'."
 };
 
 const getDocumentContent = () => {
-    // This function will generate the HTML content for the Word document
-    // It's a simplified version for demonstration
     return `
-        <h1>MODELO DE ZEDU - ${projectData.nombre} 2025</h1>
+        <h1>MODELO DE ZEDU - System Kyron 2025</h1>
         <br/>
         <h2>1. IDENTIFICACIÓN DEL PROYECTO</h2>
         <p><strong>NOMBRE DEL PROYECTO:</strong> ${projectData.nombre}</p>
@@ -105,89 +103,87 @@ export default function ModuloZeduPage() {
     <div className="p-4 md:p-8 max-w-5xl mx-auto space-y-8">
         <header className="mb-10 text-center">
             <h1 className="text-4xl font-bold tracking-tight text-primary">
-                Modelo de Proyecto ZEDU
+                MODELO DE ZEDU - System Kyron 2025
             </h1>
-            <p className="mt-2 text-lg text-muted-foreground">Documentación consolidada del proyecto "{projectData.nombre}"</p>
         </header>
 
-        <div className="flex justify-center mb-10">
-            <Button onClick={handleDownloadWord} size="lg" className="shadow-lg">
-                <Download className="mr-2 h-5 w-5"/> Descargar Documento Completo (.doc)
-            </Button>
-        </div>
-
-        {/* Parte 1: Identificación */}
-        <Card className="shadow-lg">
-            <CardHeader>
-                <CardTitle className="flex items-center gap-3"><Users className="h-6 w-6 text-primary" />1. Identificación del Proyecto</CardTitle>
+        <Card className="bg-card/50 backdrop-blur-sm">
+            <CardHeader className="bg-primary/10 rounded-t-lg">
+                <CardTitle className="flex items-center gap-3"><Users className="h-5 w-5 text-primary" />1. IDENTIFICACIÓN DEL PROYECTO</CardTitle>
             </CardHeader>
-            <CardContent className="space-y-3">
-                <div className="flex justify-between p-3 bg-secondary/50 rounded-md"><strong className="text-muted-foreground">Nombre del Proyecto:</strong> <span className="font-semibold">{projectData.nombre}</span></div>
-                <div className="flex justify-between p-3 bg-secondary/50 rounded-md"><strong className="text-muted-foreground">Líder Estratégico:</strong> <span className="font-semibold">{projectData.lider}</span></div>
-                <div className="flex justify-between p-3 bg-secondary/50 rounded-md"><strong className="text-muted-foreground">Personal de Apoyo:</strong> <span className="font-semibold">{projectData.apoyo}</span></div>
-                <div className="flex justify-between p-3 bg-secondary/50 rounded-md"><strong className="text-muted-foreground">Institución Beneficiaria:</strong> <span className="font-semibold">{projectData.institucion}</span></div>
-                <div className="flex justify-between p-3 bg-secondary/50 rounded-md"><strong className="text-muted-foreground">Ubicación Geográfica:</strong> <span className="font-semibold">{projectData.ubicacion}</span></div>
+            <CardContent className="p-0">
+                <Table>
+                     <TableBody>
+                        <TableRow><TableCell className="font-semibold text-muted-foreground">NOMBRE DEL PROYECTO</TableCell><TableCell>{projectData.nombre}</TableCell></TableRow>
+                        <TableRow><TableCell className="font-semibold text-muted-foreground">LÍDER ESTRATÉGICO</TableCell><TableCell>{projectData.lider}</TableCell></TableRow>
+                        <TableRow><TableCell className="font-semibold text-muted-foreground">PERSONAL DE APOYO</TableCell><TableCell>{projectData.apoyo}</TableCell></TableRow>
+                        <TableRow><TableCell className="font-semibold text-muted-foreground">INSTITUCIÓN BENEFICIARIA</TableCell><TableCell>{projectData.institucion}</TableCell></TableRow>
+                        <TableRow><TableCell className="font-semibold text-muted-foreground">UBICACIÓN GEOGRÁFICA</TableCell><TableCell>{projectData.ubicacion}</TableCell></TableRow>
+                    </TableBody>
+                </Table>
             </CardContent>
         </Card>
 
-        {/* Parte 2: Población */}
-        <Card className="shadow-lg">
-            <CardHeader>
-                <CardTitle className="flex items-center gap-3"><MapPin className="h-6 w-6 text-primary" />2. Estudio de Población (ZEDU)</CardTitle>
+        <Card className="bg-card/50 backdrop-blur-sm">
+            <CardHeader className="bg-primary/10 rounded-t-lg">
+                <CardTitle className="flex items-center gap-3"><MapPin className="h-5 w-5 text-primary" />2. ESTUDIO DE POBLACIÓN (ZEDU)</CardTitle>
             </CardHeader>
-            <CardContent className="space-y-3">
-                <div className="p-3 bg-secondary/50 rounded-md"><strong className="text-muted-foreground">Localización Específica:</strong><p>{poblacionData.localizacion}</p></div>
-                <div className="flex justify-between p-3 bg-secondary/50 rounded-md"><strong className="text-muted-foreground">Nombre de la Comunidad:</strong> <span className="font-semibold">{poblacionData.comunidad}</span></div>
-                <div className="flex justify-between p-3 bg-secondary/50 rounded-md"><strong className="text-muted-foreground">Población Estimada:</strong> <span className="font-semibold">{poblacionData.estimada}</span></div>
+            <CardContent className="p-0">
+                 <Table>
+                     <TableBody>
+                        <TableRow><TableCell className="font-semibold text-muted-foreground">LOCALIZACIÓN ESPECÍFICA</TableCell><TableCell>{poblacionData.localizacion}</TableCell></TableRow>
+                        <TableRow><TableCell className="font-semibold text-muted-foreground">NOMBRE DE LA COMUNIDAD</TableCell><TableCell>{poblacionData.comunidad}</TableCell></TableRow>
+                        <TableRow><TableCell className="font-semibold text-muted-foreground">POBLACIÓN ESTIMADA</TableCell><TableCell>{poblacionData.estimada}</TableCell></TableRow>
+                    </TableBody>
+                </Table>
             </CardContent>
         </Card>
 
-        {/* Parte 3: Análisis del Problema */}
-        <Card className="shadow-lg">
-            <CardHeader>
-                <CardTitle className="flex items-center gap-3"><HelpCircle className="h-6 w-6 text-primary" />3. Análisis del Problema</CardTitle>
+        <Card className="bg-card/50 backdrop-blur-sm">
+            <CardHeader className="bg-primary/10 rounded-t-lg">
+                <CardTitle className="flex items-center gap-3"><HelpCircle className="h-5 w-5 text-primary" />3. ANÁLISIS DEL PROBLEMA</CardTitle>
             </CardHeader>
-            <CardContent className="space-y-4">
-                <div><h4 className="font-semibold">Definición:</h4><p className="text-muted-foreground">{problemaData.definicion}</p></div>
-                <Separator/>
-                <div><h4 className="font-semibold">Importancia:</h4><p className="text-muted-foreground">{problemaData.importancia}</p></div>
-                <Separator/>
-                <div><h4 className="font-semibold">Causas:</h4><p className="text-muted-foreground">{problemaData.causas}</p></div>
-                <Separator/>
-                <div><h4 className="font-semibold">Consecuencias:</h4><p className="text-muted-foreground">{problemaData.consecuencias}</p></div>
-                <Separator/>
-                <div><h4 className="font-semibold">Origen y Evolución:</h4><p className="text-muted-foreground">{problemaData.origen}</p></div>
+            <CardContent className="p-0">
+                 <Table>
+                     <TableBody>
+                        <TableRow><TableCell className="font-semibold text-muted-foreground">DEFINICIÓN</TableCell><TableCell>{problemaData.definicion}</TableCell></TableRow>
+                        <TableRow><TableCell className="font-semibold text-muted-foreground">IMPORTANCIA</TableCell><TableCell>{problemaData.importancia}</TableCell></TableRow>
+                        <TableRow><TableCell className="font-semibold text-muted-foreground">CAUSAS</TableCell><TableCell>{problemaData.causas}</TableCell></TableRow>
+                        <TableRow><TableCell className="font-semibold text-muted-foreground">CONSECUENCIAS</TableCell><TableCell>{problemaData.consecuencias}</TableCell></TableRow>
+                         <TableRow><TableCell className="font-semibold text-muted-foreground">ORIGEN Y EVOLUCIÓN</TableCell><TableCell>{problemaData.origen}</TableCell></TableRow>
+                    </TableBody>
+                </Table>
             </CardContent>
         </Card>
 
-        {/* Parte 4: Solución Propuesta */}
-        <Card className="shadow-lg">
-            <CardHeader>
-                <CardTitle className="flex items-center gap-3"><Rocket className="h-6 w-6 text-primary" />4. Solución Propuesta</CardTitle>
+        <Card className="bg-card/50 backdrop-blur-sm">
+            <CardHeader className="bg-primary/10 rounded-t-lg">
+                <CardTitle className="flex items-center gap-3"><Rocket className="h-5 w-5 text-primary" />4. SOLUCIÓN PROPUESTA</CardTitle>
             </CardHeader>
-            <CardContent>
-                <p className="text-muted-foreground">{solucionData.proyecto}</p>
+            <CardContent className="p-4">
+                 <p>{solucionData.proyecto}</p>
             </CardContent>
         </Card>
 
-        {/* Parte 5: Análisis Competitivo */}
-        <Card className="shadow-lg">
-            <CardHeader>
-                <CardTitle className="flex items-center gap-3"><Lightbulb className="h-6 w-6 text-primary" />5. Análisis Competitivo</CardTitle>
+        <Card className="bg-card/50 backdrop-blur-sm">
+            <CardHeader className="bg-primary/10 rounded-t-lg">
+                <CardTitle className="flex items-center gap-3"><Lightbulb className="h-5 w-5 text-primary" />5. ANÁLISIS COMPETITIVO</CardTitle>
             </CardHeader>
-            <CardContent className="space-y-4">
-                 <div><h4 className="font-semibold">Otras Propuestas Existentes:</h4><p className="text-muted-foreground">{solucionData.propuestasExistentes}</p></div>
-                <Separator/>
-                <div><h4 className="font-semibold">Diferenciadores de tu Solución:</h4><p className="text-muted-foreground">{solucionData.diferenciadores}</p></div>
+            <CardContent className="p-0">
+                 <Table>
+                     <TableBody>
+                        <TableRow><TableCell className="font-semibold text-muted-foreground">OTRAS PROPUESTAS EXISTENTES</TableCell><TableCell>{solucionData.propuestasExistentes}</TableCell></TableRow>
+                        <TableRow><TableCell className="font-semibold text-muted-foreground">DIFERENCIADORES CLAVE</TableCell><TableCell>{solucionData.diferenciadores}</TableCell></TableRow>
+                    </TableBody>
+                </Table>
             </CardContent>
         </Card>
 
-        {/* Parte 6: Presupuesto */}
-        <Card className="shadow-lg">
-            <CardHeader>
-                <CardTitle className="flex items-center gap-3"><TrendingUp className="h-6 w-6 text-primary" />6. Presupuesto</CardTitle>
+        <Card className="bg-card/50 backdrop-blur-sm">
+            <CardHeader className="bg-primary/10 rounded-t-lg">
+                <CardTitle className="flex items-center gap-3"><TrendingUp className="h-5 w-5 text-primary" />6. PRESUPUESTO</CardTitle>
             </CardHeader>
-            <CardContent>
+            <CardContent className="p-0">
                 <Table>
                     <TableHeader>
                         <TableRow>
@@ -205,6 +201,12 @@ export default function ModuloZeduPage() {
                 </Table>
             </CardContent>
         </Card>
+
+         <div className="flex justify-center pt-8">
+            <Button onClick={handleDownloadWord} size="lg" className="shadow-lg">
+                <Download className="mr-2 h-5 w-5"/> Descargar como Word
+            </Button>
+        </div>
 
     </div>
   );
