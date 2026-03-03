@@ -37,12 +37,11 @@ export const metadata: Metadata = {
 
 export default async function LocaleLayout({
   children,
-  params
+  params: { locale }
 }: {
   children: ReactNode;
-  params: Promise<{ locale: string }>;
+  params: { locale: string };
 }) {
-  const { locale } = await params;
   const messages = await getMessages();
 
   return (
