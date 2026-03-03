@@ -6,7 +6,7 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription, CardFooter }
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Loader2, AlertTriangle, Building, ChevronLeft } from 'lucide-react';
+import { Loader2, AlertTriangle, Building, ChevronLeft, Eye, EyeOff } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 import Link from 'next/link';
@@ -15,6 +15,7 @@ import { useToast } from '@/hooks/use-toast';
 export default function LoginEmpresaPage() {
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState<string | null>(null);
+    const [showPassword, setShowPassword] = useState(false);
     const router = useRouter();
     const { toast } = useToast();
 
@@ -79,7 +80,21 @@ export default function LoginEmpresaPage() {
                         </div>
                         <div className="space-y-2">
                             <Label htmlFor="password">Contraseña Maestra</Label>
-                            <Input id="password" name="password" type="password" required className="text-base" />
+                            <div className="relative">
+                                <Input id="password" name="password" type={showPassword ? 'text' : 'password'} required className="text-base pr-10" />
+                                <Button
+                                    type="button"
+                                    variant="ghost"
+                                    size="icon"
+                                    className="absolute inset-y-0 right-0 h-full px-3 hover:bg-transparent"
+                                    onClick={() => setShowPassword(!showPassword)}
+                                >
+                                    {showPassword ? <EyeOff className="h-4 w-4 text-muted-foreground" /> : <Eye className="h-4 w-4 text-muted-foreground" />}
+                                    <span className="sr-only">
+                                        {showPassword ? "Ocultar contraseña" : "Mostrar contraseña"}
+                                    </span>
+                                </Button>
+                            </div>
                         </div>
                     </CardContent>
                     <CardFooter className="p-8 flex flex-col gap-4">
