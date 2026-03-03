@@ -2,7 +2,7 @@
 "use client";
 
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
-import { Users, MapPin, BarChart2, TrendingUp, Sun, FileText, Download, Printer, BrainCircuit, AlertTriangle, ChevronsRight, Search, CheckCircle, Book, School } from "lucide-react";
+import { Users, MapPin, BarChart2, TrendingUp, Sun, FileText, Download, Printer, BrainCircuit, AlertTriangle, ChevronsRight, Search, CheckCircle, Book, School, HelpCircle, ListChecks, Flag, Target } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
 import { Separator } from "@/components/ui/separator";
@@ -38,6 +38,16 @@ const problemaData = {
   definicion: "En la Institución el sistema de archivado es muy pobre, ya que el método de archivado es netamente físico. Esto no permite agilidad a la hora de buscar información respecto a un estudiante de la institución.",
   importancia: "Para disminuir la carga de trabajo a la hora de buscar un archivo.",
   origen: "Desactualización e ignorancia en la gestión de nuevas tecnologías e información.",
+};
+
+// --- Data from Part 4 ---
+const objetivosData = {
+  general: "Agilizar el sistema de archivado en la institución para facilitar la búsqueda de información de los estudiantes.",
+  especificos: [
+    "Analizar el sistema de archivado actual de la institución",
+    "Determinar los requerimientos para el nuevo sistema de archivado",
+    "Desarrollar un sistema de archivado que facilite la búsqueda de información",
+  ],
 };
 
 
@@ -100,6 +110,16 @@ export default function ModuloZeduPage() {
             <br/>
             <h3>ORIGEN DEL PROBLEMA</h3>
             <p>${problemaData.origen}</p>
+            
+            <br/><hr/><br/>
+
+            <h2>Parte 4: Objetivos del Proyecto</h2>
+            <br/>
+            <h3>OBJETIVO GENERAL</h3>
+            <p>${objetivosData.general}</p>
+            <br/>
+            <h3>OBJETIVOS ESPECÍFICOS</h3>
+            <ul>${objetivosData.especificos.map(o => `<li>- ${o}</li>`).join('')}</ul>
         `;
     };
 
@@ -293,9 +313,35 @@ export default function ModuloZeduPage() {
                 
                 <Card>
                     <CardHeader>
-                        <CardTitle className="flex items-center gap-3 text-xl"><Sun className="text-primary"/> ORIGEN DEL PROBLEMA</CardTitle>
+                        <CardTitle className="flex items-center gap-3 text-xl"><BrainCircuit className="text-primary"/> ORIGEN DEL PROBLEMA</CardTitle>
                     </CardHeader>
                     <CardContent><p>{problemaData.origen}</p></CardContent>
+                </Card>
+            </div>
+
+            <Separator className="my-12" />
+
+            {/* --- PARTE 4 --- */}
+            <div className="space-y-6">
+                <h2 className="text-2xl font-bold text-primary border-b pb-2 mb-6">Parte 4: Objetivos del Proyecto</h2>
+                <Card>
+                    <CardHeader>
+                        <CardTitle className="flex items-center gap-3 text-xl"><Target className="text-primary"/> OBJETIVO GENERAL</CardTitle>
+                    </CardHeader>
+                    <CardContent>
+                        <p>{objetivosData.general}</p>
+                    </CardContent>
+                </Card>
+
+                <Card>
+                    <CardHeader>
+                        <CardTitle className="flex items-center gap-3 text-xl"><ListChecks className="text-primary"/> OBJETIVOS ESPECÍFICOS</CardTitle>
+                    </CardHeader>
+                    <CardContent>
+                        <ul className="list-disc list-inside space-y-2">
+                            {objetivosData.especificos.map((obj, index) => <li key={index}>{obj}</li>)}
+                        </ul>
+                    </CardContent>
                 </Card>
             </div>
       </div>
