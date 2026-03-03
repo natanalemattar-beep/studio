@@ -3,7 +3,7 @@
 import React from 'react';
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
-import { Download, Users, MapPin, HelpCircle, Rocket, Lightbulb, TrendingUp, Handshake } from "lucide-react";
+import { Download, Users, MapPin, HelpCircle, Rocket, Lightbulb, TrendingUp, Handshake, ClipboardCheck } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Table, TableBody, TableCell, TableRow, TableHeader, TableHead } from "@/components/ui/table";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
@@ -43,10 +43,21 @@ const presupuestoData = {
     ]
 };
 
-const aliadosData = [
-    // Empty as per the image
-    {}, {}, {}, {}, {}
-];
+const aliadosData = {
+    items: []
+};
+
+const planAccionData = {
+    nota: "El plan de acción debe incluir todas las tareas a realizar, con responsable y fechas, así como, el presupuesto, los recursos necesarios. Las tareas van desde las visitas a la comunidad, reunión con aliados, compra de material, hasta promoción o publicidad del proyecto.",
+    items: [
+        { "TAREAS": "Análisis de Mercado Detallado y Validación de Requerimientos con Empresas Piloto.", "RESPONSABLE": "Carlos Mattar (Líder de Estrategia)", "CRONOGRAMA (Fechas)": "Semanas 1-2" },
+        { "TAREAS": "Desarrollo del Core ERP y Módulos Base (Contabilidad, RRHH).", "RESPONSABLE": "Sebastián Garrido (Líder de Desarrollo)", "CRONOGRAMA (Fechas)": "Semanas 3-8" },
+        { "TAREAS": "Configuración de Infraestructura de Telecomunicaciones 5G y VoIP.", "RESPONSABLE": "Marcos Sousa (Líder de Telecom)", "CRONOGRAMA (Fechas)": "Semanas 6-10" },
+        { "TAREAS": "Desarrollo de la Billetera Blockchain y Pruebas de Seguridad.", "RESPONSABLE": "Sebastián Garrido (Líder de Desarrollo)", "CRONOGRAMA (Fechas)": "Semanas 7-11" },
+        { "TAREAS": "Fase de Pruebas de Aceptación de Usuario (UAT) con Clientes Piloto.", "RESPONSABLE": "Equipo de QA", "CRONOGRAMA (Fechas)": "Semanas 11-12" },
+        { "TAREAS": "Lanzamiento y Campaña de Marketing Inicial.", "RESPONSABLE": "Equipo de Marketing", "CRONOGRAMA (Fechas)": "Semana 12 en adelante" }
+    ]
+};
 
 
 const getDocumentContent = () => {
@@ -70,19 +81,27 @@ const getDocumentContent = () => {
         `;
     };
 
-    const createTableSection = (title: string, note: string, headers: string[]) => {
+    const createTableSection = (title: string, note: string, headers: string[], items: any[] = []) => {
         const headerCells = headers.map(h => `<th style="${thSpanStyle}">${h}</th>`).join('');
-        let emptyRows = '';
-        for (let i = 0; i < 3; i++) {
-            emptyRows += `<tr>${headers.map(() => `<td style="${tdValueStyle}">&nbsp;</td>`).join('')}</tr>`;
+        let dataRows = '';
+        if (items && items.length > 0) {
+             dataRows = items.map(item => {
+                const cells = headers.map(header => `<td style="${tdValueStyle}">${item[header] || ''}</td>`).join('');
+                return `<tr>${cells}</tr>`;
+            }).join('');
+        } else {
+             for (let i = 0; i < 3; i++) {
+                dataRows += `<tr>${headers.map(() => `<td style="${tdValueStyle}">&nbsp;</td>`).join('')}</tr>`;
+            }
         }
+
         return `
             <table style="${tableStyle}">
                  <thead><tr><th colspan="${headers.length}" style="${thStyle}">${title}</th></tr></thead>
                 <tbody>
                     ${note ? `<tr><td colspan="${headers.length}" style="${tdValueStyle}"><i>${note}</i></td></tr>` : ''}
                     <tr style="background-color: #edf2f7;">${headerCells}</tr>
-                    ${emptyRows}
+                    ${dataRows}
                 </tbody>
             </table>
         `;
@@ -101,8 +120,9 @@ const getDocumentContent = () => {
         content += createSection(section.title, section.data);
     });
 
-    content += createTableSection("6. PRESUPUESTO", presupuestoData.nota, ["ITEM", "CANTIDAD", "COSTO", "LUGAR DE COMPRA"]);
-    content += createTableSection("7. ALIADOS", "Busca aliados estratégicos, ya sea persona natural, empresas públicas o privadas.", ["ALIADO", "APOYO"]);
+    content += createTableSection("6. PRESUPUESTO", presupuestoData.nota, ["ITEM", "CANTIDAD", "COSTO", "LUGAR DE COMPRA"], presupuestoData.items);
+    content += createTableSection("7. ALIADOS", "Busca aliados estratégicos, ya sea persona natural, empresas públicas o privadas.", ["ALIADO", "APOYO"], aliadosData.items);
+    content += createTableSection("8. PLAN DE ACCIÓN", planAccionData.nota, ["TAREAS", "RESPONSABLE", "CRONOGRAMA (Fechas)"], planAccionData.items);
 
     return content;
 };
@@ -141,7 +161,8 @@ export default function ModuloZeduPage() {
         { icon: Rocket, title: "4. SOLUCIÓN PROPUESTA", data: { "Proyecto": solucionData.proyecto } },
         { icon: Lightbulb, title: "5. ANÁLISIS COMPETITIVO", data: { "Otras Propuestas Existentes": solucionData.propuestasExistentes, "Diferenciadores Clave": solucionData.diferenciadores } },
         { icon: TrendingUp, title: "6. PRESUPUESTO", data: presupuestoData, isTable: true, note: presupuestoData.nota, tableHeaders: ["ITEM", "CANTIDAD", "COSTO", "LUGAR DE COMPRA"] },
-        { icon: Handshake, title: "7. ALIADOS", data: aliadosData, isTable: true, note: "Busca aliados estratégicos, ya sea persona natural, empresas públicas o privadas.", tableHeaders: ["ALIADO", "APOYO"] }
+        { icon: Handshake, title: "7. ALIADOS", data: aliadosData, isTable: true, note: "Busca aliados estratégicos, ya sea persona natural, empresas públicas o privadas.", tableHeaders: ["ALIADO", "APOYO"] },
+        { icon: ClipboardCheck, title: "8. PLAN DE ACCIÓN", data: planAccionData, isTable: true, note: planAccionData.nota, tableHeaders: ["TAREAS", "RESPONSABLE", "CRONOGRAMA (Fechas)"] }
     ];
 
   return (
@@ -184,11 +205,21 @@ export default function ModuloZeduPage() {
                                                     </TableRow>
                                                 </TableHeader>
                                                 <TableBody>
-                                                    {[...Array(3)].map((_, i) => (
-                                                        <TableRow key={i}>
-                                                            {section.tableHeaders?.map((_, j) => <TableCell key={j} className="h-10">&nbsp;</TableCell>)}
-                                                        </TableRow>
-                                                    ))}
+                                                    {section.data.items && section.data.items.length > 0 ? (
+                                                        section.data.items.map((item: any, i: number) => (
+                                                            <TableRow key={i}>
+                                                                {section.tableHeaders?.map(header => (
+                                                                    <TableCell key={header}>{item[header] || ''}</TableCell>
+                                                                ))}
+                                                            </TableRow>
+                                                        ))
+                                                    ) : (
+                                                        [...Array(3)].map((_, i) => (
+                                                            <TableRow key={i}>
+                                                                {section.tableHeaders?.map((_, j) => <TableCell key={j} className="h-10">&nbsp;</TableCell>)}
+                                                            </TableRow>
+                                                        ))
+                                                    )}
                                                 </TableBody>
                                             </Table>
                                         </div>
@@ -218,5 +249,3 @@ export default function ModuloZeduPage() {
     </div>
   );
 }
-
-    
