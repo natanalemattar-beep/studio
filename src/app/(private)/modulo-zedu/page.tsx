@@ -4,41 +4,41 @@ import React from 'react';
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
 import { FileText, Download, Users, School, Target, HelpCircle, Rocket, Sparkles } from "lucide-react";
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Table, TableBody, TableCell, TableRow } from "@/components/ui/table";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 
 const projectData = {
     info: {
-        proyecto: "AutoMind AI",
+        proyecto: "System Kyron",
         integrantes: "Miguel Uzcategui, Miguel Angel Goites, Joaquin de Barros",
-        institucion: "Colegio Santa Rosa de Lima",
+        institucion: "System Kyron, C.A.",
         ubicacion: "Venezuela, Caracas"
     },
     poblacion: {
-        ubicacion: "Venezuela, Caracas",
-        comunidad: "Santa Rosa de Lima"
+        ubicacion: "Venezuela",
+        comunidad: "Empresas y Emprendedores en Venezuela"
     },
     analisis: {
-        definicion: "Gestión de archivos físicos ineficiente, desorganizada y lenta en instituciones educativas.",
-        importancia: "La dificultad para acceder a documentos importantes (expedientes, notas) genera retrasos administrativos, frustración en los representantes y riesgos de pérdida de información.",
-        causas: "Dependencia de sistemas de archivado manual, falta de digitalización, comunicación fragmentada entre departamentos y con las familias.",
-        consecuencias: "Tiempos de respuesta lentos, altos costos de almacenamiento físico, dificultad para realizar auditorías, y una mala experiencia para la comunidad educativa.",
-        origen: "Sistemas heredados y resistencia a la adopción de nuevas tecnologías en el sector educativo tradicional."
+        definicion: "Fragmentación de sistemas de gestión, alta complejidad fiscal y riesgo de multas para empresas en Venezuela.",
+        importancia: "La gestión ineficiente consume tiempo, genera costos ocultos y expone a las empresas a sanciones por incumplimiento de normativas del SENIAT, afectando su rentabilidad y crecimiento.",
+        causas: "Dependencia de múltiples software no integrados (contabilidad, facturación, RRHH), falta de automatización, y dificultad para mantenerse al día con la cambiante legislación fiscal.",
+        consecuencias: "Errores en declaraciones, pagos de multas, pérdida de tiempo en tareas manuales, falta de visibilidad financiera en tiempo real para tomar decisiones estratégicas.",
+        origen: "Entorno empresarial dinámico con una alta carga regulatoria y una oferta tecnológica tradicionalmente fragmentada y costosa."
     },
     solucion: {
-        proyecto: "AutoMind AI consiste en el desarrollo de una aplicación que transforma el sistema de archivado tradicional de una institución educativa en un entorno digital eficiente y organizado, permitiendo la digitalización, almacenamiento y búsqueda rápida de documentos que antes se gestionaban de forma física. La plataforma integrará un chatbot con atención automatizada dirigida a los representantes de los estudiantes, facilitando respuestas inmediatas y mejorando la comunicación colegio-familia. Además, incorporará herramientas de inteligencia artificial que apoyarán al personal administrativo en la generación de ideas estratégicas, contribuyendo a una gestión más moderna, ágil y orientada a la mejora continua institucional."
+        proyecto: "System Kyron es un ecosistema de gestión empresarial integral que unifica la contabilidad, facturación, cumplimiento fiscal (SENIAT), gestión de nómina y análisis financiero en una única plataforma inteligente. Utiliza automatización e IA para simplificar procesos complejos, garantizar el 'Cero Riesgo Fiscal' y proporcionar a los empresarios un centro de mando para controlar toda su operación."
     }
 };
 
 const otrasPropuestasData = {
     titulo: "OTRAS PROPUESTAS EXISTENTES PARA SOLUCIONAR EL PROBLEMA",
-    descripcion: "Los proyectos más similares son MOBIAN, que se enfoca en la optimizacion de datos para cualquier negocio, en donde su propósito es la eficiencia operativa y escalabilidad técnica dirigiendose a equipos tecnicos y directivos corporativos con la integración de sistemas y aumento de equipo."
+    descripcion: "Sistemas ERP internacionales (costosos y complejos de adaptar a Venezuela) y software contables locales que no están integrados y carecen de automatización inteligente y garantías de cumplimiento fiscal."
 };
 
 const diferenciadoresData = {
     titulo: "DIFERENCIADORES DE TU SOLUCIÓN",
-    descripcion: "[Aquí se describirán las características únicas de AutoMind AI que lo diferencian de MOBIAN, como el chatbot de atención a representantes, la IA para la generación de ideas estratégicas y el enfoque específico en instituciones educativas.]"
+    descripcion: "Kyron se diferencia por ser un ECOSISTEMA TODO EN UNO diseñado para Venezuela. Ofrece la garantía única de 'Cero Riesgo Fiscal' mediante IA, integra módulos que tradicionalmente están separados (Contabilidad, RRHH, Legal, Ventas) y proporciona un Centro de Mando unificado para la toma de decisiones estratégicas. No es solo un software, es un aliado para la tranquilidad y el crecimiento del empresario."
 };
 
 export default function ModuloZeduPage() {
@@ -208,7 +208,7 @@ export default function ModuloZeduPage() {
                 <CardTitle className="flex items-center gap-3"><Sparkles className="h-6 w-6 text-primary"/>{diferenciadoresData.titulo}</CardTitle>
             </CardHeader>
             <CardContent className="p-6">
-                <p className="text-muted-foreground">{diferenciadoresData.descripcion}</p>
+                <p>{diferenciadoresData.descripcion}</p>
             </CardContent>
         </Card>
       </div>
