@@ -4,7 +4,7 @@ export const loginGroups = [
     {
         title: "Portales Corporativos",
         options: [
-            { href: "/login-empresa", label: "Centro de Contabilidad", icon: Banknote, description: "Finanzas, impuestos y gestión administrativa." },
+            { href: "/centro-de-contabilidad", label: "Centro de Contabilidad", icon: Banknote, description: "Finanzas, impuestos y gestión administrativa." },
             { href: "/login-ventas", label: "Ventas y Facturación", icon: ShoppingCart, description: "Punto de Venta (TPV) y análisis comercial." },
             { href: "/login-rrhh", label: "Gestión de RR.HH.", icon: Briefcase, description: "Administración de personal, nóminas y talento." },
             { href: "/login-socios", label: "Portal de Socios", icon: Users, description: "Supervisión estratégica y consolidación del holding." },
