@@ -1,3 +1,4 @@
+
 "use client";
 
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
@@ -40,7 +41,7 @@ const problemaData = {
 };
 
 
-export default function ZeduModeloPage() {
+export default function ModuloZeduPage() {
     const { toast } = useToast();
 
     const getDocumentContent = () => {
