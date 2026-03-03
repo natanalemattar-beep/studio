@@ -47,7 +47,7 @@ export function SpecializedLoginCard({ portalName, portalDescription, redirectPa
         // Simulate a server-side delay
         setTimeout(() => {
             if (username === demoUsername && password === demoPassword) {
-                // Remove the toast from here and just navigate.
+                toast({ title: "Acceso Concedido", description: `Bienvenido al ${portalName}.` });
                 router.push(redirectPath);
             } else {
                 setError("Credenciales de demostración incorrectas. Utilice las indicadas.");
