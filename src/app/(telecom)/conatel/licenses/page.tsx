@@ -95,7 +95,7 @@ export default function LicensesPage() {
                                     <TableCell><Badge variant={statusVariant[item.status as keyof typeof statusVariant]}>{item.status}</Badge></TableCell>
                                     <TableCell>{formatDate(item.expires)}</TableCell>
                                     <TableCell className="text-center font-mono">{item.diasMora > 0 ? item.diasMora : '-'}</TableCell>
-                                    <TableCell className="text-right font-mono">{item.calculatedPenalty > 0 ? formatCurrency(item.calculatedPenalty, '$') : '-'}</TableCell>
+                                    <TableCell className="text-right font-mono">{item.calculatedPenalty > 0 ? formatCurrency(item.calculatedPenalty, 'USD') : '-'}</TableCell>
                                     <TableCell className="text-right">
                                         <Button 
                                             variant={item.status === 'Vencida' ? 'destructive' : 'default'} 
@@ -190,9 +190,9 @@ export default function LicensesPage() {
                             <p><strong>Días de retraso:</strong> {selectedLicencia.diasMora}</p>
                             {multaCalculada && (
                                 <div className="pt-4 border-t space-y-2">
-                                    <div className="flex justify-between"><span>Derecho de Renovación:</span> <span>{formatCurrency(multaCalculada.derecho, "$")}</span></div>
-                                    <div className="flex justify-between text-destructive"><span>Multa por mora:</span> <span>{formatCurrency(multaCalculada.multa, "$")}</span></div>
-                                    <div className="flex justify-between font-bold text-lg border-t pt-2"><span>Total a pagar estimado:</span> <span>{formatCurrency(multaCalculada.total, "$")}</span></div>
+                                    <div className="flex justify-between"><span>Derecho de Renovación:</span> <span>{formatCurrency(multaCalculada.derecho, "USD")}</span></div>
+                                    <div className="flex justify-between text-destructive"><span>Multa por mora:</span> <span>{formatCurrency(multaCalculada.multa, "USD")}</span></div>
+                                    <div className="flex justify-between font-bold text-lg border-t pt-2"><span>Total a pagar estimado:</span> <span>{formatCurrency(multaCalculada.total, "USD")}</span></div>
                                 </div>
                             )}
                         </div>

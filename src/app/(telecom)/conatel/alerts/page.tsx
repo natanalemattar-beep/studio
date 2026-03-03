@@ -67,7 +67,7 @@ export default function AlertsPage() {
                                     <TableCell>{item.date}</TableCell>
                                     <TableCell>{item.license}</TableCell>
                                     <TableCell>{item.reason}</TableCell>
-                                    <TableCell className="text-right">{formatCurrency(item.amount, '$')}</TableCell>
+                                    <TableCell className="text-right">{formatCurrency(item.amount, 'USD')}</TableCell>
                                 </TableRow>
                             ))}
                         </TableBody>

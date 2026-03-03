@@ -138,17 +138,17 @@ export default function EstudioFactibilidadEconomicaPage() {
         <br/>
 
         <h2>6. Análisis Financiero</h2>
-        <p><strong>Inversión Inicial Total:</strong> ${formatCurrency(estudioData.financialAnalysis.investment, '$')}</p>
-        <p><strong>Ahorro Anual Estimado Total:</strong> ${formatCurrency(totalSavings, '$')}</p>
+        <p><strong>Inversión Inicial Total:</strong> ${formatCurrency(estudioData.financialAnalysis.investment, 'USD')}</p>
+        <p><strong>Ahorro Anual Estimado Total:</strong> ${formatCurrency(totalSavings, 'USD')}</p>
         <ul>
-            <li>Ahorro Fiscal (Multas evitadas): ${formatCurrency(estudioData.financialAnalysis.annualSavings.fiscal, '$')}</li>
-            <li>Ahorro Operacional (Eficiencia): ${formatCurrency(estudioData.financialAnalysis.annualSavings.operational, '$')}</li>
-            <li>Ahorro en Telecomunicaciones: ${formatCurrency(estudioData.financialAnalysis.annualSavings.telecom, '$')}</li>
+            <li>Ahorro Fiscal (Multas evitadas): ${formatCurrency(estudioData.financialAnalysis.annualSavings.fiscal, 'USD')}</li>
+            <li>Ahorro Operacional (Eficiencia): ${formatCurrency(estudioData.financialAnalysis.annualSavings.operational, 'USD')}</li>
+            <li>Ahorro en Telecomunicaciones: ${formatCurrency(estudioData.financialAnalysis.annualSavings.telecom, 'USD')}</li>
         </ul>
-        <p><strong>Incremento de Ingresos Proyectado:</strong> ${formatCurrency(estudioData.financialAnalysis.projectedRevenueIncrease, '$')}</p>
+        <p><strong>Incremento de Ingresos Proyectado:</strong> ${formatCurrency(estudioData.financialAnalysis.projectedRevenueIncrease, 'USD')}</p>
         <p><strong>Período de Recuperación (Payback):</strong> ${estudioData.financialAnalysis.paybackPeriod}</p>
         <p><strong>Retorno de Inversión (ROI) a 24 meses:</strong> ${estudioData.financialAnalysis.roi}%</p>
-        <p><strong>Valor Presente Neto (VPN):</strong> ${formatCurrency(estudioData.financialAnalysis.npv, '$')}</p>
+        <p><strong>Valor Presente Neto (VPN):</strong> ${formatCurrency(estudioData.financialAnalysis.npv, 'USD')}</p>
         <p><strong>Tasa Interna de Retorno (TIR):</strong> ${estudioData.financialAnalysis.irr}</p>
         <br/>
         
@@ -172,8 +172,7 @@ export default function EstudioFactibilidadEconomicaPage() {
             
             const header = "<html xmlns:o='urn:schemas-microsoft-com:office:office' "+
                 "xmlns:w='urn:schemas-microsoft-com:office:word' "+
-                "xmlns='http://www.w3.org/TR/REC-html40'>"+
-                "<head><meta charset='utf-8'><title>Export HTML to Word</title></head><body>";
+                "xmlns='http://www.w3.org/TR/REC-html40'><head><meta charset='utf-8'><title>Export HTML to Word</title></head><body>";
             const footer = "</body></html>";
             const sourceHTML = header + content
                 .replace(/<h2>/g, '<h2 style="margin-top: 2em; color: #333;">')
@@ -351,11 +350,11 @@ export default function EstudioFactibilidadEconomicaPage() {
                     <AccordionTrigger className="text-2xl font-semibold"><div className="flex items-center gap-3"><DollarSign/>6. Análisis Financiero</div></AccordionTrigger>
                     <AccordionContent className="pt-4 space-y-6">
                          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 text-center">
-                            <Card><CardHeader><CardTitle className="text-base text-muted-foreground">Inversión Inicial</CardTitle></CardHeader><CardContent><p className="text-2xl font-bold">{formatCurrency(estudioData.financialAnalysis.investment, '$')}</p></CardContent></Card>
-                            <Card><CardHeader><CardTitle className="text-base text-muted-foreground">Ahorro Anual Total</CardTitle></CardHeader><CardContent><p className="text-2xl font-bold">{formatCurrency(Object.values(estudioData.financialAnalysis.annualSavings).reduce((a,b) => a + b, 0), '$')}</p></CardContent></Card>
+                            <Card><CardHeader><CardTitle className="text-base text-muted-foreground">Inversión Inicial</CardTitle></CardHeader><CardContent><p className="text-2xl font-bold">{formatCurrency(estudioData.financialAnalysis.investment, 'USD')}</p></CardContent></Card>
+                            <Card><CardHeader><CardTitle className="text-base text-muted-foreground">Ahorro Anual Total</CardTitle></CardHeader><CardContent><p className="text-2xl font-bold">{formatCurrency(Object.values(estudioData.financialAnalysis.annualSavings).reduce((a,b) => a + b, 0), 'USD')}</p></CardContent></Card>
                             <Card><CardHeader><CardTitle className="text-base text-muted-foreground">Recuperación (Payback)</CardTitle></CardHeader><CardContent><p className="text-2xl font-bold">{estudioData.financialAnalysis.paybackPeriod}</p></CardContent></Card>
                             <Card className="bg-primary/10 border-primary/20"><CardHeader><CardTitle className="text-base text-primary">ROI (24 meses)</CardTitle></CardHeader><CardContent><p className="text-3xl font-extrabold text-primary">{estudioData.financialAnalysis.roi}%</p></CardContent></Card>
-                             <Card className="bg-secondary"><CardHeader><CardTitle className="text-base text-muted-foreground">Valor Presente Neto (VPN)</CardTitle></CardHeader><CardContent><p className="text-2xl font-bold">{formatCurrency(estudioData.financialAnalysis.npv, '$')}</p></CardContent></Card>
+                             <Card className="bg-secondary"><CardHeader><CardTitle className="text-base text-muted-foreground">Valor Presente Neto (VPN)</CardTitle></CardHeader><CardContent><p className="text-2xl font-bold">{formatCurrency(estudioData.financialAnalysis.npv, 'USD')}</p></CardContent></Card>
                              <Card className="bg-secondary"><CardHeader><CardTitle className="text-base text-muted-foreground">Tasa Interna de Retorno (TIR)</CardTitle></CardHeader><CardContent><p className="text-2xl font-bold">{estudioData.financialAnalysis.irr}</p></CardContent></Card>
                         </div>
                     </AccordionContent>
