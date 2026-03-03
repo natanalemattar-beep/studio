@@ -2,56 +2,58 @@
 'use client';
 
 import { motion } from "framer-motion";
-import { Video } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { ArrowRight } from "lucide-react";
+import { useTranslations } from "next-intl";
 import { useHoliday } from "@/hooks/use-holiday";
 import { cn } from "@/lib/utils";
 import { FestiveEffect } from "../ui/confetti-effect";
 
 export function HeroSection() {
+  const t = useTranslations('HeroSection');
   const { activeHoliday, isHolidayActive } = useHoliday();
+
+  const handleScroll = (e: React.MouseEvent<HTMLAnchorElement>) => {
+      e.preventDefault();
+      const href = e.currentTarget.href;
+      const targetId = href.split('#')[1];
+      const targetElement = document.getElementById(targetId);
+      if (targetElement) {
+          const yOffset = -80; // Offset for sticky header
+          const y = targetElement.getBoundingClientRect().top + window.scrollY + yOffset;
+          window.scrollTo({top: y, behavior: 'smooth'});
+      }
+  };
 
   return (
     <section id="inicio" className={cn(
         "relative min-h-[85vh] flex items-center justify-center overflow-hidden py-24 sm:py-32",
-        !isHolidayActive && "bg-muted/30",
         isHolidayActive && "bg-transparent"
     )}>
       {isHolidayActive && activeHoliday && <FestiveEffect type={activeHoliday.effect} />}
       
       <div className="container mx-auto px-4 md:px-6 z-10">
-        <div className="max-w-5xl mx-auto text-center">
-          {/* Content */}
+        <div className="max-w-4xl mx-auto text-center">
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
           >
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/10 text-primary text-sm font-bold tracking-tight mb-8">
-                🚀 Tu Propia Línea 5G Integrada
-            </div>
-            
-            <h1 className="text-5xl md:text-7xl lg:text-8xl font-extrabold tracking-tighter text-balance leading-[1] mb-10">
-              Software de Gestión y Tu Propia Red 5G. <span className="text-primary">Todo en Uno.</span>
+            <h1 className="text-5xl md:text-7xl font-extrabold tracking-tighter text-balance leading-[1.1] mb-6">
+              {t('title')}
             </h1>
             
-            <p className="text-xl md:text-2xl text-muted-foreground text-balance max-w-3xl mx-auto leading-relaxed mb-12">
-              El primer ecosistema que fusiona un ERP completo con una operadora de telecomunicaciones. Automatización fiscal, contabilidad, y ahora, tu propia línea telefónica 5G para una conectividad sin límites.
+            <p className="text-lg md:text-xl text-muted-foreground text-balance max-w-3xl mx-auto leading-relaxed mb-10">
+              {t('subtitle')}
             </p>
             
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-8">
-                <div className="flex items-center gap-3 group cursor-pointer bg-card/50 backdrop-blur-sm p-4 rounded-2xl border border-border/50 hover:border-primary/50 transition-all shadow-xl">
-                    <div className="p-3 bg-primary text-primary-foreground rounded-xl group-hover:scale-110 transition-transform">
-                        <Video className="h-6 w-6" />
-                    </div>
-                    <div className="text-left">
-                        <p className="text-xs font-bold uppercase tracking-widest opacity-60">Demo Interactiva</p>
-                        <p className="font-bold">Ver Video del Sistema</p>
-                    </div>
-                </div>
-                
-                <div className="text-sm font-medium text-muted-foreground">
-                    <span className="text-primary font-bold">30 días gratis</span> para nuevas empresas
-                </div>
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+                <Button asChild size="lg" className="text-lg h-14 px-8 font-bold shadow-lg btn-3d-primary rounded-xl">
+                    <a href="#contacto" onClick={handleScroll}>{t('cta_main')} <ArrowRight className="ml-2 h-5 w-5"/></a>
+                </Button>
+                <Button asChild size="lg" variant="secondary" className="text-lg h-14 px-8 rounded-xl">
+                    <a href="#servicios" onClick={handleScroll}>{t('cta_secondary')}</a>
+                </Button>
             </div>
           </motion.div>
         </div>

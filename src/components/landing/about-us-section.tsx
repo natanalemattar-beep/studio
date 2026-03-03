@@ -9,6 +9,7 @@ import { useHoliday } from "@/hooks/use-holiday";
 import { cn } from "@/lib/utils";
 import { useEffect, useRef } from "react";
 import Image from "next/image";
+import { useTranslations } from "next-intl";
 
 const Counter = ({ from, to, duration = 1.5 }: { from: number, to: number, duration?: number }) => {
     const count = useMotionValue(from);
@@ -62,11 +63,11 @@ const testimonials = [
 
 export function AboutUsSection() {
     const { isHolidayActive } = useHoliday();
+    const t = useTranslations('LandingHeader');
 
     return (
-        <section id="nosotros" className="py-20 md:py-28 bg-background">
+        <section id="nosotros" className="py-20 md:py-28 bg-muted/20">
             <div className="container mx-auto px-4 md:px-6">
-                 {/* Social Proof Section */}
                 <motion.div 
                     className="mb-16 md:mb-24"
                     initial={{ opacity: 0, y: 20 }}
@@ -92,7 +93,7 @@ export function AboutUsSection() {
                     viewport={{ once: true, amount: 0.5 }}
                     transition={{ duration: 0.5 }}
                 >
-                    <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold">Nuestra Filosofía</h2>
+                    <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold">{t('about')}</h2>
                     <p className="mt-4 text-lg text-muted-foreground">Creemos en el poder de la tecnología para brindar tranquilidad y potenciar el crecimiento. Nuestra misión es simplificar lo complejo.</p>
                 </motion.div>
                 <div className="grid lg:grid-cols-5 gap-8 lg:gap-12 items-start">
@@ -143,10 +144,7 @@ export function AboutUsSection() {
                             {testimonials.map((testimonial) => {
                                 const avatar = PlaceHolderImages.find(img => img.id === testimonial.avatarId);
                                 return (
-                                    <blockquote key={testimonial.name} className={cn(
-                                        "p-6 border rounded-xl",
-                                        isHolidayActive ? "bg-card/50 backdrop-blur-sm" : "bg-card"
-                                    )}>
+                                    <blockquote key={testimonial.name} className="p-6 bg-card rounded-xl border">
                                         <div className="flex items-center gap-2 mb-2">
                                             <testimonial.icon className="h-4 w-4 text-primary"/>
                                             <span className="text-xs font-semibold uppercase text-primary">{testimonial.module}</span>

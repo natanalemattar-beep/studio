@@ -18,7 +18,7 @@
     --muted: 217 33% 17%;
     --muted-foreground: 215 20% 65%;
     --accent: 142 76% 47%;
-    --accent-foreground: 142 76% 98%;
+    --accent-foreground: 210 40% 98%;
     --destructive: 0 84% 60%;
     --destructive-foreground: 210 40% 98%;
     --border: 217 33% 17%;
@@ -41,7 +41,7 @@
     --muted: 217 33% 17%;
     --muted-foreground: 215 20% 65%;
     --accent: 142 76% 47%;
-    --accent-foreground: 142 76% 98%;
+    --accent-foreground: 210 40% 98%;
     --destructive: 0 84% 60%;
     --destructive-foreground: 210 40% 98%;
     --border: 217 33% 17%;
@@ -61,6 +61,7 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-smoothing: grayscale;
     text-rendering: optimizeLegibility;
+    background-image: radial-gradient(ellipse at top, hsl(var(--primary)/0.1), transparent 60%);
   }
   h1, h2, h3, h4, h5, h6 {
     @apply font-bold tracking-tight text-foreground text-balance;

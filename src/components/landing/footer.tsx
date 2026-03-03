@@ -18,7 +18,7 @@ const SocialIcon = ({ href, children }: { href: string, children: React.ReactNod
 export function Footer() {
     const { isHolidayActive } = useHoliday();
     return (
-        <footer id="footer" className={cn("py-16 border-t", isHolidayActive ? "bg-transparent" : "bg-card")}>
+        <footer id="footer" className={cn("py-16 border-t bg-card/20")}>
             <div className="container px-4 md:px-6 grid md:grid-cols-3 gap-12">
                 <div className="space-y-4">
                     <div className="flex items-center gap-3">
