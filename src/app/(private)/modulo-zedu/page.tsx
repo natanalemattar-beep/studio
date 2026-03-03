@@ -1,4 +1,3 @@
-
 "use client";
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -17,25 +16,30 @@ const informacionEquipo = [
 const poblacionTrabajar = [
   { campo: "PAÍS/ CIUDAD/ MUNICIPIO/ LOCALIDAD ESPECÍFICA", valor: "Venezuela, Caracas" },
   { campo: "NOMBRE DE LA COMUNIDAD", valor: "Santa Rosa de Lima" },
-  { campo: "NÚMERO DE HABITANTES", valor: "(No especificado)" },
-  { campo: "GÉNERO", valor: "(No especificado)" },
-  { campo: "EDADES COMPRENDIDAS", valor: "(No especificado)" },
-  { campo: "CARACTERÍSTICAS SOCIALES", valor: "(No especificado)" },
-  { campo: "CARACTERÍSTICAS ECONÓMICAS", valor: "(No especificado)" },
+  { campo: "NÚMERO DE HABITANTES", valor: "" },
+  { campo: "GÉNERO", valor: "" },
+  { campo: "EDADES COMPRENDIDAS", valor: "" },
+  { campo: "CARACTERÍSTICAS SOCIALES", valor: "" },
+  { campo: "CARACTERÍSTICAS ECONÓMICAS", valor: "" },
 ];
 
 const planteamientoProblema = [
     { campo: "CAUSAS DEL PROBLEMA", valor: "- Falta de organización\n- Poca disposición\n- Escaso presupuesto\n- Desactualización tecnologica" },
     { campo: "CONSECUENCIAS DEL PROBLEMA", valor: "Pérdida de tiempo en búsqueda de archivos" },
     { campo: "DEFINE EL PROBLEMA", valor: "En la Institución el sistema de archivado es muy pobre, ya que el método de archivado es netamente físico. Esto no permite agilidad a la hora de buscar información respecto a un estudiante de la institución." },
-    { campo: "POR QUÉ ES IMPORTANTE RESOLVER ESTE PROBLEMA", valor: "Para disminuir la carga de trabajo a la hora de buscar un archivo." },
-    { campo: "ORIGEN DEL PROBLEMA (Selecciona la o las que consideres)", valor: "Desactualizacion e ignorancia en la gestion de nuevas tecnologias" },
+    { campo: "POR QUÉ ES IMPORTANTE RESOLVER ESTE PROBLEMA", valor: "Para disminuir la carga de trabajo a la hora de buscar un archivo" },
+    { campo: "ORIGEN DEL PROBLEMA (Selecciona la o las que consideres)", valor: "Desactualizacion e ignorancia en la gestion de nuevas tecnologias e implementaciones digitales" },
 ];
 
 const objetivos = [
     { campo: "OBJETIVO GENERAL", valor: "CREAR UNA HERRAMIENTA EDUCATIVA ACCESIBLE Y ATRACTIVA QUE SIMPLIFIQUE EL APRENDIZAJE SOBRE IMPUESTOS PARA LA COMUNIDAD EDUCATIVA, UTILIZANDO INTELIGENCIA ARTIFICIAL PARA ADAPTAR EL CONTENIDO A LAS NECESIDADES DE CADA USUARIO." },
     { campo: "OBJETIVOS ESPECÍFICOS", valor: "1. CREAR UNA APLICACIÓN CON UNA INTERFAZ AMIGABLE E INTUITIVA.\n2. UTILIZAR UNA IA PARA PERSONALIZAR EL CONTENIDO EDUCATIVO.\n3. PROMOVER LA PARTICIPACIÓN CIUDADANA Y LA TRANSPARENCIA FISCAL.\n4. EVALUAR EL IMPACTO EDUCATIVO EN LA COMUNIDAD." },
 ];
+
+const solucionPropuesta = [
+  { campo: "DESARROLLA TU PROYECTO", valor: "" },
+];
+
 
 const ZeduSection = ({ title, data }: { title: string, data: { campo: string, valor: string }[] }) => (
     <Card>
@@ -80,8 +84,9 @@ export default function ModuloZeduPage() {
             </div>
             ${createHtmlSection('IDENTIFICACIÓN DEL PROYECTO', informacionEquipo)}
             ${createHtmlSection('ESTUDIO DE POBLACIÓN', poblacionTrabajar)}
-            ${createHtmlSection('PLANTEAMIENTO DEL PROBLEMA', planteamientoProblema)}
+            ${createHtmlSection('ANÁLISIS DEL PROBLEMA', planteamientoProblema)}
             ${createHtmlSection('OBJETIVOS', objetivos)}
+            ${createHtmlSection('SOLUCIÓN PROPUESTA', solucionPropuesta)}
         `;
     };
 
@@ -146,8 +151,9 @@ export default function ModuloZeduPage() {
           </div>
           <ZeduSection title="IDENTIFICACIÓN DEL PROYECTO" data={informacionEquipo} />
           <ZeduSection title="ESTUDIO DE POBLACIÓN" data={poblacionTrabajar} />
-          <ZeduSection title="PLANTEAMIENTO DEL PROBLEMA" data={planteamientoProblema} />
+          <ZeduSection title="ANÁLISIS DEL PROBLEMA" data={planteamientoProblema} />
           <ZeduSection title="OBJETIVOS" data={objetivos} />
+          <ZeduSection title="SOLUCIÓN PROPUESTA" data={solucionPropuesta} />
       </div>
     </div>
   );
