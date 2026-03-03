@@ -111,7 +111,7 @@ export function LandingHeader() {
                             <ThemeToggle />
                             <DropdownMenu>
                                 <DropdownMenuTrigger asChild>
-                                    <Button variant="outline">
+                                    <Button>
                                     Acceder <LogIn className="ml-2 h-4 w-4" />
                                     </Button>
                                 </DropdownMenuTrigger>
@@ -126,7 +126,7 @@ export function LandingHeader() {
                                     ))}
                                 </DropdownMenuContent>
                             </DropdownMenu>
-                            <Button asChild>
+                            <Button asChild variant="secondary">
                                 <Link href="/register">Registrarse</Link>
                             </Button>
                         </div>
@@ -177,5 +177,3 @@ export function LandingHeader() {
             </header>
     )
 }
-
-    
