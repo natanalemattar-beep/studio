@@ -38,10 +38,11 @@ const SmoothScrollLink: FC<AnchorHTMLAttributes<HTMLAnchorElement> & { onLinkCli
 
 const navLinks = [
   { href: "#inicio", label: "Inicio" },
-  { href: "#servicios", label: "Ecosistema" },
+  { href: "#servicios", label: "Servicios" },
   { href: "#caracteristicas", label: "Tecnología" },
-  { href: "#nosotros", label: "Nosotros" },
+  { href: "#nosotros", label: "Quiénes Somos" },
   { href: "#faq", label: "FAQ" },
+  { href: "#contacto", label: "Contacto" },
 ];
 
 export function LandingHeader() {
