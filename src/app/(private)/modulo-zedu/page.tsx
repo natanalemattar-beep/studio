@@ -1,10 +1,9 @@
 "use client";
 
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Table, TableBody, TableCell, TableRow } from "@/components/ui/table";
-import { Download, FileText, Printer } from "lucide-react";
+import React from 'react';
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
+import { FileText, Printer, Download } from "lucide-react";
 
 const informacionEquipo = [
   { campo: "NOMBRE DEL PROYECTO", valor: "AutoMind AI" },
@@ -13,85 +12,55 @@ const informacionEquipo = [
   { campo: "PAÍS/CIUDAD", valor: "Venezuela, Caracas" },
 ];
 
-const poblacionTrabajar = [
+const estudioPoblacion = [
   { campo: "PAÍS/ CIUDAD/ MUNICIPIO/ LOCALIDAD ESPECÍFICA", valor: "Venezuela, Caracas" },
   { campo: "NOMBRE DE LA COMUNIDAD", valor: "Santa Rosa de Lima" },
-  { campo: "NÚMERO DE HABITANTES", valor: "" },
-  { campo: "GÉNERO", valor: "" },
-  { campo: "EDADES COMPRENDIDAS", valor: "" },
-  { campo: "CARACTERÍSTICAS SOCIALES", valor: "" },
-  { campo: "CARACTERÍSTICAS ECONÓMICAS", valor: "" },
+  { campo: "NÚMERO DE HABITANTES", valor: "(No especificado)" },
 ];
-
-const planteamientoProblema = [
-    { campo: "CAUSAS DEL PROBLEMA", valor: "- Falta de organización\n- Poca disposición\n- Escaso presupuesto\n- Desactualización tecnologica" },
-    { campo: "CONSECUENCIAS DEL PROBLEMA", valor: "Pérdida de tiempo en búsqueda de archivos" },
-    { campo: "DEFINE EL PROBLEMA", valor: "En la Institución el sistema de archivado es muy pobre, ya que el método de archivado es netamente físico. Esto no permite agilidad a la hora de buscar información respecto a un estudiante de la institución." },
-    { campo: "POR QUÉ ES IMPORTANTE RESOLVER ESTE PROBLEMA", valor: "Para disminuir la carga de trabajo a la hora de buscar un archivo" },
-    { campo: "ORIGEN DEL PROBLEMA (Selecciona la o las que consideres)", valor: "Desactualizacion e ignorancia en la gestion de nuevas tecnologias e implementaciones digitales" },
-];
-
-const objetivos = [
-    { campo: "OBJETIVO GENERAL", valor: "CREAR UNA HERRAMIENTA EDUCATIVA ACCESIBLE Y ATRACTIVA QUE SIMPLIFIQUE EL APRENDIZAJE SOBRE IMPUESTOS PARA LA COMUNIDAD EDUCATIVA, UTILIZANDO INTELIGENCIA ARTIFICIAL PARA ADAPTAR EL CONTENIDO A LAS NECESIDADES DE CADA USUARIO." },
-    { campo: "OBJETIVOS ESPECÍFICOS", valor: "1. CREAR UNA APLICACIÓN CON UNA INTERFAZ AMIGABLE E INTUITIVA.\n2. UTILIZAR UNA IA PARA PERSONALIZAR EL CONTENIDO EDUCATIVO.\n3. PROMOVER LA PARTICIPACIÓN CIUDADANA Y LA TRANSPARENCIA FISCAL.\n4. EVALUAR EL IMPACTO EDUCATIVO EN LA COMUNIDAD." },
-];
-
-const solucionPropuesta = [
-  { campo: "DESARROLLA TU PROYECTO", valor: "" },
-];
-
 
 const ZeduSection = ({ title, data }: { title: string, data: { campo: string, valor: string }[] }) => (
-    <Card>
-        <CardHeader className="bg-primary text-primary-foreground p-3 rounded-t-xl">
-            <CardTitle className="text-lg">{title}</CardTitle>
-        </CardHeader>
-        <CardContent className="p-0">
-            <Table>
-                <TableBody>
-                    {data.map(item => (
-                        <TableRow key={item.campo}>
-                            <TableCell className="font-semibold w-1/3 border-r">{item.campo}</TableCell>
-                            <TableCell className="whitespace-pre-line">{item.valor}</TableCell>
-                        </TableRow>
-                    ))}
-                </TableBody>
-            </Table>
-        </CardContent>
-    </Card>
+    <div className="mb-12">
+        <h2 className="text-2xl font-bold uppercase tracking-wider border-b-2 border-foreground pb-2 mb-6">{title}</h2>
+        <div className="grid grid-cols-[1fr_2fr] items-center gap-x-6">
+            {data.map(item => (
+                <React.Fragment key={item.campo}>
+                    <div className="bg-muted/60 p-3 my-1 rounded-md text-right">
+                        <span className="font-semibold text-sm">{item.campo}</span>
+                    </div>
+                    <div className="p-3 my-1">
+                        <p className="text-muted-foreground whitespace-pre-line">{item.valor}</p>
+                    </div>
+                </React.Fragment>
+            ))}
+        </div>
+    </div>
 );
+
 
 export default function ModuloZeduPage() {
     const { toast } = useToast();
 
-    const getDocumentContent = () => {
+    const getWordContent = () => {
         const createHtmlSection = (title: string, data: {campo: string, valor: string}[]) => `
-            <h2 style="font-family: Arial, sans-serif; border-bottom: 2px solid #333; padding-bottom: 5px; color: #333;">${title}</h2>
-            <table style="width: 100%; border-collapse: collapse; font-family: Arial, sans-serif;">
+            <h2 style="font-family: Arial, sans-serif; border-bottom: 1px solid #000; padding-bottom: 2px; font-size: 16pt; margin-top: 20px;">${title}</h2>
+            <table style="width: 100%; border-collapse: collapse; font-family: Arial, sans-serif; margin-top: 10px;">
                 ${data.map(item => `
-                    <tr style="border-bottom: 1px solid #ddd;">
-                        <td style="padding: 8px; font-weight: bold; width: 30%; background-color: #f2f2f2;">${item.campo}</td>
-                        <td style="padding: 8px; white-space: pre-wrap;">${item.valor.replace(/\n/g, '<br/>')}</td>
+                    <tr>
+                        <td style="padding: 8px; font-weight: bold; width: 40%; background-color: #f2f2f2; border: 1px solid #ddd;">${item.campo}</td>
+                        <td style="padding: 8px; width: 60%; border: 1px solid #ddd;">${item.valor.replace(/\n/g, '<br/>')}</td>
                     </tr>
                 `).join('')}
             </table>
-            <br/>
-        `;
-
+            <br/>`;
         return `
-            <div style="text-align:center;">
-                <h1 style="font-family: Arial, sans-serif; font-size: 24px; color: #111;">Modelo ZEDU Consolidado</h1>
-            </div>
+            <h1 style="font-family: Arial, sans-serif; text-align: center; font-size: 20pt;">Modelo ZEDU Consolidado</h1><br/>
             ${createHtmlSection('IDENTIFICACIÓN DEL PROYECTO', informacionEquipo)}
-            ${createHtmlSection('ESTUDIO DE POBLACIÓN', poblacionTrabajar)}
-            ${createHtmlSection('ANÁLISIS DEL PROBLEMA', planteamientoProblema)}
-            ${createHtmlSection('OBJETIVOS', objetivos)}
-            ${createHtmlSection('SOLUCIÓN PROPUESTA', solucionPropuesta)}
+            ${createHtmlSection('ESTUDIO DE POBLACIÓN', estudioPoblacion)}
         `;
     };
 
     const handleAction = (action: 'print' | 'word') => {
-        const content = getDocumentContent();
+        const content = getWordContent();
         const header = "<!DOCTYPE html><html><head><meta charset='utf-8'><title>Modelo ZEDU Consolidado</title></head><body>";
         const footer = "</body></html>";
         const sourceHTML = header + content + footer;
@@ -126,18 +95,14 @@ export default function ModuloZeduPage() {
         }
     };
 
-
   return (
-    <div className="p-4 md:p-8">
+    <div className="p-4 md:p-8 max-w-5xl mx-auto">
       <header className="mb-8 flex items-center justify-between no-print">
         <div>
             <h1 className="text-3xl font-bold tracking-tight flex items-center gap-2">
                 <FileText className="h-8 w-8" />
                 Modelo ZEDU Consolidado
             </h1>
-            <p className="text-muted-foreground mt-2">
-            Todas las partes del modelo en una sola vista.
-            </p>
         </div>
         <div className="flex gap-2">
             <Button variant="outline" onClick={() => handleAction('print')}><Printer className="mr-2 h-4 w-4"/> Guardar como PDF</Button>
@@ -145,15 +110,12 @@ export default function ModuloZeduPage() {
         </div>
       </header>
 
-      <div id="printable-content" className="space-y-8">
-          <div className="text-center">
-            <h2 className="text-2xl font-bold">Modelo ZEDU Consolidado</h2>
+      <div id="printable-content" className="space-y-8 bg-card p-8 rounded-xl border">
+          <div className="text-center mb-12">
+            <h1 className="text-3xl font-bold">Modelo ZEDU Consolidado</h1>
           </div>
           <ZeduSection title="IDENTIFICACIÓN DEL PROYECTO" data={informacionEquipo} />
-          <ZeduSection title="ESTUDIO DE POBLACIÓN" data={poblacionTrabajar} />
-          <ZeduSection title="ANÁLISIS DEL PROBLEMA" data={planteamientoProblema} />
-          <ZeduSection title="OBJETIVOS" data={objetivos} />
-          <ZeduSection title="SOLUCIÓN PROPUESTA" data={solucionPropuesta} />
+          <ZeduSection title="ESTUDIO DE POBLACIÓN" data={estudioPoblacion} />
       </div>
     </div>
   );
