@@ -3,76 +3,77 @@
 import React from 'react';
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
-import { FileText, Printer, Download } from "lucide-react";
+import { FileText, Printer, Download, Users, Book, School, MapPin, Target, HelpCircle, Lightbulb, TrendingDown, History, Rocket } from "lucide-react";
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import { Separator } from '@/components/ui/separator';
 
-// Data for Part 1
-const informacionEquipo = [
-  { campo: "NOMBRE DEL PROYECTO", valor: "AutoMind AI" },
-  { campo: "INTEGRANTES DEL EQUIPO", valor: "Miguel Uzcategui, Miguel Angel Goites, Joaquin de Barros" },
-  { campo: "INSTITUCIÓN EDUCATIVA", valor: "Colegio Santa Rosa de Lima" },
-  { campo: "PAÍS/CIUDAD", valor: "Venezuela, Caracas" },
-];
-
-const poblacionTrabajar = [
-    { campo: "PAÍS/ CIUDAD/ MUNICIPIO/ LOCALIDAD ESPECÍFICA", valor: "Venezuela, Caracas" },
-    { campo: "NOMBRE DE LA COMUNIDAD", valor: "" },
-];
-
-// Reusable component for each section
-const ZeduTableSection = ({ title, data }: { title: string, data: { campo: string, valor: string }[] }) => (
-    <div className="mb-10">
-        <h2 className="text-lg font-bold text-white bg-[#4472c4] p-2 rounded-t-md">{title}</h2>
-        <div className="border-x border-b border-gray-400 dark:border-gray-600 rounded-b-md overflow-hidden">
-            {data.map((item, index) => (
-                <div key={index} className="grid grid-cols-[35%_65%] border-b border-gray-400 dark:border-gray-600 last:border-b-0 text-sm">
-                    <div className="font-semibold bg-gray-100 dark:bg-white/5 p-3 flex items-center border-r border-gray-400 dark:border-gray-600">
-                        <span>{item.campo}</span>
-                    </div>
-                    <div className="p-3 text-muted-foreground flex items-center">
-                        <span className="whitespace-pre-line">{item.valor}</span>
-                    </div>
-                </div>
-            ))}
-        </div>
-    </div>
-);
+const projectData = {
+    info: {
+        proyecto: "AutoMind AI",
+        integrantes: "Miguel Uzcategui, Miguel Angel Goites, Joaquin de Barros",
+        institucion: "U.E.P. Gabriela Mistral",
+        ubicacion: "Venezuela, Caracas"
+    },
+    poblacion: {
+        ubicacion: "Venezuela, Caracas",
+        comunidad: "Santa Rosa de Lima"
+    },
+    analisis: {
+        definicion: "Falta de educación vial en los jóvenes.",
+        importancia: "La falta de educación vial puede causar accidentes de tránsito, lesiones graves e incluso la muerte.",
+        causas: "Falta de programas educativos, poca conciencia, mal ejemplo de los adultos.",
+        consecuencias: "Accidentes, congestión vehicular, estrés y ansiedad al conducir.",
+        origen: "Históricamente, la educación vial no ha sido una prioridad en el sistema educativo."
+    },
+    solucion: {
+        proyecto: "Crear una aplicación móvil interactiva que enseñe las normas de tránsito a través de juegos y simulaciones."
+    }
+}
 
 
 export default function ModuloZeduPage() {
     const { toast } = useToast();
 
-    const getWordContent = () => {
-        const createHtmlSection = (title: string, data: {campo: string, valor: string}[]) => `
-            <h2 style="font-family: Arial, sans-serif; background-color: #4472c4; color: white; padding: 8px; font-size: 14pt; margin-top: 20px;">${title}</h2>
-            <table style="width: 100%; border-collapse: collapse; font-family: Arial, sans-serif; border: 1px solid #bfbfbf;">
-                ${data.map(item => `
-                    <tr style="border-bottom: 1px solid #bfbfbf;">
-                        <td style="padding: 8px; font-weight: bold; width: 35%; background-color: #f2f2f2; border-right: 1px solid #bfbfbf; vertical-align: top;">${item.campo}</td>
-                        <td style="padding: 8px; width: 65%; vertical-align: top;">${item.valor}</td>
-                    </tr>
-                `).join('')}
-            </table>
-            <br/>`;
+    const getDocumentContent = () => {
         return `
-            <div style="font-family: 'Times New Roman', Times, serif; text-align: center;">
-                <h1 style="font-size: 16pt; font-weight: bold; margin-bottom: 0;">Modelo Zedu</h1>
-            </div>
-            <br/>
-            ${createHtmlSection('INFORMACIÓN DEL EQUIPO', informacionEquipo)}
-            ${createHtmlSection('POBLACIÓN A TRABAJAR', poblacionTrabajar)}
+# MODELO ZEDU - AutoMind AI
+
+## 1. INFORMACIÓN DEL EQUIPO
+- **Nombre del Proyecto:** ${projectData.info.proyecto}
+- **Integrantes:** ${projectData.info.integrantes}
+- **Institución Educativa:** ${projectData.info.institucion}
+- **País/Ciudad:** ${projectData.info.ubicacion}
+
+---
+
+## 2. POBLACIÓN A TRABAJAR
+- **Ubicación Específica:** ${projectData.poblacion.ubicacion}
+- **Nombre de la Comunidad:** ${projectData.poblacion.comunidad}
+
+---
+
+## 3. ANÁLISIS DEL PROBLEMA
+- **Definición del Problema:** ${projectData.analisis.definicion}
+- **Importancia:** ${projectData.analisis.importancia}
+- **Causas:** ${projectData.analisis.causas}
+- **Consecuencias:** ${projectData.analisis.consecuencias}
+- **Origen y Antecedentes:** ${projectData.analisis.origen}
+
+---
+
+## 4. SOLUCIÓN PROPUESTA
+- **Desarrollo del Proyecto:** ${projectData.solucion.proyecto}
         `;
     };
 
     const handleAction = (action: 'print' | 'word') => {
-        const content = getWordContent();
-        const header = "<!DOCTYPE html><html><head><meta charset='utf-8'><title>Modelo ZEDU Consolidado</title></head><body>";
-        const footer = "</body></html>";
-        const sourceHTML = header + content + footer;
-
+        const content = getDocumentContent().replace(/(\r\n|\n|\r)/gm, "\n").replace(/#/g, '').replace(/\*/g, '');
+        
         if (action === 'print') {
             const printWindow = window.open('', '_blank');
             if(printWindow) {
-                printWindow.document.write(sourceHTML);
+                printWindow.document.write(`<pre>${content}</pre>`);
                 printWindow.document.close();
                 printWindow.focus();
                 setTimeout(() => {
@@ -85,41 +86,100 @@ export default function ModuloZeduPage() {
                 });
             }
         } else if (action === 'word') {
-            const source = 'data:application/vnd.ms-word;charset=utf-8,' + encodeURIComponent(sourceHTML);
-            const fileDownload = document.createElement("a");
-            document.body.appendChild(fileDownload);
-            fileDownload.href = source;
-            fileDownload.download = 'Modelo_Zedu.doc';
-            fileDownload.click();
-            document.body.removeChild(fileDownload);
+             const blob = new Blob([content], { type: 'text/plain;charset=utf-8' });
+             const url = URL.createObjectURL(blob);
+             const a = document.createElement('a');
+             a.href = url;
+             a.download = 'Modelo_Zedu.txt';
+             a.click();
+             URL.revokeObjectURL(url);
+
             toast({
                 title: "Descarga Iniciada",
-                description: "El documento se está descargando como un archivo .doc de Word.",
+                description: "El documento se está descargando como un archivo .txt.",
             });
         }
     };
 
   return (
-    <div className="p-4 md:p-8 max-w-5xl mx-auto">
-      <header className="mb-8 flex items-center justify-between no-print">
-        <div>
-            <h1 className="text-3xl font-bold tracking-tight flex items-center gap-2">
-                <FileText className="h-8 w-8" />
+    <div className="p-4 md:p-8 max-w-6xl mx-auto">
+        <header className="mb-10 text-center">
+            <h1 className="text-4xl font-bold tracking-tight flex items-center justify-center gap-3">
+                <FileText className="h-10 w-10 text-primary" />
                 Modelo Zedu
             </h1>
-        </div>
-        <div className="flex gap-2">
-            <Button variant="outline" onClick={() => handleAction('print')}><Printer className="mr-2 h-4 w-4"/> Guardar como PDF</Button>
-            <Button onClick={() => handleAction('word')}><Download className="mr-2 h-4 w-4"/> Descargar Word</Button>
-        </div>
-      </header>
+            <p className="text-muted-foreground mt-2 max-w-2xl mx-auto">
+                Visión consolidada del proyecto, desde su concepción hasta la solución propuesta.
+            </p>
+             <div className="flex gap-2 justify-center mt-6">
+                <Button variant="outline" onClick={() => handleAction('print')}><Printer className="mr-2 h-4 w-4"/> Guardar como PDF</Button>
+                <Button onClick={() => handleAction('word')}><Download className="mr-2 h-4 w-4"/> Descargar Documento</Button>
+            </div>
+        </header>
 
-      <div id="printable-content" className="space-y-8 bg-card p-8 rounded-xl border">
-          <div className="text-center mb-12">
-            <h1 className="text-2xl font-serif font-bold">Modelo Zedu</h1>
-          </div>
-          <ZeduTableSection title="INFORMACIÓN DEL EQUIPO" data={informacionEquipo} />
-          <ZeduTableSection title="POBLACIÓN A TRABAJAR" data={poblacionTrabajar} />
+      <div className="space-y-8">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <Card className="bg-card/50 backdrop-blur-sm">
+                <CardHeader>
+                    <CardTitle className="flex items-center gap-3"><Users className="h-6 w-6 text-primary"/>Información del Equipo</CardTitle>
+                </CardHeader>
+                <CardContent className="space-y-4">
+                    <div className="flex items-start gap-3"><Book className="h-5 w-5 text-muted-foreground shrink-0 mt-1"/><p><strong className="font-semibold text-foreground">Proyecto:</strong> {projectData.info.proyecto}</p></div>
+                    <div className="flex items-start gap-3"><Users className="h-5 w-5 text-muted-foreground shrink-0 mt-1"/><p><strong className="font-semibold text-foreground">Integrantes:</strong> {projectData.info.integrantes}</p></div>
+                    <div className="flex items-start gap-3"><School className="h-5 w-5 text-muted-foreground shrink-0 mt-1"/><p><strong className="font-semibold text-foreground">Institución:</strong> {projectData.info.institucion}</p></div>
+                    <div className="flex items-start gap-3"><MapPin className="h-5 w-5 text-muted-foreground shrink-0 mt-1"/><p><strong className="font-semibold text-foreground">Ubicación:</strong> {projectData.info.ubicacion}</p></div>
+                </CardContent>
+            </Card>
+            <Card className="bg-card/50 backdrop-blur-sm">
+                <CardHeader>
+                    <CardTitle className="flex items-center gap-3"><Target className="h-6 w-6 text-primary"/>Población a Trabajar</CardTitle>
+                </CardHeader>
+                <CardContent className="space-y-4">
+                    <div className="flex items-start gap-3"><MapPin className="h-5 w-5 text-muted-foreground shrink-0 mt-1"/><p><strong className="font-semibold text-foreground">Lugar:</strong> {projectData.poblacion.ubicacion}</p></div>
+                    <div className="flex items-start gap-3"><School className="h-5 w-5 text-muted-foreground shrink-0 mt-1"/><p><strong className="font-semibold text-foreground">Comunidad:</strong> {projectData.poblacion.comunidad}</p></div>
+                </CardContent>
+            </Card>
+        </div>
+
+        <Card className="bg-card/50 backdrop-blur-sm">
+            <CardHeader>
+                <CardTitle className="flex items-center gap-3"><HelpCircle className="h-6 w-6 text-primary"/>Análisis del Problema</CardTitle>
+                 <CardDescription>Desglose de la situación actual y sus implicaciones.</CardDescription>
+            </CardHeader>
+            <CardContent>
+                <Accordion type="single" collapsible className="w-full">
+                    <AccordionItem value="item-1">
+                        <AccordionTrigger><div className="flex items-center gap-2"><HelpCircle className="h-4 w-4"/>Definición del Problema</div></AccordionTrigger>
+                        <AccordionContent className="pt-2 text-base">{projectData.analisis.definicion}</AccordionContent>
+                    </AccordionItem>
+                    <AccordionItem value="item-2">
+                        <AccordionTrigger><div className="flex items-center gap-2"><Lightbulb className="h-4 w-4"/>Importancia</div></AccordionTrigger>
+                        <AccordionContent className="pt-2 text-base">{projectData.analisis.importancia}</AccordionContent>
+                    </AccordionItem>
+                    <AccordionItem value="item-3">
+                        <AccordionTrigger><div className="flex items-center gap-2"><TrendingDown className="h-4 w-4"/>Causas y Consecuencias</div></AccordionTrigger>
+                        <AccordionContent className="pt-4 grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <p><strong>Causas:</strong> {projectData.analisis.causas}</p>
+                            <p><strong>Consecuencias:</strong> {projectData.analisis.consecuencias}</p>
+                        </AccordionContent>
+                    </AccordionItem>
+                    <AccordionItem value="item-4">
+                        <AccordionTrigger><div className="flex items-center gap-2"><History className="h-4 w-4"/>Origen y Antecedentes</div></AccordionTrigger>
+                        <AccordionContent className="pt-2 text-base">{projectData.analisis.origen}</AccordionContent>
+                    </AccordionItem>
+                </Accordion>
+            </CardContent>
+        </Card>
+
+         <Card className="bg-primary/10 border-primary/20">
+            <CardHeader>
+                <CardTitle className="flex items-center gap-3"><Rocket className="h-6 w-6 text-primary"/>Solución Propuesta</CardTitle>
+            </CardHeader>
+            <CardContent>
+                <p className="text-lg text-foreground">{projectData.solucion.proyecto}</p>
+            </CardContent>
+        </Card>
+
       </div>
     </div>
   );
