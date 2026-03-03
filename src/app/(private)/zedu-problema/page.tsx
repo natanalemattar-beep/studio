@@ -58,7 +58,7 @@ export default function ZeduProblemaPage() {
             const content = getDocumentContent();
             const header = "<html xmlns:o='urn:schemas-microsoft-com:office:office' xmlns:w='urn:schemas-microsoft-com:office:word' xmlns='http://www.w3.org/TR/REC-html40'><head><meta charset='utf-8'><title>Modelo ZEDU Parte 3</title></head><body>";
             const footer = "</body></html>";
-            const sourceHTML = header + content.replace(/\n/g, '') + footer;
+            const sourceHTML = header + content.replace(/<h2>/g, '<h2 style="font-size: 16pt; margin-top: 20px;">').replace(/<h3>/g, '<h3 style="font-size: 14pt;">').replace(/<p>/g, '<p style="font-size: 12pt;">') + footer;
 
             const source = 'data:application/vnd.ms-word;charset=utf-8,' + encodeURIComponent(sourceHTML);
             const fileDownload = document.createElement("a");
@@ -103,22 +103,27 @@ export default function ZeduProblemaPage() {
         </div>
       </header>
 
-      <div id="printable-content">
-        <div className="grid gap-6">
-            <Card>
-                <CardHeader>
-                    <CardTitle className="flex items-center gap-2"><MapPin className="text-primary"/> Ubicación y Comunidad</CardTitle>
-                </CardHeader>
-                <CardContent className="space-y-2">
-                    <p><strong>País/Ciudad/Municipio:</strong> {problemaData.ubicacion}</p>
-                    <p><strong>Nombre de la Comunidad:</strong> {problemaData.nombreComunidad}</p>
-                </CardContent>
-            </Card>
+      <div id="printable-content" className="space-y-6">
+          <Card>
+              <CardHeader>
+                  <CardTitle className="flex items-center gap-3 text-xl"><MapPin className="text-primary"/> Ubicación y Comunidad</CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-2">
+                  <div>
+                      <h3 className="text-sm font-semibold text-muted-foreground">País/Ciudad/Municipio:</h3>
+                      <p>{problemaData.ubicacion}</p>
+                  </div>
+                  <div>
+                      <h3 className="text-sm font-semibold text-muted-foreground">Nombre de la Comunidad:</h3>
+                      <p>{problemaData.nombreComunidad}</p>
+                  </div>
+              </CardContent>
+          </Card>
 
             <div className="grid md:grid-cols-3 gap-6">
                 <Card>
                     <CardHeader>
-                        <CardTitle className="flex items-center gap-2"><Users className="text-primary"/> Total Habitantes</CardTitle>
+                        <CardTitle className="flex items-center gap-2 text-lg"><Users className="text-primary"/> Total Habitantes</CardTitle>
                     </CardHeader>
                     <CardContent>
                         <p className="text-muted-foreground italic">(No especificado)</p>
@@ -126,7 +131,7 @@ export default function ZeduProblemaPage() {
                 </Card>
                 <Card>
                     <CardHeader>
-                        <CardTitle className="flex items-center gap-2"><BarChart2 className="text-primary"/> Distribución por Género</CardTitle>
+                        <CardTitle className="flex items-center gap-2 text-lg"><BarChart2 className="text-primary"/> Distribución por Género</CardTitle>
                     </CardHeader>
                     <CardContent>
                          <p className="text-muted-foreground italic">(No especificado)</p>
@@ -134,7 +139,7 @@ export default function ZeduProblemaPage() {
                 </Card>
                 <Card>
                     <CardHeader>
-                        <CardTitle className="flex items-center gap-2"><TrendingUp className="text-primary"/> Distribución por Edad</CardTitle>
+                        <CardTitle className="flex items-center gap-2 text-lg"><TrendingUp className="text-primary"/> Distribución por Edad</CardTitle>
                     </CardHeader>
                     <CardContent>
                         <p className="text-muted-foreground italic">(No especificado)</p>
@@ -144,7 +149,7 @@ export default function ZeduProblemaPage() {
 
             <Card>
                 <CardHeader>
-                    <CardTitle className="flex items-center gap-2">Características Clave de la Población</CardTitle>
+                    <CardTitle className="text-xl">Características Clave de la Población</CardTitle>
                 </CardHeader>
                 <CardContent>
                     <p className="text-muted-foreground italic">(No especificado)</p>
@@ -153,13 +158,12 @@ export default function ZeduProblemaPage() {
             
             <Card>
                 <CardHeader>
-                    <CardTitle className="flex items-center gap-2"><Sun className="text-primary"/> Clima</CardTitle>
+                    <CardTitle className="flex items-center gap-2 text-xl"><Sun className="text-primary"/> Clima</CardTitle>
                 </CardHeader>
                 <CardContent>
                     <p className="text-muted-foreground italic">(No especificado)</p>
                 </CardContent>
             </Card>
-        </div>
       </div>
     </div>
   );

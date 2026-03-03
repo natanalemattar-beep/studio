@@ -45,7 +45,7 @@ export default function ZeduEquipoPage() {
             const content = getDocumentContent();
             const header = "<html xmlns:o='urn:schemas-microsoft-com:office:office' xmlns:w='urn:schemas-microsoft-com:office:word' xmlns='http://www.w3.org/TR/REC-html40'><head><meta charset='utf-8'><title>Modelo ZEDU Parte 2</title></head><body>";
             const footer = "</body></html>";
-            const sourceHTML = header + content.replace(/\n/g, '') + footer;
+            const sourceHTML = header + content.replace(/<h2>/g, '<h2 style="font-size: 16pt; margin-top: 20px;">').replace(/<h3>/g, '<h3 style="font-size: 14pt;">').replace(/<p>/g, '<p style="font-size: 12pt;">').replace(/<ul>/g, '<ul style="font-size: 12pt;">') + footer;
 
             const source = 'data:application/vnd.ms-word;charset=utf-8,' + encodeURIComponent(sourceHTML);
             const fileDownload = document.createElement("a");
@@ -89,11 +89,10 @@ export default function ZeduEquipoPage() {
         </div>
       </header>
       
-      <div id="printable-content">
-        <div className="grid gap-6">
+      <div id="printable-content" className="space-y-6">
             <Card>
                 <CardHeader>
-                    <CardTitle className="flex items-center gap-2"><Book className="text-primary"/> Nombre del Proyecto</CardTitle>
+                    <CardTitle className="flex items-center gap-2 text-xl"><Book className="text-primary"/> Nombre del Proyecto</CardTitle>
                 </CardHeader>
                 <CardContent>
                     <p className="text-lg font-semibold">{teamInfo.projectName}</p>
@@ -102,12 +101,12 @@ export default function ZeduEquipoPage() {
 
             <Card>
                 <CardHeader>
-                    <CardTitle className="flex items-center gap-2"><Users className="text-primary"/> Integrantes del Equipo</CardTitle>
+                    <CardTitle className="flex items-center gap-2 text-xl"><Users className="text-primary"/> Integrantes del Equipo</CardTitle>
                 </CardHeader>
                 <CardContent>
-                    <ul className="list-disc list-inside space-y-1">
+                    <ul className="list-disc list-inside space-y-2 text-md">
                         {teamInfo.members.map((member, index) => (
-                            <li key={index} className="text-md">{member}</li>
+                            <li key={index}>{member}</li>
                         ))}
                     </ul>
                 </CardContent>
@@ -116,7 +115,7 @@ export default function ZeduEquipoPage() {
             <div className="grid md:grid-cols-2 gap-6">
                 <Card>
                     <CardHeader>
-                        <CardTitle className="flex items-center gap-2"><School className="text-primary"/> Institución Educativa</CardTitle>
+                        <CardTitle className="flex items-center gap-2 text-xl"><School className="text-primary"/> Institución Educativa</CardTitle>
                     </CardHeader>
                     <CardContent>
                         <p className="text-md">{teamInfo.institution}</p>
@@ -124,14 +123,13 @@ export default function ZeduEquipoPage() {
                 </Card>
                 <Card>
                     <CardHeader>
-                        <CardTitle className="flex items-center gap-2"><MapPin className="text-primary"/> País/Ciudad</CardTitle>
+                        <CardTitle className="flex items-center gap-2 text-xl"><MapPin className="text-primary"/> País/Ciudad</CardTitle>
                     </CardHeader>
                     <CardContent>
                         <p className="text-md">{teamInfo.location}</p>
                     </CardContent>
                 </Card>
             </div>
-        </div>
       </div>
     </div>
   );

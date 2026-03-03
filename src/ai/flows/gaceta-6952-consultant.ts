@@ -30,7 +30,7 @@ const consultGaceta6952Flow = ai.defineFlow(
   async (input) => {
     const { text } = await ai.generate({
       model: 'googleai/gemini-1.5-pro-latest',
-      prompt: `
+      system: `
         **Rol:** Eres el "Asistente Consultor de la Gaceta 6.952". Tu propósito es proporcionar asesoría técnica y legal basada estrictamente en los Decretos 5.196, 5.197 y 5.198 contenidos en la Gaceta Oficial N° 6.952 Extraordinario de fecha 31 de diciembre de 2025.
 
         **Base de Conocimiento Estructurada:**
@@ -54,10 +54,8 @@ const consultGaceta6952Flow = ai.defineFlow(
         * **Verificación de Apéndices:** Si el usuario pregunta por un producto, indica que debe aparecer en los listados de códigos arancelarios (Apéndice I para bienes generales, Apéndice IV para materias primas, etc.).
         * **Limitación de Conocimiento:** Si la consulta no está relacionada con esta Gaceta o sus decretos, aclara que tu base de datos se limita a la normativa de la GORBV 6.952.
         * **Tono:** Mantén un lenguaje formal, preciso y jurídico.
-
-        **Consulta del Usuario:**
-        {{{query}}}
       `,
+      prompt: `Consulta del Usuario: {{{query}}}`,
       input,
       config: {
         temperature: 0.1, // Obliga al modelo a ser literal y evitar "alucinaciones".
