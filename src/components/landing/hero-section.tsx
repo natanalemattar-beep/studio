@@ -27,15 +27,15 @@ export function HeroSection() {
             transition={{ duration: 0.8, ease: "easeOut" }}
           >
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/5 border border-primary/10 text-primary text-sm font-bold tracking-tight mb-8">
-                🚀 Ecosistema de Gestión de Próxima Generación
+                🚀 Tu Propia Línea 5G Integrada
             </div>
             
             <h1 className="text-5xl md:text-7xl lg:text-8xl font-extrabold tracking-tighter text-balance leading-[1] mb-10">
-              Gestión, Telecomunicaciones y Finanzas en un <span className="text-primary">Solo Lugar</span>
+              Software de Gestión y Tu Propia Red 5G. <span className="text-primary">Todo en Uno.</span>
             </h1>
             
             <p className="text-xl md:text-2xl text-muted-foreground text-balance max-w-3xl mx-auto leading-relaxed mb-12">
-              Unifica todos tus departamentos con Inteligencia Artificial, Alertas Predictivas y Blockchain. La solución definitiva para empresas que miran al futuro.
+              El primer ecosistema que fusiona un ERP completo con una operadora de telecomunicaciones. Automatización fiscal, contabilidad, y ahora, tu propia línea telefónica 5G para una conectividad sin límites.
             </p>
             
             <div className="flex flex-col sm:flex-row items-center justify-center gap-8">
@@ -59,5 +59,3 @@ export function HeroSection() {
     </section>
   );
 }
-
-    

@@ -15,7 +15,7 @@ export const loginGroups = [
         options: [
             { href: "/login-escritorio-juridico", label: "Escritorio Jurídico", icon: Gavel, description: "Contratos, permisos y cumplimiento legal." },
             { href: "/login-informatica", label: "Ingeniería e IT", icon: Cpu, description: "Infraestructura, seguridad y desarrollo." },
-            { href: "/login-telecom", label: "Gestión de Telecom", icon: Signal, description: "Redes y servicios de conectividad." },
+            { href: "/login-telecom", label: "Telecomunicaciones 5G", icon: Signal, description: "Tu propia operadora virtual. Gestiona tu línea telefónica 5G, planes de datos, y comunicaciones unificadas a nivel global." },
             { href: "/login-marketing", label: "Marketing y Crecimiento", icon: Megaphone, description: "Análisis de mercado y gestión de campañas." },
         ]
     },
