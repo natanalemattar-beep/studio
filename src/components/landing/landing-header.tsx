@@ -19,6 +19,7 @@ import {
   DropdownMenuSeparator,
 } from "@/components/ui/dropdown-menu";
 import { loginGroups, loginOptions } from "@/lib/login-options";
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 
 const SmoothScrollLink: FC<AnchorHTMLAttributes<HTMLAnchorElement> & { onLinkClick?: () => void }> = ({ href, onLinkClick, ...props }) => {
     const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
@@ -150,38 +151,51 @@ export function LandingHeader() {
                                     <span className="sr-only">Abrir menú</span>
                                 </Button>
                             </SheetTrigger>
-                            <SheetContent side="left" className="flex flex-col bg-background/80 backdrop-blur-lg shadow-lg">
-                                <SheetHeader>
+                            <SheetContent side="left" className="flex flex-col bg-background/80 backdrop-blur-lg shadow-lg p-0">
+                                <SheetHeader className="p-4 border-b">
                                     <SheetTitle className="flex items-center gap-3">
                                         <Logo />
                                         <span className="text-xl font-bold">System Kyron</span>
                                     </SheetTitle>
                                 </SheetHeader>
-                                <nav className="grid gap-4 text-lg font-medium mt-8">
+                                <nav className="grid gap-2 text-lg font-medium p-4">
                                     {navLinks.map((link) => (
-                                        <SmoothScrollLink key={link.href} href={link.href} onLinkClick={() => setIsMobileMenuOpen(false)}>{link.label}</SmoothScrollLink>
+                                        <SmoothScrollLink key={link.href} href={link.href} onLinkClick={() => setIsMobileMenuOpen(false)} className="py-2 px-2 rounded-md hover:bg-muted">{link.label}</SmoothScrollLink>
                                     ))}
                                 </nav>
-                                <div className="mt-auto space-y-4">
-                                    <div className="flex gap-2">
+                                <div className="mt-auto">
+                                    <Accordion type="single" collapsible className="w-full border-y">
+                                        <AccordionItem value="acceder-menu" className="border-b-0">
+                                            <AccordionTrigger className="py-4 px-4 text-lg font-medium hover:no-underline">
+                                                <div className="flex items-center gap-3">
+                                                    <LogIn className="h-5 w-5"/>
+                                                    Acceder
+                                                </div>
+                                            </AccordionTrigger>
+                                            <AccordionContent>
+                                                <div className="flex flex-col gap-1 pl-12 pr-4">
+                                                    {loginOptions.map((option) => (
+                                                        <Button asChild variant="ghost" className="justify-start h-auto py-1.5" key={option.href + option.label} onClick={() => setIsMobileMenuOpen(false)}>
+                                                            <Link href={option.href} className="flex items-start gap-2">
+                                                                <option.icon className="mt-1 h-4 w-4 text-muted-foreground" />
+                                                                <div>
+                                                                    <p className="font-semibold leading-tight">{option.label}</p>
+                                                                </div>
+                                                            </Link>
+                                                        </Button>
+                                                    ))}
+                                                </div>
+                                            </AccordionContent>
+                                        </AccordionItem>
+                                    </Accordion>
+                                    <div className="p-4">
+                                        <Button asChild className="w-full">
+                                            <Link href="/register">Registrarse</Link>
+                                        </Button>
+                                    </div>
+                                    <div className="flex gap-2 p-4 border-t">
                                         <ThemeToggle />
                                     </div>
-                                    <div className="pt-4 border-t">
-                                        <h4 className="px-2 py-1.5 text-sm font-semibold">Acceder</h4>
-                                        <div className="flex flex-col gap-1 pl-4">
-                                            {loginOptions.map((option) => (
-                                                <Button asChild variant="ghost" className="justify-start h-auto py-1.5" key={option.href + option.label} onClick={() => setIsMobileMenuOpen(false)}>
-                                                    <Link href={option.href}>
-                                                        <option.icon className="mr-2 h-4 w-4 text-muted-foreground" />
-                                                        {option.label}
-                                                    </Link>
-                                                </Button>
-                                            ))}
-                                        </div>
-                                    </div>
-                                    <Button asChild className="w-full">
-                                        <Link href="/register">Registrarse</Link>
-                                    </Button>
                                 </div>
                             </SheetContent>
                         </Sheet>
