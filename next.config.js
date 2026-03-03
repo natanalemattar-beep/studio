@@ -8,7 +8,12 @@ const nextConfig = {
   outputFileTracingRoot: __dirname,
   experimental: {
   },
-  allowedDevOrigins: ["https://6000-firebase-system-kyron-2-1769997556778.cluster-f73ibkkuije66wssuontdtbx6q.cloudworkstations.dev", "https://9000-firebase-system-kyron-2-1769997556778.cluster-f73ibkkuije66wssuontdtbx6q.cloudworkstations.dev"],
+  allowedDevOrigins: [
+    "https://6000-firebase-system-kyron-3-1771736325274.cluster-f73ibkkuije66wssuontdtbx6q.cloudworkstations.dev",
+    "https://9000-firebase-system-kyron-3-1771736325274.cluster-f73ibkkuije66wssuontdtbx6q.cloudworkstations.dev",
+    "https://6000-firebase-system-kyron-2-1769997556778.cluster-f73ibkkuije66wssuontdtbx6q.cloudworkstations.dev", 
+    "https://9000-firebase-system-kyron-2-1769997556778.cluster-f73ibkkuije66wssuontdtbx6q.cloudworkstations.dev"
+  ],
   images: {
     unoptimized: true,
     remotePatterns: [

@@ -2,16 +2,17 @@
 
 import React from 'react';
 import { Button } from "@/components/ui/button";
-import { useToast } from "@/components/ui/use-toast";
+import { useToast } from "@/hooks/use-toast";
 import { FileText, Download, Users, School, MapPin, Target, HelpCircle, TrendingDown, History, Rocket } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Table, TableBody, TableCell, TableRow } from "@/components/ui/table";
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 
 const projectData = {
     info: {
         proyecto: "AutoMind AI",
-        integrantes: "Carlos Mattar, Marcos Sousa, Sebastian Garrido",
-        institucion: "U.E.P. Gabriela Mistral",
+        integrantes: "Miguel Uzcategui, Miguel Angel Goites, Joaquin de Barros",
+        institucion: "Colegio Santa Rosa de Lima",
         ubicacion: "Venezuela, Caracas"
     },
     poblacion: {
@@ -134,41 +135,37 @@ export default function ModuloZeduPage() {
                 </CardContent>
             </Card>
         </div>
-
-        {/* PARTE 3 */}
+        
         <Card className="bg-card/50 backdrop-blur-sm">
-            <CardHeader className="bg-primary/10 rounded-t-lg">
+             <CardHeader className="bg-primary/10 rounded-t-lg">
                 <CardTitle className="flex items-center gap-3"><HelpCircle className="h-6 w-6 text-primary"/>Análisis del Problema</CardTitle>
             </CardHeader>
-            <CardContent className="p-0">
-                <Table>
-                    <TableBody>
-                        <TableRow>
-                            <TableCell className="font-semibold w-1/4">Definición</TableCell>
-                            <TableCell>{projectData.analisis.definicion}</TableCell>
-                        </TableRow>
-                        <TableRow>
-                            <TableCell className="font-semibold">Importancia</TableCell>
-                            <TableCell>{projectData.analisis.importancia}</TableCell>
-                        </TableRow>
-                         <TableRow>
-                            <TableCell className="font-semibold">Causas</TableCell>
-                            <TableCell>{projectData.analisis.causas}</TableCell>
-                        </TableRow>
-                         <TableRow>
-                            <TableCell className="font-semibold">Consecuencias</TableCell>
-                            <TableCell>{projectData.analisis.consecuencias}</TableCell>
-                        </TableRow>
-                         <TableRow>
-                            <TableCell className="font-semibold">Origen</TableCell>
-                            <TableCell>{projectData.analisis.origen}</TableCell>
-                        </TableRow>
-                    </TableBody>
-                </Table>
+            <CardContent className="p-6">
+                <Accordion type="single" collapsible className="w-full">
+                    <AccordionItem value="item-1">
+                        <AccordionTrigger>Definición del Problema</AccordionTrigger>
+                        <AccordionContent>{projectData.analisis.definicion}</AccordionContent>
+                    </AccordionItem>
+                    <AccordionItem value="item-2">
+                        <AccordionTrigger>Importancia</AccordionTrigger>
+                        <AccordionContent>{projectData.analisis.importancia}</AccordionContent>
+                    </AccordionItem>
+                    <AccordionItem value="item-3">
+                        <AccordionTrigger>Causas</AccordionTrigger>
+                        <AccordionContent>{projectData.analisis.causas}</AccordionContent>
+                    </AccordionItem>
+                    <AccordionItem value="item-4">
+                        <AccordionTrigger>Consecuencias</AccordionTrigger>
+                        <AccordionContent>{projectData.analisis.consecuencias}</AccordionContent>
+                    </AccordionItem>
+                     <AccordionItem value="item-5">
+                        <AccordionTrigger>Origen y Antecedentes</AccordionTrigger>
+                        <AccordionContent>{projectData.analisis.origen}</AccordionContent>
+                    </AccordionItem>
+                </Accordion>
             </CardContent>
         </Card>
 
-        {/* PARTE 4 */}
          <Card className="bg-green-600/10 border-green-600/30">
             <CardHeader className="bg-green-600/20 rounded-t-lg">
                 <CardTitle className="flex items-center gap-3 text-green-800 dark:text-green-300"><Rocket className="h-6 w-6"/>Solución Propuesta</CardTitle>
