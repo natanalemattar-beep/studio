@@ -6,23 +6,22 @@ import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
 import { Download } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Table, TableBody, TableCell, TableRow, TableHead, TableHeader } from "@/components/ui/table";
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import { Table, TableBody, TableCell, TableRow } from "@/components/ui/table";
 import { Users, School, MapPin, Target, HelpCircle, TrendingDown, History, Rocket } from "lucide-react";
 
 
 const projectData = {
-    nombre: "System Kyron 2025",
+    nombre: "System Kyron",
     lider: "Carlos Mattar",
-    apoyo: "Sebastian Garrido, Marcos Sousa, Miguel Uzcategui, Miguel Goites, Joaquin de Barros",
+    apoyo: "Sebastian Garrido, Marcos Sousa",
     institucion: "U.E.P. Gabriela Mistral",
     ubicacion: "La Guaira, Venezuela"
 };
 
 const poblacionData = {
-    localizacion: "U.E.P. 'Gral. Ladislao Uztariz' y 'Colegio Santa Rosa de Lima'",
-    comunidad: "Comunidad Educativa del Sector 'Santa Rosa de Lima'",
-    estimada: "200 profesores / 1.500 estudiantes (Inicial a Bachillerato)"
+    localizacion: "La Atlántida, entre calle 7 a calle 3, Catia La Mar. Referencias: Pinta Catia, Supermercado Bensica.",
+    comunidad: "Comunidad Comercial y Residencial La Atlántida",
+    estimada: "500 empresas activas / 5.000 empleados administrativos y civiles."
 };
 
 const problemaData = {
@@ -45,7 +44,7 @@ export default function ModuloZeduPage() {
 
     const getDocumentContent = () => {
         return `
-            <h1>MODELO DE ZEDU - ${projectData.nombre}</h1>
+            <h1>MODELO DE ZEDU - ${projectData.nombre} 2025</h1>
             <br/>
             <h2>1. IDENTIFICACIÓN DEL PROYECTO</h2>
             <table border="1" cellpadding="5" style="width: 100%; border-collapse: collapse;">
@@ -75,15 +74,15 @@ export default function ModuloZeduPage() {
             <h2>4. SOLUCIÓN PROPUESTA</h2>
             <table border="1" cellpadding="5" style="width: 100%; border-collapse: collapse;">
                 <tr><td style="width: 30%;"><strong>Desarrolla tu Proyecto</strong></td><td>${solucionData.proyecto}</td></tr>
-                <tr><td><strong>Otras Propuestas Existentes</strong></td><td>${solucionData.propuestasExistentes}</td></tr>
             </table>
             <br/>
-            <h2>5. DIFERENCIADORES CLAVE</h2>
-            <p><strong>Especialización:</strong> Mientras competidores ofrecen servicios genéricos de IT, System Kyron resuelve problemas específicos del sector educativo (archivo físico y comunicación escolar), con escalabilidad a otros sectores.</p>
-            <p><strong>Alcance del Usuario:</strong> A diferencia de otros que optimizan procesos internos, System Kyron impacta directamente en la experiencia del cliente final (padres/representantes) mediante su chatbot.</p>
-            <p><strong>De Datos a Estrategia:</strong> System Kyron va más allá de la "gestión eficiente", utilizando la IA para generar ideas estratégicas y apoyar la toma de decisiones directivas.</p>
+            <h2>5. OTRAS PROPUESTAS EXISTENTES</h2>
+            <p>${solucionData.propuestasExistentes}</p>
             <br/>
-            <h2>6. PRESUPUESTO</h2>
+            <h2>6. DIFERENCIADORES DE TU SOLUCIÓN</h2>
+            <p>${solucionData.diferenciadores}</p>
+            <br/>
+            <h2>7. PRESUPUESTO</h2>
             <table border="1" cellpadding="5" style="width: 100%; border-collapse: collapse;">
                 <thead>
                     <tr>
@@ -95,9 +94,6 @@ export default function ModuloZeduPage() {
                 </thead>
                 <tbody>
                     <tr><td>&nbsp;</td><td></td><td></td><td></td></tr>
-                    <tr><td>&nbsp;</td><td></td><td></td><td></td></tr>
-                    <tr><td>&nbsp;</td><td></td><td></td><td></td></tr>
-                    <tr><td colspan="4" style="height:20px;"></td></tr>
                     <tr><td>&nbsp;</td><td></td><td></td><td></td></tr>
                     <tr><td>&nbsp;</td><td></td><td></td><td></td></tr>
                 </tbody>
@@ -132,22 +128,23 @@ export default function ModuloZeduPage() {
     <div className="p-4 md:p-8 max-w-4xl mx-auto">
         <header className="mb-10 text-center">
             <h1 className="text-3xl font-bold tracking-tight text-primary">
-                MODELO DE ZEDU - {projectData.nombre}
+                MODELO DE ZEDU - {projectData.nombre.toUpperCase()} 2025
             </h1>
         </header>
 
         <div className="space-y-8">
             <Card className="border-2 border-primary/20">
                 <div className="bg-primary text-primary-foreground p-3">
-                    <CardTitle className="flex items-center gap-3"><Users className="h-5 w-5" />1. INFORMACIÓN DEL EQUIPO</CardTitle>
+                    <CardTitle className="flex items-center gap-3"><Users className="h-5 w-5" />1. IDENTIFICACIÓN DEL PROYECTO</CardTitle>
                 </div>
                 <CardContent className="p-0">
                     <Table>
                         <TableBody>
-                            <TableRow><TableCell className="font-semibold w-1/3">Nombre del Proyecto</TableCell><TableCell>{projectData.nombre}</TableCell></TableRow>
-                            <TableRow><TableCell className="font-semibold">Líder Estratégico</TableCell><TableCell>{projectData.lider}</TableCell></TableRow>
-                            <TableRow><TableCell className="font-semibold">Personal de Apoyo</TableCell><TableCell>{projectData.apoyo}</TableCell></TableRow>
-                            <TableRow><TableCell className="font-semibold">Institución</TableCell><TableCell>{projectData.institucion}</TableCell></TableRow>
+                            <TableRow><TableCell className="font-semibold w-1/3">NOMBRE DEL PROYECTO</TableCell><TableCell>{projectData.nombre}</TableCell></TableRow>
+                            <TableRow><TableCell className="font-semibold">LÍDER ESTRATÉGICO</TableCell><TableCell>{projectData.lider}</TableCell></TableRow>
+                            <TableRow><TableCell className="font-semibold">PERSONAL DE APOYO</TableCell><TableCell>{projectData.apoyo}</TableCell></TableRow>
+                            <TableRow><TableCell className="font-semibold">INSTITUCIÓN BENEFICIARIA</TableCell><TableCell>{projectData.institucion}</TableCell></TableRow>
+                            <TableRow><TableCell className="font-semibold">UBICACIÓN GEOGRÁFICA</TableCell><TableCell>{projectData.ubicacion}</TableCell></TableRow>
                         </TableBody>
                     </Table>
                 </CardContent>
@@ -155,14 +152,14 @@ export default function ModuloZeduPage() {
 
             <Card className="border-2 border-primary/20">
                 <div className="bg-primary text-primary-foreground p-3">
-                    <CardTitle className="flex items-center gap-3"><School className="h-5 w-5" />2. POBLACIÓN A TRABAJAR</CardTitle>
+                    <CardTitle className="flex items-center gap-3"><School className="h-5 w-5" />2. ESTUDIO DE POBLACIÓN (ZEDU)</CardTitle>
                 </div>
                 <CardContent className="p-0">
                     <Table>
                         <TableBody>
-                            <TableRow><TableCell className="font-semibold w-1/3">Localización</TableCell><TableCell>{poblacionData.localizacion}</TableCell></TableRow>
-                            <TableRow><TableCell className="font-semibold">Comunidad</TableCell><TableCell>{poblacionData.comunidad}</TableCell></TableRow>
-                            <TableRow><TableCell className="font-semibold">Población Estimada</TableCell><TableCell>{poblacionData.estimada}</TableCell></TableRow>
+                            <TableRow><TableCell className="font-semibold w-1/3">LOCALIZACIÓN ESPECÍFICA</TableCell><TableCell>{poblacionData.localizacion}</TableCell></TableRow>
+                            <TableRow><TableCell className="font-semibold">NOMBRE DE LA COMUNIDAD</TableCell><TableCell>{poblacionData.comunidad}</TableCell></TableRow>
+                            <TableRow><TableCell className="font-semibold">POBLACIÓN ESTIMADA</TableCell><TableCell>{poblacionData.estimada}</TableCell></TableRow>
                         </TableBody>
                     </Table>
                 </CardContent>
@@ -193,58 +190,51 @@ export default function ModuloZeduPage() {
                      <Table>
                         <TableBody>
                             <TableRow><TableCell className="font-semibold w-1/3">Desarrolla tu Proyecto</TableCell><TableCell>{solucionData.proyecto}</TableCell></TableRow>
-                             <TableRow><TableCell className="font-semibold">Otras Propuestas Existentes</TableCell><TableCell>{solucionData.propuestasExistentes}</TableCell></TableRow>
                         </TableBody>
                     </Table>
+                </CardContent>
+            </Card>
+
+             <Card className="border-2 border-primary/20">
+                <div className="bg-primary text-primary-foreground p-3">
+                    <CardTitle className="flex items-center gap-3"><History className="h-5 w-5" />5. OTRAS PROPUESTAS EXISTENTES</CardTitle>
+                </div>
+                <CardContent className="p-6">
+                    <p className="text-muted-foreground">{solucionData.propuestasExistentes}</p>
                 </CardContent>
             </Card>
             
              <Card className="border-2 border-primary/20">
                 <div className="bg-primary text-primary-foreground p-3">
-                    <CardTitle className="flex items-center gap-3"><Target className="h-5 w-5" />5. DIFERENCIADORES CLAVE</CardTitle>
+                    <CardTitle className="flex items-center gap-3"><Target className="h-5 w-5" />6. DIFERENCIADORES DE TU SOLUCIÓN</CardTitle>
                 </div>
-                <CardContent className="p-6 space-y-4 text-muted-foreground">
-                    <div>
-                        <h4 className="font-semibold text-foreground">Especialización:</h4>
-                        <p>Mientras competidores ofrecen servicios genéricos de IT, System Kyron resuelve problemas específicos del sector educativo (archivo físico y comunicación escolar), con escalabilidad a otros sectores.</p>
-                    </div>
-                    <div>
-                        <h4 className="font-semibold text-foreground">Alcance del Usuario:</h4>
-                        <p>A diferencia de otros que optimizan procesos internos, System Kyron impacta directamente en la experiencia del cliente final (padres/representantes) mediante su chatbot.</p>
-                    </div>
-                    <div>
-                        <h4 className="font-semibold text-foreground">De Datos a Estrategia:</h4>
-                        <p>System Kyron va más allá de la "gestión eficiente", utilizando la IA para generar ideas estratégicas y apoyar la toma de decisiones directivas.</p>
-                    </div>
+                <CardContent className="p-6">
+                    <p className="text-muted-foreground">{solucionData.diferenciadores}</p>
                 </CardContent>
             </Card>
 
             <Card className="border-2 border-primary/20">
                 <div className="bg-primary text-primary-foreground p-3">
-                    <CardTitle className="flex items-center gap-3"><TrendingDown className="h-5 w-5" />6. PRESUPUESTO</CardTitle>
+                    <CardTitle className="flex items-center gap-3"><TrendingDown className="h-5 w-5" />7. PRESUPUESTO</CardTitle>
                 </div>
                 <CardContent className="p-0">
                     <Table>
                         <TableHeader>
                             <TableRow>
-                                <TableHead className="font-semibold w-[40%]">ITEM</TableHead>
-                                <TableHead className="font-semibold w-[20%]">CANTIDAD</TableHead>
-                                <TableHead className="font-semibold w-[20%]">COSTO</TableHead>
-                                <TableHead className="font-semibold w-[20%]">LUGAR DE COMPRA</TableHead>
+                                <TableCell className="font-semibold w-[40%]">ITEM</TableCell>
+                                <TableCell className="font-semibold w-[20%]">CANTIDAD</TableCell>
+                                <TableCell className="font-semibold w-[20%]">COSTO</TableCell>
+                                <TableCell className="font-semibold w-[20%]">LUGAR DE COMPRA</TableCell>
                             </TableRow>
                         </TableHeader>
                         <TableBody>
                             <TableRow><TableCell>&nbsp;</TableCell><TableCell></TableCell><TableCell></TableCell><TableCell></TableCell></TableRow>
                             <TableRow><TableCell>&nbsp;</TableCell><TableCell></TableCell><TableCell></TableCell><TableCell></TableCell></TableRow>
                             <TableRow><TableCell>&nbsp;</TableCell><TableCell></TableCell><TableCell></TableCell><TableCell></TableCell></TableRow>
-                            <TableRow className="border-none"><TableCell className="pt-8">&nbsp;</TableCell><TableCell></TableCell><TableCell></TableCell><TableCell></TableCell></TableRow>
-                            <TableRow><TableCell>&nbsp;</TableCell><TableCell></TableCell><TableCell></TableCell><TableCell></TableCell></TableRow>
-                            <TableRow><TableCell>&nbsp;</TableCell><TableCell></TableCell><TableCell></TableCell><TableCell></TableCell></TableRow>
                         </TableBody>
                     </Table>
                 </CardContent>
             </Card>
-
         </div>
         
         <div className="flex justify-center mt-10">
