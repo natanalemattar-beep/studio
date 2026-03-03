@@ -2,12 +2,13 @@
 {
     "LandingHeader": {
         "home": "Inicio",
-        "ecosystem": "Ecosistema",
+        "ecosystem": "Servicios",
         "technology": "Tecnología",
-        "about": "Nosotros",
+        "about": "Quiénes Somos",
         "faq": "FAQ",
         "login": "Acceder",
-        "register": "Registrarse"
+        "register": "Registrarse",
+        "contact": "Contacto"
     },
     "HeroSection": {
         "title": "Tu Centro de Mando Empresarial",

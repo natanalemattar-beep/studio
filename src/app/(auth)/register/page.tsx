@@ -23,7 +23,7 @@ const registrationOptions = [
     {
         icon: Building,
         label: "Registro de Empresa",
-        description: "Crea la cuenta principal para tu persona jurídica y accede a todos los módulos.",
+        description: "Accede al ecosistema completo: Contabilidad, Ventas, RR.HH., Jurídico y más. El registro corporativo unifica toda tu operación.",
         href: "/register/juridico"
     }
 ];

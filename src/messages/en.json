@@ -2,12 +2,13 @@
 {
     "LandingHeader": {
         "home": "Home",
-        "ecosystem": "Ecosystem",
+        "ecosystem": "Services",
         "technology": "Technology",
         "about": "About Us",
         "faq": "FAQ",
         "login": "Login",
-        "register": "Sign Up"
+        "register": "Sign Up",
+        "contact": "Contact"
     },
     "HeroSection": {
         "title": "Your Business Command Center",
