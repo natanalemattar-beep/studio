@@ -17,11 +17,11 @@ const informacionEquipo = [
 const poblacionTrabajar = [
   { campo: "PAÍS/ CIUDAD/ MUNICIPIO/ LOCALIDAD ESPECÍFICA", valor: "Venezuela, Caracas" },
   { campo: "NOMBRE DE LA COMUNIDAD", valor: "Santa Rosa de Lima" },
-  { campo: "CANTIDAD TOTAL DE HABITANTES", valor: "" },
-  { campo: "CANTIDAD DE HABITANTES POR GÉNERO", valor: "" },
-  { campo: "CANTIDAD DE HABITANTES POR EDAD", valor: "" },
-  { campo: "CARACTERISTICAS DE LA POBLACIÓN", valor: "" },
-  { campo: "CLIMA", valor: "" },
+  { campo: "NÚMERO DE HABITANTES", valor: "(No especificado)" },
+  { campo: "GÉNERO", valor: "(No especificado)" },
+  { campo: "EDADES COMPRENDIDAS", valor: "(No especificado)" },
+  { campo: "CARACTERÍSTICAS SOCIALES", valor: "(No especificado)" },
+  { campo: "CARACTERÍSTICAS ECONÓMICAS", valor: "(No especificado)" },
 ];
 
 const planteamientoProblema = [
@@ -29,7 +29,7 @@ const planteamientoProblema = [
     { campo: "CONSECUENCIAS DEL PROBLEMA", valor: "Pérdida de tiempo en búsqueda de archivos" },
     { campo: "DEFINE EL PROBLEMA", valor: "En la Institución el sistema de archivado es muy pobre, ya que el método de archivado es netamente físico. Esto no permite agilidad a la hora de buscar información respecto a un estudiante de la institución." },
     { campo: "POR QUÉ ES IMPORTANTE RESOLVER ESTE PROBLEMA", valor: "Para disminuir la carga de trabajo a la hora de buscar un archivo." },
-    { campo: "ORIGEN DEL PROBLEMA (Selecciona la o las que consideres)", valor: "Desactualizacion e ignorancia en la gestion de nuevas tecnologias e" },
+    { campo: "ORIGEN DEL PROBLEMA (Selecciona la o las que consideres)", valor: "Desactualizacion e ignorancia en la gestion de nuevas tecnologias" },
 ];
 
 const objetivos = [
@@ -79,7 +79,7 @@ export default function ModuloZeduPage() {
                 <h1 style="font-family: Arial, sans-serif; font-size: 24px; color: #111;">Modelo ZEDU Consolidado</h1>
             </div>
             ${createHtmlSection('IDENTIFICACIÓN DEL PROYECTO', informacionEquipo)}
-            ${createHtmlSection('POBLACIÓN A TRABAJAR', poblacionTrabajar)}
+            ${createHtmlSection('ESTUDIO DE POBLACIÓN', poblacionTrabajar)}
             ${createHtmlSection('PLANTEAMIENTO DEL PROBLEMA', planteamientoProblema)}
             ${createHtmlSection('OBJETIVOS', objetivos)}
         `;
@@ -142,10 +142,10 @@ export default function ModuloZeduPage() {
 
       <div id="printable-content" className="space-y-8">
           <div className="text-center">
-            <h2 className="text-2xl font-bold">Modelo Zedu</h2>
+            <h2 className="text-2xl font-bold">Modelo ZEDU Consolidado</h2>
           </div>
           <ZeduSection title="IDENTIFICACIÓN DEL PROYECTO" data={informacionEquipo} />
-          <ZeduSection title="POBLACIÓN A TRABAJAR" data={poblacionTrabajar} />
+          <ZeduSection title="ESTUDIO DE POBLACIÓN" data={poblacionTrabajar} />
           <ZeduSection title="PLANTEAMIENTO DEL PROBLEMA" data={planteamientoProblema} />
           <ZeduSection title="OBJETIVOS" data={objetivos} />
       </div>
