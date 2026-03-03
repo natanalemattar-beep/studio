@@ -1,7 +1,7 @@
 
 'use client';
 
-import { useState, useEffect, type FC, type AnchorHTMLAttributes } from "react";
+import { useState, useEffect, type FC, type AnchorHTMLAttributes, Fragment } from "react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { User, Menu, LogIn } from "lucide-react";
@@ -15,8 +15,10 @@ import {
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
 } from "@/components/ui/dropdown-menu";
-import { loginOptions } from "@/lib/login-options";
+import { loginGroups, loginOptions } from "@/lib/login-options";
 
 const SmoothScrollLink: FC<AnchorHTMLAttributes<HTMLAnchorElement> & { onLinkClick?: () => void }> = ({ href, onLinkClick, ...props }) => {
     const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
@@ -115,15 +117,26 @@ export function LandingHeader() {
                                     Acceder <LogIn className="ml-2 h-4 w-4" />
                                     </Button>
                                 </DropdownMenuTrigger>
-                                <DropdownMenuContent align="end" className="w-64">
-                                    {loginOptions.map((option) => (
-                                    <DropdownMenuItem key={option.href} asChild>
-                                        <Link href={option.href} className="flex items-center gap-3">
-                                        <option.icon className="h-4 w-4 text-muted-foreground" />
-                                        <span>{option.label}</span>
-                                        </Link>
-                                    </DropdownMenuItem>
-                                    ))}
+                                <DropdownMenuContent align="end" className="w-80">
+                                  {loginGroups.map((group, groupIndex) => (
+                                    <Fragment key={group.title}>
+                                      <DropdownMenuLabel>{group.title}</DropdownMenuLabel>
+                                      {group.options.map((option) => (
+                                        <DropdownMenuItem key={option.label} asChild>
+                                          <Link href={option.href} className="flex items-start gap-3 p-2">
+                                            <div className="p-1 bg-muted rounded-md mt-1">
+                                              <option.icon className="h-4 w-4 text-muted-foreground" />
+                                            </div>
+                                            <div>
+                                              <p className="font-semibold leading-none">{option.label}</p>
+                                              <p className="text-xs text-muted-foreground leading-tight mt-1">{option.description}</p>
+                                            </div>
+                                          </Link>
+                                        </DropdownMenuItem>
+                                      ))}
+                                      {groupIndex < loginGroups.length - 1 && <DropdownMenuSeparator />}
+                                    </Fragment>
+                                  ))}
                                 </DropdownMenuContent>
                             </DropdownMenu>
                             <Button asChild variant="secondary">
@@ -157,7 +170,7 @@ export function LandingHeader() {
                                         <h4 className="px-2 py-1.5 text-sm font-semibold">Acceder</h4>
                                         <div className="flex flex-col gap-1 pl-4">
                                             {loginOptions.map((option) => (
-                                                <Button asChild variant="ghost" className="justify-start h-auto py-1.5" key={option.href} onClick={() => setIsMobileMenuOpen(false)}>
+                                                <Button asChild variant="ghost" className="justify-start h-auto py-1.5" key={option.href + option.label} onClick={() => setIsMobileMenuOpen(false)}>
                                                     <Link href={option.href}>
                                                         <option.icon className="mr-2 h-4 w-4 text-muted-foreground" />
                                                         {option.label}
