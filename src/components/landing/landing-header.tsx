@@ -125,7 +125,7 @@ export function LandingHeader() {
                                         <DropdownMenuLabel>{group.title}</DropdownMenuLabel>
                                         {group.options.map((option) => (
                                           <DropdownMenuItem key={option.label} asChild>
-                                            <Link href={option.href} className="flex items-start gap-3 p-2">
+                                            <Link href={option.loginHref || option.href} className="flex items-start gap-3 p-2">
                                               <div className="p-1 bg-muted rounded-md mt-1">
                                                 <option.icon className="h-4 w-4 text-muted-foreground" />
                                               </div>
@@ -178,7 +178,7 @@ export function LandingHeader() {
                                                 <div className="flex flex-col gap-1 pl-12 pr-4">
                                                     {loginOptions.map((option) => (
                                                         <Button asChild variant="ghost" className="justify-start h-auto py-1.5" key={option.href + option.label} onClick={() => setIsMobileMenuOpen(false)}>
-                                                            <Link href={option.href} className="flex items-start gap-2">
+                                                            <Link href={option.loginHref || option.href} className="flex items-start gap-2">
                                                                 <option.icon className="mt-1 h-4 w-4 text-muted-foreground" />
                                                                 <div>
                                                                     <p className="font-semibold leading-tight">{option.label}</p>
