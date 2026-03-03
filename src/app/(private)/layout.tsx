@@ -1,3 +1,4 @@
+
 'use client';
 
 import type { ReactNode } from "react";
@@ -12,6 +13,7 @@ const zeduNavGroup = [{
     items: [
         { href: "/zedu-modelo", label: "Parte 1: Población", icon: Users },
         { href: "/zedu-equipo", label: "Parte 2: Equipo", icon: BookUser },
+        { href: "/zedu-problema", label: "Parte 3: Problema", icon: BrainCircuit },
     ],
     subGroups: [],
 }];
