@@ -237,17 +237,13 @@ export function AppHeader({ user, navGroups, dashboardHref }: AppHeaderProps) {
                  <p className="text-xs text-muted-foreground font-normal">{user.email}</p>
               </DropdownMenuLabel>
               <DropdownMenuSeparator />
-              <DropdownMenuItem asChild>
-                <Link href="/seguridad" className="flex items-center justify-start">
-                    <ShieldCheck className="mr-2 h-4 w-4" />
-                    <span>Seguridad</span>
-                </Link>
+              <DropdownMenuItem disabled className="flex items-center justify-start">
+                <ShieldCheck className="mr-2 h-4 w-4" />
+                <span>Seguridad</span>
               </DropdownMenuItem>
-              <DropdownMenuItem asChild>
-                <Link href="/general" className="flex items-center justify-start">
-                    <Cog className="mr-2 h-4 w-4" />
-                    <span>Configuración</span>
-                </Link>
+              <DropdownMenuItem disabled className="flex items-center justify-start">
+                <Cog className="mr-2 h-4 w-4" />
+                <span>Configuración</span>
               </DropdownMenuItem>
               <DropdownMenuSeparator />
               <DropdownMenuItem asChild>

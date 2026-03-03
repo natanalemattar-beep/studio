@@ -338,7 +338,7 @@ export default function TelecomDesignShowcasePage() {
                     <p class="hero-description">Una visión clara y minimalista de tus operaciones, clientes y cumplimiento regulatorio.</p>
                     <div class="hero-actions">
                         <a href="#estado" class="btn btn-primary">Ver estado completo</a>
-                        <a href="/soporte" class="btn btn-secondary">Contactar soporte</a>
+                        <a href="/telecom/dashboard-telecom" class="btn btn-secondary">Volver al Dashboard</a>
                     </div>
                 </section>
                 <section class="container">
@@ -397,7 +397,7 @@ export default function TelecomDesignShowcasePage() {
                                     </li>
                                 </ul>
                             </div>
-                            <a href="/clientes" class="btn btn-secondary">Ver todos los clientes</a>
+                            <a href="/telecom/dashboard-telecom" class="btn btn-secondary">Ver dashboard de clientes</a>
                         </div>
                         <div class="card">
                             <div class="card-header">
@@ -418,7 +418,7 @@ export default function TelecomDesignShowcasePage() {
                                     </li>
                                 </ul>
                             </div>
-                            <a href="/facturacion" class="btn btn-secondary">Ver detalle de facturación</a>
+                            <a href="/ventas/facturacion" class="btn btn-secondary">Ver detalle de facturación</a>
                         </div>
                     </div>
                 </section>

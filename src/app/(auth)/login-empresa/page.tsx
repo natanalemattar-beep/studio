@@ -33,7 +33,7 @@ export default function LoginEmpresaPage() {
         
         setTimeout(() => {
             if (rif === DEMO_RIF && password === DEMO_PASS) {
-                router.push('/contabilidad');
+                router.push('/admin/contabilidad');
             } else {
                 setError("Credenciales de demostración incorrectas. Utilice las indicadas.");
                 setIsLoading(false);
@@ -44,7 +44,7 @@ export default function LoginEmpresaPage() {
     return (
         <div className="flex flex-col items-center justify-center min-h-screen p-4">
             <Button variant="ghost" asChild className="mb-4 self-start md:absolute md:top-8 md:left-8">
-                <Link href="/login"><ChevronLeft className="mr-2 h-4 w-4"/> Volver a la selección</Link>
+                <Link href="/auth/login"><ChevronLeft className="mr-2 h-4 w-4"/> Volver a la selección</Link>
             </Button>
             <Card className="w-full max-w-md bg-card/80 backdrop-blur-md border-2 border-border shadow-xl rounded-2xl">
                  <CardHeader className="text-center p-8">

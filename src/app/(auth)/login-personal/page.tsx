@@ -34,7 +34,7 @@ export default function LoginPersonalPage() {
         setTimeout(() => {
             if (email === DEMO_EMAIL && password === DEMO_PASS) {
                 toast({ title: "Acceso Concedido", description: "Bienvenido a tu portal personal." });
-                router.push('/dashboard');
+                router.push('/natural/dashboard');
             } else {
                 setError("Credenciales de demostración incorrectas. Utilice las indicadas.");
                 setIsLoading(false);
@@ -102,7 +102,7 @@ export default function LoginPersonalPage() {
                                 <p className="text-sm text-muted-foreground mb-2">¿No tienes una cuenta o tienes problemas?</p>
                                 <div className="flex flex-wrap justify-center gap-x-4 gap-y-2">
                                     <Button variant="link" asChild className="p-0 h-auto text-xs">
-                                        <Link href="/register">Crear una cuenta nueva</Link>
+                                        <Link href="/auth/register">Crear una cuenta nueva</Link>
                                     </Button>
                                      <Button variant="link" asChild className="p-0 h-auto text-xs">
                                         <Link href="#">Recuperar contraseña</Link>

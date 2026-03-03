@@ -87,10 +87,10 @@ export default function VentasYFacturacionPage() {
                     </CardHeader>
                     <CardContent className="flex flex-col sm:flex-row gap-4 justify-center">
                         <Button asChild size="lg">
-                            <Link href="/login-ventas">Acceder al Portal de Ventas <ArrowRight className="ml-2 h-4 w-4" /></Link>
+                            <Link href="/auth/login-ventas">Acceder al Portal de Ventas <ArrowRight className="ml-2 h-4 w-4" /></Link>
                         </Button>
                         <Button asChild size="lg" variant="secondary">
-                            <Link href="/register">Registrar mi Empresa</Link>
+                            <Link href="/auth/register">Registrar mi Empresa</Link>
                         </Button>
                     </CardContent>
                 </Card>

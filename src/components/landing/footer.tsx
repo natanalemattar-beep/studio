@@ -67,9 +67,9 @@ export function Footer() {
                 </div>
                 <p className="text-center text-sm text-muted-foreground">&copy; {new Date().getFullYear()} System Kyron. Todos los derechos reservados.</p>
                 <div className="text-sm">
-                    <Link href="/terms" className="text-muted-foreground hover:text-primary">Términos de Servicio</Link>
+                    <Link href="/auth/terms" className="text-muted-foreground hover:text-primary">Términos de Servicio</Link>
                     <span className="mx-2 text-muted-foreground">|</span>
-                    <Link href="/politica-privacidad" className="text-muted-foreground hover:text-primary">Política de Privacidad</Link>
+                    <Link href="/auth/politica-privacidad" className="text-muted-foreground hover:text-primary">Política de Privacidad</Link>
                 </div>
             </div>
         </footer>

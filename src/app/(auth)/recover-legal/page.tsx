@@ -67,7 +67,7 @@ export default function RecoverLegalPage() {
                 <p className="font-semibold">Solicitud Enviada</p>
                 <p className="text-muted-foreground">Un administrador del departamento legal ha sido notificado. Se pondrán en contacto contigo para verificar tu identidad y restablecer tu acceso de forma segura.</p>
                 <Button asChild className="w-full mt-4">
-                    <Link href="/login-escritorio-juridico">Volver al Inicio de Sesión</Link>
+                    <Link href="/auth/login-escritorio-juridico">Volver al Inicio de Sesión</Link>
                 </Button>
             </CardContent>
         )}

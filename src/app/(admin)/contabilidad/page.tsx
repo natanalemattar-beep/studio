@@ -77,7 +77,7 @@ export default function ContabilidadPage() {
                     </CardContent>
                     <CardFooter>
                        <Button asChild className="w-full">
-                         <Link href="/gaceta-6952">
+                         <Link href="/admin/gaceta-6952">
                             Consultar Gaceta <ArrowRight className="ml-2 h-4 w-4"/>
                          </Link>
                        </Button>

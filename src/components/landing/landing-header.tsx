@@ -143,7 +143,7 @@ export function LandingHeader() {
                                 </DropdownMenuContent>
                             </DropdownMenu>
                             <Button asChild variant="secondary">
-                                <Link href="/register">Registrarse</Link>
+                                <Link href="/auth/register">Registrarse</Link>
                             </Button>
                         </div>
                         <Sheet open={isMobileMenuOpen} onOpenChange={setIsMobileMenuOpen}>
@@ -192,7 +192,7 @@ export function LandingHeader() {
                                     </Accordion>
                                     <div className="p-4">
                                         <Button asChild className="w-full">
-                                            <Link href="/register">Registrarse</Link>
+                                            <Link href="/auth/register">Registrarse</Link>
                                         </Button>
                                     </div>
                                     <div className="flex gap-2 p-4 border-t">

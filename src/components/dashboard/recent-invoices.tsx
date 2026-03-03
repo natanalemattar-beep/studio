@@ -43,7 +43,7 @@ export function RecentInvoices() {
           </div>
         ))}
          <Button asChild className="w-full">
-            <Link href="/invoices">
+            <Link href="/admin/invoices">
               Ver Todas las Facturas <ArrowUpRight className="ml-2 h-4 w-4" />
             </Link>
           </Button>

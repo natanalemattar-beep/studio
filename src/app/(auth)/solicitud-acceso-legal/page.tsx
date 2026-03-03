@@ -115,7 +115,7 @@ export default function SolicitudAccesoLegalPage() {
                         <div className="flex items-center space-x-2 pt-4">
                             <Checkbox id="privacy-policy" required />
                             <Label htmlFor="privacy-policy" className="text-sm font-normal">
-                                He leído y acepto la <Link href="/politica-privacidad" className="underline hover:text-primary">política de confidencialidad de información legal sensible</Link>.
+                                He leído y acepto la <Link href="/auth/politica-privacidad" className="underline hover:text-primary">política de confidencialidad de información legal sensible</Link>.
                             </Label>
                         </div>
                     </CardContent>
@@ -146,7 +146,7 @@ export default function SolicitudAccesoLegalPage() {
             </CardContent>
         )}
          <CardFooter className="p-6 border-t text-sm justify-center">
-            <p className="text-muted-foreground">¿Ya tienes una cuenta? <Link href="/login-escritorio-juridico" className="font-medium text-primary hover:underline">Inicia sesión aquí</Link></p>
+            <p className="text-muted-foreground">¿Ya tienes una cuenta? <Link href="/auth/login-escritorio-juridico" className="font-medium text-primary hover:underline">Inicia sesión aquí</Link></p>
         </CardFooter>
     </Card>
   );

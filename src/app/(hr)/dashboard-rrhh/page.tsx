@@ -127,10 +127,10 @@ export default function RecursosHumanosPage() {
                 </CardHeader>
                 <CardContent className="flex flex-col gap-3">
                     <Button asChild className="w-full justify-start">
-                        <Link href="/nominas"><ArrowRight className="mr-2 h-4 w-4"/>Gestionar Nóminas</Link>
+                        <Link href="/hr/nominas"><ArrowRight className="mr-2 h-4 w-4"/>Gestionar Nóminas</Link>
                     </Button>
                      <Button asChild variant="outline" className="w-full justify-start">
-                        <Link href="/reclutamiento"><ArrowRight className="mr-2 h-4 w-4"/>Portal de Reclutamiento</Link>
+                        <Link href="/hr/reclutamiento"><ArrowRight className="mr-2 h-4 w-4"/>Portal de Reclutamiento</Link>
                     </Button>
                 </CardContent>
               </Card>

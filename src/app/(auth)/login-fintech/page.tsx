@@ -40,7 +40,7 @@ export default function LoginFintechPage() {
         setTimeout(() => {
             if (rif === DEMO_RIF && password === DEMO_PASS) {
                 toast({ title: "Acceso Concedido", description: "Bienvenido al Centro de Contabilidad." });
-                router.push('/contabilidad');
+                router.push('/admin/contabilidad');
             } else {
                 setError("Credenciales de demostración incorrectas. Utilice las indicadas.");
                 setIsLoading(false);
