@@ -3,6 +3,12 @@ import { User, Gavel, ShoppingCart, Briefcase, Users, Megaphone, Cpu, Banknote, 
 
 export const loginGroups = [
     {
+        title: "Acceso Personal",
+        options: [
+             { href: "/login-personal", loginHref: "/login-personal", label: "Acceso Personal", icon: User, description: "Portal para clientes individuales y trámites personales." },
+        ]
+    },
+    {
         title: "Portales Corporativos",
         options: [
             { href: "/centro-de-contabilidad", loginHref: "/login-empresa", label: "Centro de Contabilidad", icon: Banknote, description: "Finanzas, impuestos y gestión administrativa." },
@@ -18,12 +24,6 @@ export const loginGroups = [
             { href: "/login-informatica", loginHref: "/login-informatica", label: "Ingeniería e IT", icon: Cpu, description: "Infraestructura, seguridad y desarrollo." },
             { href: "/login-telecom", loginHref: "/login-telecom", label: "Telecomunicaciones 5G", icon: Signal, description: "Tu propia operadora virtual. Gestiona tu línea telefónica 5G, planes de datos, y comunicaciones unificadas a nivel global." },
             { href: "/login-marketing", loginHref: "/login-marketing", label: "Marketing y Crecimiento", icon: Megaphone, description: "Análisis de mercado y gestión de campañas." },
-        ]
-    },
-    {
-        title: "Acceso Personal",
-        options: [
-             { href: "/login-personal", loginHref: "/login-personal", label: "Acceso Personal", icon: User, description: "Portal para clientes individuales y trámites personales." },
         ]
     }
 ];
