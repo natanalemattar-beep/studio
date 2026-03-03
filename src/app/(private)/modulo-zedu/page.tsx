@@ -25,11 +25,11 @@ const poblacionTrabajar = [
 ];
 
 const planteamientoProblema = [
-    { campo: "DEFINICIÓN DEL PROBLEMA", valor: "LA COMUNIDAD EDUCATIVA NO ESTA INFORMADA SOBRE LOS IMPUESTOS, YA QUE ES UN TEMA COMPLEJO Y POCO ATRACTIVO, LO QUE GENERA CONFUSIÓN Y DESINTERÉS EN LA MATERIA." },
-    { campo: "IMPORTANCIA DE ATENDER EL PROBLEMA", valor: "COMPRENDER LOS IMPUESTOS ES FUNDAMENTAL PARA UNA CIUDADANÍA RESPONSABLE. PERMITE A LAS PERSONAS TOMAR DECISIONES FINANCIERAS MÁS CONSCIENTES, EXIGIR TRANSPARENCIA EN EL USO DE LOS RECURSOS PÚBLICOS Y ENTENDER CÓMO SE FINANCIAN LOS SERVICIOS ESENCIALES, FORTALECIENDO ASÍ LA DEMOCRACIA Y EL BIENESTAR COLECTIVO." },
-    { campo: "CAUSAS", valor: "1. FALTA DE EDUCACIÓN FINANCIERA EN EL SISTEMA EDUCATIVO.\n2. COMPLEJIDAD DEL LENGUAJE TRIBUTARIO.\n3. PERCEPCIÓN NEGATIVA DE LOS IMPUESTOS.\n4. FALTA DE TRANSPARENCIA EN EL USO DE LOS RECURSOS.\n5. POCO INTERÉS DE LOS MEDIOS DE COMUNICACIÓN." },
-    { campo: "CONSECUENCIAS", valor: "1. EVASIÓN FISCAL Y REDUCCIÓN DE LA RECAUDACIÓN.\n2. DESCONFIANZA EN LAS INSTITUCIONES PÚBLICAS.\n3. DIFICULTAD PARA PLANIFICAR FINANZAS PERSONALES.\n4. POCA PARTICIPACIÓN CIUDADANA EN EL DEBATE FISCAL.\n5. MENOR CALIDAD EN LOS SERVICIOS PÚBLICOS." },
-    { campo: "ORIGEN DEL PROBLEMA", valor: "ESTE PROBLEMA SE ORIGINA EN UNA COMBINACIÓN DE FACTORES HISTÓRICOS Y CULTURALES. LA EDUCACIÓN FINANCIERA NO HA SIDO UNA PRIORIDAD, Y LA COMPLEJIDAD DEL SISTEMA TRIBUTARIO HA FOMENTADO UNA DISTANCIA ENTRE LOS CIUDADANOS Y SUS RESPONSABILIDADES FISCALES. ADEMÁS, LA FALTA DE TRANSPARENCIA HA ALIMENTADO LA DESCONFIANZA, CREANDO UN CÍRCULO VICIOSO DE DESINTERÉS Y EVASIÓN." },
+    { campo: "CAUSAS DEL PROBLEMA", valor: "- Falta de organización\n- Poca disposición\n- Escaso presupuesto\n- Desactualización tecnologica" },
+    { campo: "CONSECUENCIAS DEL PROBLEMA", valor: "Pérdida de tiempo en búsqueda de archivos" },
+    { campo: "DEFINE EL PROBLEMA", valor: "En la Institución el sistema de archivado es muy pobre, ya que el método de archivado es netamente físico. Esto no permite agilidad a la hora de buscar información respecto a un estudiante de la institución." },
+    { campo: "POR QUÉ ES IMPORTANTE RESOLVER ESTE PROBLEMA", valor: "Para disminuir la carga de trabajo a la hora de buscar un archivo." },
+    { campo: "ORIGEN DEL PROBLEMA (Selecciona la o las que consideres)", valor: "Desactualizacion e ignorancia en la gestion de nuevas tecnologias e" },
 ];
 
 const objetivos = [
@@ -67,7 +67,7 @@ export default function ModuloZeduPage() {
                 ${data.map(item => `
                     <tr style="border-bottom: 1px solid #ddd;">
                         <td style="padding: 8px; font-weight: bold; width: 30%; background-color: #f2f2f2;">${item.campo}</td>
-                        <td style="padding: 8px; white-space: pre-wrap;">${item.valor}</td>
+                        <td style="padding: 8px; white-space: pre-wrap;">${item.valor.replace(/\n/g, '<br/>')}</td>
                     </tr>
                 `).join('')}
             </table>
@@ -79,7 +79,7 @@ export default function ModuloZeduPage() {
                 <h1 style="font-family: Arial, sans-serif; font-size: 24px; color: #111;">Modelo ZEDU Consolidado</h1>
             </div>
             ${createHtmlSection('IDENTIFICACIÓN DEL PROYECTO', informacionEquipo)}
-            ${createHtmlSection('ESTUDIO DE POBLACIÓN', poblacionTrabajar)}
+            ${createHtmlSection('POBLACIÓN A TRABAJAR', poblacionTrabajar)}
             ${createHtmlSection('PLANTEAMIENTO DEL PROBLEMA', planteamientoProblema)}
             ${createHtmlSection('OBJETIVOS', objetivos)}
         `;
