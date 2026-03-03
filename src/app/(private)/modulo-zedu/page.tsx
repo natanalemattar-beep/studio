@@ -3,8 +3,8 @@
 import React from 'react';
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
-import { FileText, Download, Users, School, MapPin, Target, HelpCircle, TrendingDown, History, Rocket } from "lucide-react";
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
+import { FileText, Download, Users, School, Target, HelpCircle, Rocket, Sparkles } from "lucide-react";
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Table, TableBody, TableCell, TableRow } from "@/components/ui/table";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 
@@ -20,15 +20,25 @@ const projectData = {
         comunidad: "Santa Rosa de Lima"
     },
     analisis: {
-        definicion: "Falta de educación vial en los jóvenes.",
-        importancia: "La falta de educación vial puede causar accidentes de tránsito, lesiones graves e incluso la muerte.",
-        causas: "Falta de programas educativos, poca conciencia, mal ejemplo de los adultos.",
-        consecuencias: "Accidentes, congestión vehicular, estrés y ansiedad al conducir.",
-        origen: "Históricamente, la educación vial no ha sido una prioridad en el sistema educativo."
+        definicion: "Gestión de archivos físicos ineficiente, desorganizada y lenta en instituciones educativas.",
+        importancia: "La dificultad para acceder a documentos importantes (expedientes, notas) genera retrasos administrativos, frustración en los representantes y riesgos de pérdida de información.",
+        causas: "Dependencia de sistemas de archivado manual, falta de digitalización, comunicación fragmentada entre departamentos y con las familias.",
+        consecuencias: "Tiempos de respuesta lentos, altos costos de almacenamiento físico, dificultad para realizar auditorías, y una mala experiencia para la comunidad educativa.",
+        origen: "Sistemas heredados y resistencia a la adopción de nuevas tecnologías en el sector educativo tradicional."
     },
     solucion: {
-        proyecto: "Crear una aplicación móvil interactiva que enseñe las normas de tránsito a través de juegos y simulaciones."
+        proyecto: "AutoMind AI consiste en el desarrollo de una aplicación que transforma el sistema de archivado tradicional de una institución educativa en un entorno digital eficiente y organizado, permitiendo la digitalización, almacenamiento y búsqueda rápida de documentos que antes se gestionaban de forma física. La plataforma integrará un chatbot con atención automatizada dirigida a los representantes de los estudiantes, facilitando respuestas inmediatas y mejorando la comunicación colegio-familia. Además, incorporará herramientas de inteligencia artificial que apoyarán al personal administrativo en la generación de ideas estratégicas, contribuyendo a una gestión más moderna, ágil y orientada a la mejora continua institucional."
     }
+};
+
+const otrasPropuestasData = {
+    titulo: "OTRAS PROPUESTAS EXISTENTES PARA SOLUCIONAR EL PROBLEMA",
+    descripcion: "Los proyectos más similares son MOBIAN, que se enfoca en la optimizacion de datos para cualquier negocio, en donde su propósito es la eficiencia operativa y escalabilidad técnica dirigiendose a equipos tecnicos y directivos corporativos con la integración de sistemas y aumento de equipo."
+};
+
+const diferenciadoresData = {
+    titulo: "DIFERENCIADORES DE TU SOLUCIÓN",
+    descripcion: "[Aquí se describirán las características únicas de AutoMind AI que lo diferencian de MOBIAN, como el chatbot de atención a representantes, la IA para la generación de ideas estratégicas y el enfoque específico en instituciones educativas.]"
 };
 
 export default function ModuloZeduPage() {
@@ -61,6 +71,15 @@ export default function ModuloZeduPage() {
 
                 <h2 style="color: #005A9C; border-bottom: 1px solid #ddd; padding-bottom: 5px;">SOLUCIÓN PROPUESTA</h2>
                 <p><strong>Desarrollo del Proyecto:</strong> ${projectData.solucion.proyecto}</p>
+                <br/>
+
+                <h2 style="color: #005A9C; border-bottom: 1px solid #ddd; padding-bottom: 5px;">OTRAS PROPUESTAS EXISTENTES</h2>
+                <p>${otrasPropuestasData.descripcion}</p>
+                <br/>
+
+                 <h2 style="color: #005A9C; border-bottom: 1px solid #ddd; padding-bottom: 5px;">DIFERENCIADORES DE TU SOLUCIÓN</h2>
+                <p>${diferenciadoresData.descripcion}</p>
+                <br/>
             </div>
         `;
     };
@@ -78,7 +97,7 @@ export default function ModuloZeduPage() {
         const fileDownload = document.createElement("a");
         document.body.appendChild(fileDownload);
         fileDownload.href = source;
-        fileDownload.download = 'Modelo_Zedu_AutoMind.doc';
+        fileDownload.download = `Modelo_Zedu_${projectData.info.proyecto.replace(/ /g, '_')}.doc`;
         fileDownload.click();
         document.body.removeChild(fileDownload);
 
@@ -141,7 +160,7 @@ export default function ModuloZeduPage() {
                 <CardTitle className="flex items-center gap-3"><HelpCircle className="h-6 w-6 text-primary"/>Análisis del Problema</CardTitle>
             </CardHeader>
             <CardContent className="p-6">
-                <Accordion type="single" collapsible className="w-full">
+                <Accordion type="single" collapsible className="w-full" defaultValue='item-1'>
                     <AccordionItem value="item-1">
                         <AccordionTrigger>Definición del Problema</AccordionTrigger>
                         <AccordionContent>{projectData.analisis.definicion}</AccordionContent>
@@ -170,15 +189,26 @@ export default function ModuloZeduPage() {
             <CardHeader className="bg-green-600/20 rounded-t-lg">
                 <CardTitle className="flex items-center gap-3 text-green-800 dark:text-green-300"><Rocket className="h-6 w-6"/>Solución Propuesta</CardTitle>
             </CardHeader>
-            <CardContent className="p-0">
-                <Table>
-                    <TableBody>
-                        <TableRow className="border-green-600/30">
-                            <TableCell className="font-semibold w-1/4">Desarrollo del Proyecto</TableCell>
-                            <TableCell>{projectData.solucion.proyecto}</TableCell>
-                        </TableRow>
-                    </TableBody>
-                </Table>
+            <CardContent className="p-6 text-justify">
+               <p>{projectData.solucion.proyecto}</p>
+            </CardContent>
+        </Card>
+
+        <Card className="bg-card/50 backdrop-blur-sm">
+            <CardHeader className="bg-primary/10 rounded-t-lg">
+                <CardTitle className="flex items-center gap-3"><Users className="h-6 w-6 text-primary"/>{otrasPropuestasData.titulo}</CardTitle>
+            </CardHeader>
+            <CardContent className="p-6">
+                <p>{otrasPropuestasData.descripcion}</p>
+            </CardContent>
+        </Card>
+
+        <Card className="bg-card/50 backdrop-blur-sm">
+            <CardHeader className="bg-primary/10 rounded-t-lg">
+                <CardTitle className="flex items-center gap-3"><Sparkles className="h-6 w-6 text-primary"/>{diferenciadoresData.titulo}</CardTitle>
+            </CardHeader>
+            <CardContent className="p-6">
+                <p className="text-muted-foreground">{diferenciadoresData.descripcion}</p>
             </CardContent>
         </Card>
       </div>
