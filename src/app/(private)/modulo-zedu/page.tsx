@@ -1,13 +1,14 @@
-
-"use client";
+'use client';
 
 import React from 'react';
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
-import { Download, Users, School, MapPin, Target, HelpCircle, TrendingDown, History, Rocket, Lightbulb, TrendingUp } from "lucide-react";
+import { Download, Users, School, MapPin, Target, HelpCircle, TrendingDown, History, Rocket, Lightbulb, TrendingUp, Handshake } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Table, TableBody, TableCell, TableRow, TableHeader, TableHead } from "@/components/ui/table";
 import { Separator } from '@/components/ui/separator';
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
+
 
 const projectData = {
     nombre: "System Kyron",
@@ -33,9 +34,22 @@ const problemaData = {
 
 const solucionData = {
     proyecto: "Desarrollar e implementar 'System Kyron', un ecosistema digital integral (plataforma web y app móvil) que unifica la gestión contable-fiscal (automatización SENIAT), recursos humanos, ventas, inventario y más, conectando todos los departamentos de una empresa en un solo Centro de Mando.",
-    propuestasExistentes: "Sistemas ERP internacionales (costosos y no adaptados a Venezuela), software contable local (obsoleto, sin integración en la nube), gestorías tradicionales (manuales y lentas).",
-    diferenciadores: "Especialización 100% en Venezuela, enfoque 'Todo en Uno' que elimina la fragmentación, e Inteligencia Fiscal Predictiva para garantizar 'Cero Riesgo Fiscal'."
+    propuestasExistentes: "Sistemas ERP internacionales (SAP, Oracle) que son costosos y no están adaptados a la fiscalidad venezolana. Software contable local (como A2, Valery) que a menudo son sistemas de escritorio, obsoletos, y carecen de integración en la nube o capacidades móviles. Gestorías tradicionales que dependen de procesos manuales, lentos y propensos a errores.",
+    diferenciadores: "Especialización 100% en Venezuela y sus complejidades fiscales. Enfoque 'Todo en Uno' que elimina la fragmentación de datos y sistemas. Inteligencia Fiscal Predictiva para garantizar 'Cero Riesgo Fiscal'. Arquitectura en la nube y móvil-first para acceso desde cualquier lugar."
 };
+
+const presupuestoData = {
+    nota: "Los ítems pueden incluir todo material o servicio necesario para ejecutar el proyectos, puede ser donaciones monetarias o en especie. Ejemplo de los ítems: libretas, lápices, bolígrafos, material electrónico o eléctricos, mesas, sillas, formación académica o especializada, traslados y transporte, etc. NOTA: preferiblemente elabora esta tabla en excel o en hoja de cálculo.",
+    items: [
+        // Example items, can be empty
+    ]
+};
+
+const aliadosData = [
+    // Empty as per the image
+    {}, {}, {}, {}, {}
+];
+
 
 const getDocumentContent = () => {
     return `
@@ -68,7 +82,10 @@ const getDocumentContent = () => {
         <p><strong>Diferenciadores de tu Solución:</strong> ${solucionData.diferenciadores}</p>
         <br/>
         <h2>6. PRESUPUESTO</h2>
-        <p>(Tabla de presupuesto aquí)</p>
+        <p>${presupuestoData.nota}</p>
+        <br/>
+        <h2>7. ALIADOS</h2>
+        <p>(Información sobre aliados aquí)</p>
     `;
 };
 
@@ -105,20 +122,23 @@ export default function ModuloZeduPage() {
             <h1 className="text-4xl font-bold tracking-tight text-primary">
                 MODELO DE ZEDU - System Kyron 2025
             </h1>
+            <div className="flex justify-center pt-8">
+                <Button onClick={handleDownloadWord} size="lg" className="shadow-lg">
+                    <Download className="mr-2 h-5 w-5"/> Descargar Documento Completo (.doc)
+                </Button>
+            </div>
         </header>
 
         <Card className="bg-card/50 backdrop-blur-sm">
             <CardHeader className="bg-primary/10 rounded-t-lg">
-                <CardTitle className="flex items-center gap-3"><Users className="h-5 w-5 text-primary" />1. IDENTIFICACIÓN DEL PROYECTO</CardTitle>
+                <CardTitle className="flex items-center gap-3"><Users className="h-5 w-5 text-primary" />1. INFORMACIÓN DEL EQUIPO</CardTitle>
             </CardHeader>
             <CardContent className="p-0">
                 <Table>
                      <TableBody>
-                        <TableRow><TableCell className="font-semibold text-muted-foreground">NOMBRE DEL PROYECTO</TableCell><TableCell>{projectData.nombre}</TableCell></TableRow>
-                        <TableRow><TableCell className="font-semibold text-muted-foreground">LÍDER ESTRATÉGICO</TableCell><TableCell>{projectData.lider}</TableCell></TableRow>
-                        <TableRow><TableCell className="font-semibold text-muted-foreground">PERSONAL DE APOYO</TableCell><TableCell>{projectData.apoyo}</TableCell></TableRow>
-                        <TableRow><TableCell className="font-semibold text-muted-foreground">INSTITUCIÓN BENEFICIARIA</TableCell><TableCell>{projectData.institucion}</TableCell></TableRow>
-                        <TableRow><TableCell className="font-semibold text-muted-foreground">UBICACIÓN GEOGRÁFICA</TableCell><TableCell>{projectData.ubicacion}</TableCell></TableRow>
+                        <TableRow><TableCell className="font-semibold text-muted-foreground w-1/3">PROYECTO</TableCell><TableCell>{projectData.nombre}</TableCell></TableRow>
+                        <TableRow><TableCell className="font-semibold text-muted-foreground">INTEGRANTES</TableCell><TableCell>{projectData.lider}, {projectData.apoyo}</TableCell></TableRow>
+                        <TableRow><TableCell className="font-semibold text-muted-foreground">INSTITUCIÓN</TableCell><TableCell>{projectData.institucion}</TableCell></TableRow>
                     </TableBody>
                 </Table>
             </CardContent>
@@ -126,13 +146,13 @@ export default function ModuloZeduPage() {
 
         <Card className="bg-card/50 backdrop-blur-sm">
             <CardHeader className="bg-primary/10 rounded-t-lg">
-                <CardTitle className="flex items-center gap-3"><MapPin className="h-5 w-5 text-primary" />2. ESTUDIO DE POBLACIÓN (ZEDU)</CardTitle>
+                <CardTitle className="flex items-center gap-3"><MapPin className="h-5 w-5 text-primary" />2. POBLACIÓN A TRABAJAR</CardTitle>
             </CardHeader>
             <CardContent className="p-0">
                  <Table>
                      <TableBody>
-                        <TableRow><TableCell className="font-semibold text-muted-foreground">LOCALIZACIÓN ESPECÍFICA</TableCell><TableCell>{poblacionData.localizacion}</TableCell></TableRow>
-                        <TableRow><TableCell className="font-semibold text-muted-foreground">NOMBRE DE LA COMUNIDAD</TableCell><TableCell>{poblacionData.comunidad}</TableCell></TableRow>
+                        <TableRow><TableCell className="font-semibold text-muted-foreground w-1/3">LOCALIZACIÓN</TableCell><TableCell>{poblacionData.localizacion}</TableCell></TableRow>
+                        <TableRow><TableCell className="font-semibold text-muted-foreground">COMUNIDAD</TableCell><TableCell>{poblacionData.comunidad}</TableCell></TableRow>
                         <TableRow><TableCell className="font-semibold text-muted-foreground">POBLACIÓN ESTIMADA</TableCell><TableCell>{poblacionData.estimada}</TableCell></TableRow>
                     </TableBody>
                 </Table>
@@ -146,7 +166,7 @@ export default function ModuloZeduPage() {
             <CardContent className="p-0">
                  <Table>
                      <TableBody>
-                        <TableRow><TableCell className="font-semibold text-muted-foreground">DEFINICIÓN</TableCell><TableCell>{problemaData.definicion}</TableCell></TableRow>
+                        <TableRow><TableCell className="font-semibold text-muted-foreground w-1/3">DEFINICIÓN</TableCell><TableCell>{problemaData.definicion}</TableCell></TableRow>
                         <TableRow><TableCell className="font-semibold text-muted-foreground">IMPORTANCIA</TableCell><TableCell>{problemaData.importancia}</TableCell></TableRow>
                         <TableRow><TableCell className="font-semibold text-muted-foreground">CAUSAS</TableCell><TableCell>{problemaData.causas}</TableCell></TableRow>
                         <TableRow><TableCell className="font-semibold text-muted-foreground">CONSECUENCIAS</TableCell><TableCell>{problemaData.consecuencias}</TableCell></TableRow>
@@ -172,13 +192,13 @@ export default function ModuloZeduPage() {
             <CardContent className="p-0">
                  <Table>
                      <TableBody>
-                        <TableRow><TableCell className="font-semibold text-muted-foreground">OTRAS PROPUESTAS EXISTENTES</TableCell><TableCell>{solucionData.propuestasExistentes}</TableCell></TableRow>
+                        <TableRow><TableCell className="font-semibold text-muted-foreground w-1/3">OTRAS PROPUESTAS EXISTENTES</TableCell><TableCell>{solucionData.propuestasExistentes}</TableCell></TableRow>
                         <TableRow><TableCell className="font-semibold text-muted-foreground">DIFERENCIADORES CLAVE</TableCell><TableCell>{solucionData.diferenciadores}</TableCell></TableRow>
                     </TableBody>
                 </Table>
             </CardContent>
         </Card>
-
+        
         <Card className="bg-card/50 backdrop-blur-sm">
             <CardHeader className="bg-primary/10 rounded-t-lg">
                 <CardTitle className="flex items-center gap-3"><TrendingUp className="h-5 w-5 text-primary" />6. PRESUPUESTO</CardTitle>
@@ -194,20 +214,38 @@ export default function ModuloZeduPage() {
                         </TableRow>
                     </TableHeader>
                     <TableBody>
-                        <TableRow><TableCell className="text-muted-foreground italic">Ej: Servidor en la Nube</TableCell><TableCell>1</TableCell><TableCell>$100/mes</TableCell><TableCell>Amazon Web Services</TableCell></TableRow>
-                        <TableRow><TableCell className="text-muted-foreground italic">Ej: Licencias de Software</TableCell><TableCell>5</TableCell><TableCell>$50 c/u</TableCell><TableCell>Vendor de Software</TableCell></TableRow>
-                        <TableRow><TableCell className="text-muted-foreground italic">Ej: Marketing Inicial</TableCell><TableCell>1</TableCell><TableCell>$500</TableCell><TableCell>Agencia Digital</TableCell></TableRow>
+                        {/* Empty rows for user to fill */}
+                        <TableRow><TableCell>&nbsp;</TableCell><TableCell></TableCell><TableCell></TableCell><TableCell></TableCell></TableRow>
+                        <TableRow><TableCell>&nbsp;</TableCell><TableCell></TableCell><TableCell></TableCell><TableCell></TableCell></TableRow>
+                        <TableRow><TableCell>&nbsp;</TableCell><TableCell></TableCell><TableCell></TableCell><TableCell></TableCell></TableRow>
                     </TableBody>
                 </Table>
             </CardContent>
         </Card>
 
-         <div className="flex justify-center pt-8">
-            <Button onClick={handleDownloadWord} size="lg" className="shadow-lg">
-                <Download className="mr-2 h-5 w-5"/> Descargar como Word
-            </Button>
-        </div>
-
+        <Card className="bg-card/50 backdrop-blur-sm">
+            <CardHeader className="bg-primary/10 rounded-t-lg">
+                <CardTitle className="flex items-center gap-3"><Handshake className="h-5 w-5 text-primary" />7. ALIADOS</CardTitle>
+            </CardHeader>
+            <CardContent className="p-4">
+                 <p className="text-sm text-muted-foreground mb-4">
+                    {presupuestoData.nota}
+                 </p>
+                 <Table>
+                    <TableHeader>
+                        <TableRow>
+                            <TableHead className="w-1/2">ALIADO</TableHead>
+                            <TableHead>APOYO</TableHead>
+                        </TableRow>
+                    </TableHeader>
+                    <TableBody>
+                         {aliadosData.map((_, index) => (
+                           <TableRow key={index}><TableCell>&nbsp;</TableCell><TableCell></TableCell></TableRow>
+                         ))}
+                    </TableBody>
+                </Table>
+            </CardContent>
+        </Card>
     </div>
   );
 }
