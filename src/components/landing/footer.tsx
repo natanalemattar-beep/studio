@@ -31,8 +31,10 @@ export function Footer() {
                     <h4 className="font-semibold">Enlaces Rápidos</h4>
                     <nav className="flex flex-col gap-2 text-sm">
                         <a href="#inicio" className="text-muted-foreground hover:text-primary">Inicio</a>
-                        <a href="#caracteristicas" className="text-muted-foreground hover:text-primary">Funcionalidades</a>
-                        <a href="#nosotros" className="text-muted-foreground hover:text-primary">Equipo</a>
+                        <a href="#servicios" className="text-muted-foreground hover:text-primary">Servicios</a>
+                        <a href="#tecnologia" className="text-muted-foreground hover:text-primary">Tecnología</a>
+                        <a href="#nosotros" className="text-muted-foreground hover:text-primary">Quiénes Somos</a>
+                        <a href="#faq" className="text-muted-foreground hover:text-primary">FAQ</a>
                         <a href="#contacto" className="text-muted-foreground hover:text-primary">Contacto</a>
                     </nav>
                 </div>
@@ -73,3 +75,5 @@ export function Footer() {
         </footer>
     );
 }
+
+    

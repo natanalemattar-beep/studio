@@ -63,7 +63,7 @@ export function FaqSection() {
                                 "border rounded-lg mb-2 px-4",
                                 isHolidayActive ? "bg-card/50 backdrop-blur-sm" : "bg-card"
                             )}>
-                                <AccordionTrigger className="text-left">
+                                <AccordionTrigger className="text-left text-foreground">
                                     <div className="flex items-start gap-3">
                                         <HelpCircle className="h-5 w-5 text-primary shrink-0 mt-1" />
                                         <span>{item.question}</span>
@@ -80,3 +80,5 @@ export function FaqSection() {
         </section>
     );
 }
+
+    
