@@ -99,6 +99,9 @@ export default function MemoriaAnualPage() {
                         top: 0;
                         width: 100%;
                     }
+                     .page-break {
+                        page-break-before: always;
+                    }
                 }
             `}
         </style>
@@ -135,11 +138,40 @@ export default function MemoriaAnualPage() {
                  <footer className="text-center text-sm text-muted-foreground">
                     <p>{companyInfo.name}</p>
                     <p>Caracas, Venezuela</p>
+                     <p className="mt-8">Página 1 de 3</p>
+                </footer>
+            </div>
+            
+            {/* Page 2: Informe de Gestión */}
+            <div className="pt-12 page-break">
+                <Card className="border-none shadow-none">
+                    <CardHeader className="text-center">
+                        <CardTitle className="text-2xl">Informe de Gestión del Ejercicio 2023</CardTitle>
+                        <CardDescription>Principales Actividades y Logros</CardDescription>
+                    </CardHeader>
+                    <CardContent className="prose prose-sm dark:prose-invert max-w-none text-justify">
+                        <h4>Objeto Social y Actividades Principales</h4>
+                        <p>
+                            Durante el ejercicio fiscal 2023, {companyInfo.name} ha consolidado su posición como un ecosistema integral de soluciones empresariales. Nuestras actividades principales abarcan el desarrollo y comercialización de software de gestión (ERP, Contabilidad, RR.HH.), la venta de equipos fiscales y de oficina, y la consultoría estratégica.
+                        </p>
+                        <h4 className="mt-6">Expansión al Sector de Telecomunicaciones</h4>
+                        <p>
+                            En línea con nuestra visión de integración, durante este período se iniciaron las operaciones de nuestra propia <strong>línea telefónica oficial</strong>, ofreciendo servicios de VoIP y comunicaciones unificadas a nuestros clientes. Adicionalmente, se estableció una nueva unidad de negocio para la <strong>comercialización de teléfonos móviles y equipos de telecomunicaciones</strong> de reconocidas marcas internacionales, complementando nuestro portafolio de soluciones tecnológicas para el mercado corporativo.
+                        </p>
+                         <h4 className="mt-6">Innovación y Desarrollo</h4>
+                        <p>
+                            Continuamos invirtiendo en I+D, fortaleciendo nuestra plataforma con capacidades de Inteligencia Artificial para el análisis predictivo y la integración de tecnología Blockchain para la seguridad de las transacciones financieras, posicionándonos a la vanguardia de la innovación en Venezuela.
+                        </p>
+                    </CardContent>
+                </Card>
+                 <footer className="text-center text-xs text-muted-foreground mt-24 absolute bottom-12 left-0 right-0">
+                    <p>Página 2 de 3</p>
                 </footer>
             </div>
 
-            {/* Page 2: Financial Statements */}
-            <div className="pt-12">
+
+            {/* Page 3: Financial Statements */}
+            <div className="pt-12 page-break">
                  <Card className="border-none shadow-none">
                     <CardHeader className="text-center">
                         <CardTitle className="text-2xl">Estado de Situación Financiera Consolidado</CardTitle>
@@ -249,7 +281,7 @@ export default function MemoriaAnualPage() {
                 </div>
 
                  <footer className="text-center text-xs text-muted-foreground mt-24">
-                    <p>Página 2 de 2</p>
+                    <p>Página 3 de 3</p>
                 </footer>
             </div>
 
