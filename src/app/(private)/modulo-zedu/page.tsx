@@ -3,12 +3,10 @@
 import React from 'react';
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
-import { Download, Users, School, MapPin, Target, HelpCircle, TrendingDown, History, Rocket, Lightbulb, TrendingUp, Handshake } from "lucide-react";
+import { Download, Users, MapPin, HelpCircle, Rocket, Lightbulb, TrendingUp, Handshake } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Table, TableBody, TableCell, TableRow, TableHeader, TableHead } from "@/components/ui/table";
-import { Separator } from '@/components/ui/separator';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
-
 
 const projectData = {
     nombre: "System Kyron",
@@ -52,41 +50,61 @@ const aliadosData = [
 
 
 const getDocumentContent = () => {
-    return `
-        <h1>MODELO DE ZEDU - System Kyron 2025</h1>
-        <br/>
-        <h2>1. IDENTIFICACIÓN DEL PROYECTO</h2>
-        <p><strong>NOMBRE DEL PROYECTO:</strong> ${projectData.nombre}</p>
-        <p><strong>LÍDER ESTRATÉGICO:</strong> ${projectData.lider}</p>
-        <p><strong>PERSONAL DE APOYO:</strong> ${projectData.apoyo}</p>
-        <p><strong>INSTITUCIÓN BENEFICIARIA:</strong> ${projectData.institucion}</p>
-        <p><strong>UBICACIÓN GEOGRÁFICA:</strong> ${projectData.ubicacion}</p>
-        <br/>
-        <h2>2. ESTUDIO DE POBLACIÓN (ZEDU)</h2>
-        <p><strong>LOCALIZACIÓN ESPECÍFICA:</strong> ${poblacionData.localizacion}</p>
-        <p><strong>NOMBRE DE LA COMUNIDAD:</strong> ${poblacionData.comunidad}</p>
-        <p><strong>POBLACIÓN ESTIMADA:</strong> ${poblacionData.estimada}</p>
-        <br/>
-        <h2>3. ANÁLISIS DEL PROBLEMA</h2>
-        <p><strong>Definición del Problema:</strong> ${problemaData.definicion}</p>
-        <p><strong>Importancia:</strong> ${problemaData.importancia}</p>
-        <p><strong>Causas:</strong> ${problemaData.causas}</p>
-        <p><strong>Consecuencias:</strong> ${problemaData.consecuencias}</p>
-        <p><strong>Origen y Evolución:</strong> ${problemaData.origen}</p>
-        <br/>
-        <h2>4. SOLUCIÓN PROPUESTA</h2>
-        <p><strong>Desarrolla tu Proyecto:</strong> ${solucionData.proyecto}</p>
-        <br/>
-        <h2>5. ANÁLISIS COMPETITIVO</h2>
-        <p><strong>Otras Propuestas Existentes:</strong> ${solucionData.propuestasExistentes}</p>
-        <p><strong>Diferenciadores de tu Solución:</strong> ${solucionData.diferenciadores}</p>
-        <br/>
-        <h2>6. PRESUPUESTO</h2>
-        <p>${presupuestoData.nota}</p>
-        <br/>
-        <h2>7. ALIADOS</h2>
-        <p>(Información sobre aliados aquí)</p>
-    `;
+    const tableStyle = `border: 1px solid #dddddd; width: 100%; border-collapse: collapse; margin-bottom: 20px; font-family: Arial, sans-serif;`;
+    const thStyle = `background-color: #2c5282; color: #ffffff; padding: 12px; text-align: left; font-size: 16px;`;
+    const tdKeyStyle = `border: 1px solid #dddddd; padding: 10px; font-weight: bold; width: 30%; background-color: #f2f2f2;`;
+    const tdValueStyle = `border: 1px solid #dddddd; padding: 10px;`;
+    const thSpanStyle = `background-color: #4a5568; color: #ffffff; padding: 10px; text-align: left; font-size: 14px;`;
+
+    const createSection = (title: string, data: Record<string, any>) => {
+        let rows = '';
+        for (const [key, value] of Object.entries(data)) {
+            const formattedKey = key.replace(/([A-Z])/g, ' $1').replace(/^./, str => str.toUpperCase());
+            rows += `<tr><td style="${tdKeyStyle}">${formattedKey}</td><td style="${tdValueStyle}">${value}</td></tr>`;
+        }
+        return `
+            <table style="${tableStyle}">
+                <thead><tr><th colspan="2" style="${thStyle}">${title}</th></tr></thead>
+                <tbody>${rows}</tbody>
+            </table>
+        `;
+    };
+
+    const createTableSection = (title: string, note: string, headers: string[]) => {
+        const headerCells = headers.map(h => `<th style="${thSpanStyle}">${h}</th>`).join('');
+        let emptyRows = '';
+        for (let i = 0; i < 3; i++) {
+            emptyRows += `<tr>${headers.map(() => `<td style="${tdValueStyle}">&nbsp;</td>`).join('')}</tr>`;
+        }
+        return `
+            <table style="${tableStyle}">
+                 <thead><tr><th colspan="${headers.length}" style="${thStyle}">${title}</th></tr></thead>
+                <tbody>
+                    ${note ? `<tr><td colspan="${headers.length}" style="${tdValueStyle}"><i>${note}</i></td></tr>` : ''}
+                    <tr style="background-color: #edf2f7;">${headerCells}</tr>
+                    ${emptyRows}
+                </tbody>
+            </table>
+        `;
+    };
+
+    const sections = [
+        { title: "1. IDENTIFICACIÓN DEL PROYECTO", data: projectData },
+        { title: "2. ESTUDIO DE POBLACIÓN (ZEDU)", data: poblacionData },
+        { title: "3. ANÁLISIS DEL PROBLEMA", data: problemaData },
+        { title: "4. SOLUCIÓN PROPUESTA", data: { "Desarrolla tu Proyecto": solucionData.proyecto } },
+        { title: "5. ANÁLISIS COMPETITIVO", data: { "Otras Propuestas Existentes": solucionData.propuestasExistentes, "Diferenciadores Clave": solucionData.diferenciadores } },
+    ];
+    
+    let content = `<h1 style="font-family: Arial, sans-serif; color: #2c5282;">MODELO DE ZEDU - System Kyron 2025</h1>`;
+    sections.forEach(section => {
+        content += createSection(section.title, section.data);
+    });
+
+    content += createTableSection("6. PRESUPUESTO", presupuestoData.nota, ["ITEM", "CANTIDAD", "COSTO", "LUGAR DE COMPRA"]);
+    content += createTableSection("7. ALIADOS", "Busca aliados estratégicos, ya sea persona natural, empresas públicas o privadas.", ["ALIADO", "APOYO"]);
+
+    return content;
 };
 
 
@@ -116,13 +134,23 @@ export default function ModuloZeduPage() {
         });
     };
 
+    const sections = [
+        { icon: Users, title: "1. IDENTIFICACIÓN DEL PROYECTO", data: projectData },
+        { icon: MapPin, title: "2. ESTUDIO DE POBLACIÓN (ZEDU)", data: poblacionData },
+        { icon: HelpCircle, title: "3. ANÁLISIS DEL PROBLEMA", data: problemaData },
+        { icon: Rocket, title: "4. SOLUCIÓN PROPUESTA", data: { "Desarrolla tu Proyecto": solucionData.proyecto } },
+        { icon: Lightbulb, title: "5. ANÁLISIS COMPETITIVO", data: { "Otras Propuestas Existentes": solucionData.propuestasExistentes, "Diferenciadores Clave": solucionData.diferenciadores } },
+        { icon: TrendingUp, title: "6. PRESUPUESTO", data: presupuestoData, isTable: true, note: presupuestoData.nota, tableHeaders: ["ITEM", "CANTIDAD", "COSTO", "LUGAR DE COMPRA"] },
+        { icon: Handshake, title: "7. ALIADOS", data: aliadosData, isTable: true, note: "Busca aliados estratégicos, ya sea persona natural, empresas públicas o privadas.", tableHeaders: ["ALIADO", "APOYO"] }
+    ];
+
   return (
     <div className="p-4 md:p-8 max-w-5xl mx-auto space-y-8">
         <header className="mb-10 text-center">
             <h1 className="text-4xl font-bold tracking-tight text-primary">
                 MODELO DE ZEDU - System Kyron 2025
             </h1>
-            <div className="flex justify-center pt-8">
+             <div className="flex justify-center pt-8">
                 <Button onClick={handleDownloadWord} size="lg" className="shadow-lg">
                     <Download className="mr-2 h-5 w-5"/> Descargar Documento Completo (.doc)
                 </Button>
@@ -130,120 +158,58 @@ export default function ModuloZeduPage() {
         </header>
 
         <Card className="bg-card/50 backdrop-blur-sm">
-            <CardHeader className="bg-primary/10 rounded-t-lg">
-                <CardTitle className="flex items-center gap-3"><Users className="h-5 w-5 text-primary" />1. INFORMACIÓN DEL EQUIPO</CardTitle>
+            <CardHeader>
+                <CardTitle>Modelo Consolidado</CardTitle>
+                <CardDescription>Haz clic en cada sección para expandir y ver los detalles.</CardDescription>
             </CardHeader>
-            <CardContent className="p-0">
-                <Table>
-                     <TableBody>
-                        <TableRow><TableCell className="font-semibold text-muted-foreground w-1/3">PROYECTO</TableCell><TableCell>{projectData.nombre}</TableCell></TableRow>
-                        <TableRow><TableCell className="font-semibold text-muted-foreground">INTEGRANTES</TableCell><TableCell>{projectData.lider}, {projectData.apoyo}</TableCell></TableRow>
-                        <TableRow><TableCell className="font-semibold text-muted-foreground">INSTITUCIÓN</TableCell><TableCell>{projectData.institucion}</TableCell></TableRow>
-                    </TableBody>
-                </Table>
-            </CardContent>
-        </Card>
-
-        <Card className="bg-card/50 backdrop-blur-sm">
-            <CardHeader className="bg-primary/10 rounded-t-lg">
-                <CardTitle className="flex items-center gap-3"><MapPin className="h-5 w-5 text-primary" />2. POBLACIÓN A TRABAJAR</CardTitle>
-            </CardHeader>
-            <CardContent className="p-0">
-                 <Table>
-                     <TableBody>
-                        <TableRow><TableCell className="font-semibold text-muted-foreground w-1/3">LOCALIZACIÓN</TableCell><TableCell>{poblacionData.localizacion}</TableCell></TableRow>
-                        <TableRow><TableCell className="font-semibold text-muted-foreground">COMUNIDAD</TableCell><TableCell>{poblacionData.comunidad}</TableCell></TableRow>
-                        <TableRow><TableCell className="font-semibold text-muted-foreground">POBLACIÓN ESTIMADA</TableCell><TableCell>{poblacionData.estimada}</TableCell></TableRow>
-                    </TableBody>
-                </Table>
-            </CardContent>
-        </Card>
-
-        <Card className="bg-card/50 backdrop-blur-sm">
-            <CardHeader className="bg-primary/10 rounded-t-lg">
-                <CardTitle className="flex items-center gap-3"><HelpCircle className="h-5 w-5 text-primary" />3. ANÁLISIS DEL PROBLEMA</CardTitle>
-            </CardHeader>
-            <CardContent className="p-0">
-                 <Table>
-                     <TableBody>
-                        <TableRow><TableCell className="font-semibold text-muted-foreground w-1/3">DEFINICIÓN</TableCell><TableCell>{problemaData.definicion}</TableCell></TableRow>
-                        <TableRow><TableCell className="font-semibold text-muted-foreground">IMPORTANCIA</TableCell><TableCell>{problemaData.importancia}</TableCell></TableRow>
-                        <TableRow><TableCell className="font-semibold text-muted-foreground">CAUSAS</TableCell><TableCell>{problemaData.causas}</TableCell></TableRow>
-                        <TableRow><TableCell className="font-semibold text-muted-foreground">CONSECUENCIAS</TableCell><TableCell>{problemaData.consecuencias}</TableCell></TableRow>
-                         <TableRow><TableCell className="font-semibold text-muted-foreground">ORIGEN Y EVOLUCIÓN</TableCell><TableCell>{problemaData.origen}</TableCell></TableRow>
-                    </TableBody>
-                </Table>
-            </CardContent>
-        </Card>
-
-        <Card className="bg-card/50 backdrop-blur-sm">
-            <CardHeader className="bg-primary/10 rounded-t-lg">
-                <CardTitle className="flex items-center gap-3"><Rocket className="h-5 w-5 text-primary" />4. SOLUCIÓN PROPUESTA</CardTitle>
-            </CardHeader>
-            <CardContent className="p-4">
-                 <p>{solucionData.proyecto}</p>
-            </CardContent>
-        </Card>
-
-        <Card className="bg-card/50 backdrop-blur-sm">
-            <CardHeader className="bg-primary/10 rounded-t-lg">
-                <CardTitle className="flex items-center gap-3"><Lightbulb className="h-5 w-5 text-primary" />5. ANÁLISIS COMPETITIVO</CardTitle>
-            </CardHeader>
-            <CardContent className="p-0">
-                 <Table>
-                     <TableBody>
-                        <TableRow><TableCell className="font-semibold text-muted-foreground w-1/3">OTRAS PROPUESTAS EXISTENTES</TableCell><TableCell>{solucionData.propuestasExistentes}</TableCell></TableRow>
-                        <TableRow><TableCell className="font-semibold text-muted-foreground">DIFERENCIADORES CLAVE</TableCell><TableCell>{solucionData.diferenciadores}</TableCell></TableRow>
-                    </TableBody>
-                </Table>
-            </CardContent>
-        </Card>
-        
-        <Card className="bg-card/50 backdrop-blur-sm">
-            <CardHeader className="bg-primary/10 rounded-t-lg">
-                <CardTitle className="flex items-center gap-3"><TrendingUp className="h-5 w-5 text-primary" />6. PRESUPUESTO</CardTitle>
-            </CardHeader>
-            <CardContent className="p-0">
-                <Table>
-                    <TableHeader>
-                        <TableRow>
-                            <TableHead className="w-1/2">ITEM</TableHead>
-                            <TableHead>CANTIDAD</TableHead>
-                            <TableHead>COSTO</TableHead>
-                            <TableHead>LUGAR DE COMPRA</TableHead>
-                        </TableRow>
-                    </TableHeader>
-                    <TableBody>
-                        {/* Empty rows for user to fill */}
-                        <TableRow><TableCell>&nbsp;</TableCell><TableCell></TableCell><TableCell></TableCell><TableCell></TableCell></TableRow>
-                        <TableRow><TableCell>&nbsp;</TableCell><TableCell></TableCell><TableCell></TableCell><TableCell></TableCell></TableRow>
-                        <TableRow><TableCell>&nbsp;</TableCell><TableCell></TableCell><TableCell></TableCell><TableCell></TableCell></TableRow>
-                    </TableBody>
-                </Table>
-            </CardContent>
-        </Card>
-
-        <Card className="bg-card/50 backdrop-blur-sm">
-            <CardHeader className="bg-primary/10 rounded-t-lg">
-                <CardTitle className="flex items-center gap-3"><Handshake className="h-5 w-5 text-primary" />7. ALIADOS</CardTitle>
-            </CardHeader>
-            <CardContent className="p-4">
-                 <p className="text-sm text-muted-foreground mb-4">
-                    {presupuestoData.nota}
-                 </p>
-                 <Table>
-                    <TableHeader>
-                        <TableRow>
-                            <TableHead className="w-1/2">ALIADO</TableHead>
-                            <TableHead>APOYO</TableHead>
-                        </TableRow>
-                    </TableHeader>
-                    <TableBody>
-                         {aliadosData.map((_, index) => (
-                           <TableRow key={index}><TableCell>&nbsp;</TableCell><TableCell></TableCell></TableRow>
-                         ))}
-                    </TableBody>
-                </Table>
+            <CardContent>
+                 <Accordion type="single" collapsible className="w-full" defaultValue="item-0">
+                    {sections.map((section, index) => (
+                        <AccordionItem value={`item-${index}`} key={section.title}>
+                            <AccordionTrigger className="text-lg">
+                                <div className="flex items-center gap-3">
+                                    <section.icon className="h-5 w-5 text-primary" />
+                                    <span className="font-semibold">{section.title}</span>
+                                </div>
+                            </AccordionTrigger>
+                            <AccordionContent>
+                                {section.isTable ? (
+                                    <div className="p-2">
+                                        {section.note && <p className="text-sm text-muted-foreground mb-4">{section.note}</p>}
+                                        <Table>
+                                            <TableHeader>
+                                                <TableRow>
+                                                    {section.tableHeaders?.map(header => <TableHead key={header}>{header}</TableHead>)}
+                                                </TableRow>
+                                            </TableHeader>
+                                            <TableBody>
+                                                 {/* Render empty rows for user to fill */}
+                                                {[...Array(3)].map((_, i) => (
+                                                    <TableRow key={i}>
+                                                        {section.tableHeaders?.map((_, j) => <TableCell key={j}>&nbsp;</TableCell>)}
+                                                    </TableRow>
+                                                ))}
+                                            </TableBody>
+                                        </Table>
+                                    </div>
+                                ) : (
+                                    <Table>
+                                        <TableBody>
+                                            {Object.entries(section.data).map(([key, value]) => (
+                                                <TableRow key={key}>
+                                                    <TableCell className="font-semibold text-muted-foreground w-1/3 uppercase text-xs tracking-wider">
+                                                        {key.replace(/([A-Z])/g, ' $1').replace(/^./, str => str.toUpperCase())}
+                                                    </TableCell>
+                                                    <TableCell>{String(value)}</TableCell>
+                                                </TableRow>
+                                            ))}
+                                        </TableBody>
+                                    </Table>
+                                )}
+                            </AccordionContent>
+                        </AccordionItem>
+                    ))}
+                 </Accordion>
             </CardContent>
         </Card>
     </div>
