@@ -1,20 +1,9 @@
 const createNextIntlPlugin = require('next-intl/plugin');
 
-const withNextIntl = createNextIntlPlugin();
+const withNextIntl = createNextIntlPlugin('./src/i18n.ts');
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  outputFileTracingRoot: __dirname,
-  experimental: {
-    scrollRestoration: true,
-  },
-  devIndicators: {
-    appIsrStatus: false,
-  },
-  allowedDevOrigins: [
-    "https://6000-firebase-fintrack-automation2-1759388821350.cluster-f73ibkkuije66wssuontdtbx6q.cloudworkstations.dev", 
-    "https://9000-firebase-fintrack-automation2-1759388821350.cluster-f73ibkkuije66wssuontdtbx6q.cloudworkstations.dev"
-  ],
   images: {
     remotePatterns: [
       { protocol: 'https', hostname: 'flagcdn.com' },

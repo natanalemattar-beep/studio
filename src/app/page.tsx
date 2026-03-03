@@ -1,7 +1,7 @@
-
 import { redirect } from 'next/navigation';
+import { defaultLocale } from '@/i18n';
 
+// This page only redirects to the default locale.
 export default function RootPage() {
-  // Redirige automáticamente a la versión en español de la landing page
-  redirect('/es');
+  redirect(defaultLocale);
 }
