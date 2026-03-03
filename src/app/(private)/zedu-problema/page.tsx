@@ -1,19 +1,23 @@
 "use client";
 
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
-import { Users, MapPin, BarChart2, TrendingUp, Sun, FileText, Download, Printer, BrainCircuit } from "lucide-react";
+import { Users, MapPin, BarChart2, TrendingUp, Sun, FileText, Download, Printer, BrainCircuit, AlertTriangle, ChevronsRight, Search, CheckCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
 
 const problemaData = {
-  ubicacion: "Venezuela, Caracas",
-  nombreComunidad: "Santa Rosa de Lima",
-  totalHabitantes: "",
-  distribucionGenero: "",
-  distribucionEdad: "",
-  caracteristicas: "",
-  clima: "",
+  causas: [
+    "Falta de organización",
+    "Poca disposición",
+    "Escaso presupuesto",
+    "Desactualización tecnológica",
+  ],
+  consecuencias: "Pérdida de tiempo en búsqueda de archivos.",
+  definicion: "En la Institución el sistema de archivado es muy pobre, ya que el método de archivado es netamente físico. Esto no permite agilidad a la hora de buscar información respecto a un estudiante de la institución.",
+  importancia: "Para disminuir la carga de trabajo a la hora de buscar un archivo.",
+  origen: "Desactualización e ignorancia en la gestión de nuevas tecnologías e información.",
 };
+
 
 export default function ZeduProblemaPage() {
     const { toast } = useToast();
@@ -22,28 +26,24 @@ export default function ZeduProblemaPage() {
         return `
             <h1>Modelo ZEDU - Parte 3: Planteamiento del Problema</h1>
             <br/>
-            <h2>POBLACIÓN A TRABAJAR</h2>
+            <h2>ANÁLISIS DEL PROBLEMA</h2>
             <br/>
-            <h3>PAÍS/ CIUDAD/ MUNICIPIO/ LOCALIDAD ESPECÍFICA:</h3>
-            <p>${problemaData.ubicacion}</p>
+            <h3>CAUSAS DEL PROBLEMA</h3>
+            <ul>
+                ${problemaData.causas.map(c => `<li>- ${c}</li>`).join('')}
+            </ul>
             <br/>
-            <h3>NOMBRE DE LA COMUNIDAD:</h3>
-            <p>${problemaData.nombreComunidad}</p>
+            <h3>CONSECUENCIAS DEL PROBLEMA</h3>
+            <p>${problemaData.consecuencias}</p>
             <br/>
-            <h3>CANTIDAD TOTAL DE HABITANTES:</h3>
-            <p>${problemaData.totalHabitantes || "(No especificado)"}</p>
+            <h3>DEFINE EL PROBLEMA</h3>
+            <p>${problemaData.definicion}</p>
             <br/>
-            <h3>CANTIDAD DE HABITANTES POR GÉNERO:</h3>
-            <p>${problemaData.distribucionGenero || "(No especificado)"}</p>
+            <h3>POR QUÉ ES IMPORTANTE RESOLVER ESTE PROBLEMA</h3>
+            <p>${problemaData.importancia}</p>
             <br/>
-            <h3>CANTIDAD DE HABITANTES POR EDAD:</h3>
-            <p>${problemaData.distribucionEdad || "(No especificado)"}</p>
-            <br/>
-            <h3>CARACTERISTICAS DE LA POBLACIÓN:</h3>
-            <p>${problemaData.caracteristicas || "(No especificado)"}</p>
-            <br/>
-            <h3>CLIMA:</h3>
-            <p>${problemaData.clima || "(No especificado)"}</p>
+            <h3>ORIGEN DEL PROBLEMA</h3>
+            <p>${problemaData.origen}</p>
         `;
     };
 
@@ -94,7 +94,7 @@ export default function ZeduProblemaPage() {
                 Modelo ZEDU - Parte 3: Planteamiento del Problema
             </h1>
             <p className="text-muted-foreground mt-2">
-            Contexto y población para el desarrollo de la solución.
+            Análisis detallado del problema, sus causas y consecuencias.
             </p>
         </div>
         <div className="flex gap-2">
@@ -104,64 +104,50 @@ export default function ZeduProblemaPage() {
       </header>
 
       <div id="printable-content" className="space-y-6">
-          <Card>
-              <CardHeader>
-                  <CardTitle className="flex items-center gap-3 text-xl"><MapPin className="text-primary"/> Ubicación y Comunidad</CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-2">
-                  <div>
-                      <h3 className="text-sm font-semibold text-muted-foreground">País/Ciudad/Municipio:</h3>
-                      <p>{problemaData.ubicacion}</p>
-                  </div>
-                  <div>
-                      <h3 className="text-sm font-semibold text-muted-foreground">Nombre de la Comunidad:</h3>
-                      <p>{problemaData.nombreComunidad}</p>
-                  </div>
-              </CardContent>
-          </Card>
-
-            <div className="grid md:grid-cols-3 gap-6">
-                <Card>
-                    <CardHeader>
-                        <CardTitle className="flex items-center gap-2 text-lg"><Users className="text-primary"/> Total Habitantes</CardTitle>
-                    </CardHeader>
-                    <CardContent>
-                        <p className="text-muted-foreground italic">(No especificado)</p>
-                    </CardContent>
-                </Card>
-                <Card>
-                    <CardHeader>
-                        <CardTitle className="flex items-center gap-2 text-lg"><BarChart2 className="text-primary"/> Distribución por Género</CardTitle>
-                    </CardHeader>
-                    <CardContent>
-                         <p className="text-muted-foreground italic">(No especificado)</p>
-                    </CardContent>
-                </Card>
-                <Card>
-                    <CardHeader>
-                        <CardTitle className="flex items-center gap-2 text-lg"><TrendingUp className="text-primary"/> Distribución por Edad</CardTitle>
-                    </CardHeader>
-                    <CardContent>
-                        <p className="text-muted-foreground italic">(No especificado)</p>
-                    </CardContent>
-                </Card>
-            </div>
+            <Card>
+                <CardHeader>
+                    <CardTitle className="flex items-center gap-3 text-xl"><AlertTriangle className="text-primary"/> Causas del Problema</CardTitle>
+                </CardHeader>
+                <CardContent>
+                    <ul className="list-disc list-inside space-y-2">
+                        {problemaData.causas.map(causa => <li key={causa}>{causa}</li>)}
+                    </ul>
+                </CardContent>
+            </Card>
 
             <Card>
                 <CardHeader>
-                    <CardTitle className="text-xl">Características Clave de la Población</CardTitle>
+                    <CardTitle className="flex items-center gap-3 text-xl"><ChevronsRight className="text-primary"/> Consecuencias del Problema</CardTitle>
                 </CardHeader>
                 <CardContent>
-                    <p className="text-muted-foreground italic">(No especificado)</p>
+                    <p>{problemaData.consecuencias}</p>
+                </CardContent>
+            </Card>
+
+            <Card>
+                <CardHeader>
+                    <CardTitle className="flex items-center gap-3 text-xl"><Search className="text-primary"/> Define el Problema</CardTitle>
+                </CardHeader>
+                <CardContent>
+                    <p className="text-muted-foreground">{problemaData.definicion}</p>
                 </CardContent>
             </Card>
             
             <Card>
                 <CardHeader>
-                    <CardTitle className="flex items-center gap-2 text-xl"><Sun className="text-primary"/> Clima</CardTitle>
+                    <CardTitle className="flex items-center gap-3 text-xl"><CheckCircle className="text-primary"/> Por qué es Importante Resolver este Problema</CardTitle>
                 </CardHeader>
                 <CardContent>
-                    <p className="text-muted-foreground italic">(No especificado)</p>
+                    <p>{problemaData.importancia}</p>
+                </CardContent>
+            </Card>
+            
+            <Card>
+                <CardHeader>
+                    <CardTitle className="flex items-center gap-3 text-xl"><Sun className="text-primary"/> Origen del Problema</CardTitle>
+                </CardHeader>
+                <CardContent>
+                    <p>{problemaData.origen}</p>
                 </CardContent>
             </Card>
       </div>
