@@ -4,11 +4,10 @@
 import React from 'react';
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
-import { Download } from "lucide-react";
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Table, TableBody, TableCell, TableRow } from "@/components/ui/table";
-import { Users, School, MapPin, Target, HelpCircle, TrendingDown, History, Rocket } from "lucide-react";
-
+import { Download, Users, School, MapPin, Target, HelpCircle, TrendingDown, History, Rocket, Lightbulb, TrendingUp } from "lucide-react";
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
+import { Table, TableBody, TableCell, TableRow, TableHeader, TableHead } from "@/components/ui/table";
+import { Separator } from '@/components/ui/separator';
 
 const projectData = {
     nombre: "System Kyron",
@@ -38,77 +37,55 @@ const solucionData = {
     diferenciadores: "Plataforma todo-en-uno, adaptada a la legislación venezolana, con módulos de contabilidad, RRHH, y comunicación integrados. Interfaz intuitiva y accesible desde cualquier dispositivo. Enfocada en la colaboración y la transparencia."
 };
 
+const getDocumentContent = () => {
+    // This function will generate the HTML content for the Word document
+    // It's a simplified version for demonstration
+    return `
+        <h1>MODELO DE ZEDU - ${projectData.nombre} 2025</h1>
+        <br/>
+        <h2>1. IDENTIFICACIÓN DEL PROYECTO</h2>
+        <p><strong>NOMBRE DEL PROYECTO:</strong> ${projectData.nombre}</p>
+        <p><strong>LÍDER ESTRATÉGICO:</strong> ${projectData.lider}</p>
+        <p><strong>PERSONAL DE APOYO:</strong> ${projectData.apoyo}</p>
+        <p><strong>INSTITUCIÓN BENEFICIARIA:</strong> ${projectData.institucion}</p>
+        <p><strong>UBICACIÓN GEOGRÁFICA:</strong> ${projectData.ubicacion}</p>
+        <br/>
+        <h2>2. ESTUDIO DE POBLACIÓN (ZEDU)</h2>
+        <p><strong>LOCALIZACIÓN ESPECÍFICA:</strong> ${poblacionData.localizacion}</p>
+        <p><strong>NOMBRE DE LA COMUNIDAD:</strong> ${poblacionData.comunidad}</p>
+        <p><strong>POBLACIÓN ESTIMADA:</strong> ${poblacionData.estimada}</p>
+        <br/>
+        <h2>3. ANÁLISIS DEL PROBLEMA</h2>
+        <p><strong>Definición del Problema:</strong> ${problemaData.definicion}</p>
+        <p><strong>Importancia:</strong> ${problemaData.importancia}</p>
+        <p><strong>Causas:</strong> ${problemaData.causas}</p>
+        <p><strong>Consecuencias:</strong> ${problemaData.consecuencias}</p>
+        <p><strong>Origen y Evolución:</strong> ${problemaData.origen}</p>
+        <br/>
+        <h2>4. SOLUCIÓN PROPUESTA</h2>
+        <p><strong>Desarrolla tu Proyecto:</strong> ${solucionData.proyecto}</p>
+        <br/>
+        <h2>5. ANÁLISIS COMPETITIVO</h2>
+        <p><strong>Otras Propuestas Existentes:</strong> ${solucionData.propuestasExistentes}</p>
+        <p><strong>Diferenciadores de tu Solución:</strong> ${solucionData.diferenciadores}</p>
+        <br/>
+        <h2>6. PRESUPUESTO</h2>
+        <p>(Tabla de presupuesto aquí)</p>
+    `;
+};
+
 
 export default function ModuloZeduPage() {
     const { toast } = useToast();
-
-    const getDocumentContent = () => {
-        return `
-            <h1>MODELO DE ZEDU - ${projectData.nombre} 2025</h1>
-            <br/>
-            <h2>1. IDENTIFICACIÓN DEL PROYECTO</h2>
-            <table border="1" cellpadding="5" style="width: 100%; border-collapse: collapse;">
-                <tr><td style="width: 30%;"><strong>NOMBRE DEL PROYECTO</strong></td><td>${projectData.nombre}</td></tr>
-                <tr><td><strong>LÍDER ESTRATÉGICO</strong></td><td>${projectData.lider}</td></tr>
-                <tr><td><strong>PERSONAL DE APOYO</strong></td><td>${projectData.apoyo}</td></tr>
-                <tr><td><strong>INSTITUCIÓN BENEFICIARIA</strong></td><td>${projectData.institucion}</td></tr>
-                <tr><td><strong>UBICACIÓN GEOGRÁFICA</strong></td><td>${projectData.ubicacion}</td></tr>
-            </table>
-            <br/>
-            <h2>2. ESTUDIO DE POBLACIÓN (ZEDU)</h2>
-            <table border="1" cellpadding="5" style="width: 100%; border-collapse: collapse;">
-                <tr><td style="width: 30%;"><strong>LOCALIZACIÓN ESPECÍFICA</strong></td><td>${poblacionData.localizacion}</td></tr>
-                <tr><td><strong>NOMBRE DE LA COMUNIDAD</strong></td><td>${poblacionData.comunidad}</td></tr>
-                <tr><td><strong>POBLACIÓN ESTIMADA</strong></td><td>${poblacionData.estimada}</td></tr>
-            </table>
-            <br/>
-            <h2>3. ANÁLISIS DEL PROBLEMA</h2>
-            <table border="1" cellpadding="5" style="width: 100%; border-collapse: collapse;">
-                <tr><td style="width: 30%;"><strong>Definición del Problema</strong></td><td>${problemaData.definicion}</td></tr>
-                <tr><td><strong>Importancia</strong></td><td>${problemaData.importancia}</td></tr>
-                <tr><td><strong>Causas</strong></td><td>${problemaData.causas}</td></tr>
-                <tr><td><strong>Consecuencias</strong></td><td>${problemaData.consecuencias}</td></tr>
-                <tr><td><strong>Origen y Evolución</strong></td><td>${problemaData.origen}</td></tr>
-            </table>
-            <br/>
-            <h2>4. SOLUCIÓN PROPUESTA</h2>
-            <table border="1" cellpadding="5" style="width: 100%; border-collapse: collapse;">
-                <tr><td style="width: 30%;"><strong>Desarrolla tu Proyecto</strong></td><td>${solucionData.proyecto}</td></tr>
-            </table>
-            <br/>
-            <h2>5. OTRAS PROPUESTAS EXISTENTES</h2>
-            <p>${solucionData.propuestasExistentes}</p>
-            <br/>
-            <h2>6. DIFERENCIADORES DE TU SOLUCIÓN</h2>
-            <p>${solucionData.diferenciadores}</p>
-            <br/>
-            <h2>7. PRESUPUESTO</h2>
-            <table border="1" cellpadding="5" style="width: 100%; border-collapse: collapse;">
-                <thead>
-                    <tr>
-                        <th style="width: 40%;">ITEM</th>
-                        <th style="width: 20%;">CANTIDAD</th>
-                        <th style="width: 20%;">COSTO</th>
-                        <th style="width: 20%;">LUGAR DE COMPRA</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr><td>&nbsp;</td><td></td><td></td><td></td></tr>
-                    <tr><td>&nbsp;</td><td></td><td></td><td></td></tr>
-                    <tr><td>&nbsp;</td><td></td><td></td><td></td></tr>
-                </tbody>
-            </table>
-        `;
-    };
 
     const handleDownloadWord = () => {
         const content = getDocumentContent();
         const header = "<html xmlns:o='urn:schemas-microsoft-com:office:office' "+
             "xmlns:w='urn:schemas-microsoft-com:office:word' "+
             "xmlns='http://www.w3.org/TR/REC-html40'>"+
-            "<head><meta charset='utf-8'><title>Export HTML to Word</title></head><body>";
+            "<head><meta charset='utf-8'><title>Modelo ZEDU</title></head><body>";
         const footer = "</body></html>";
-        const sourceHTML = header + content.replace(/<h2>/g, '<h2 style="margin-top: 20px;">').replace(/<table/g, '<table style="font-family: Arial, sans-serif; font-size: 11pt;" >') + footer;
+        const sourceHTML = header + content + footer;
 
         const source = 'data:application/vnd.ms-word;charset=utf-8,' + encodeURIComponent(sourceHTML);
         const fileDownload = document.createElement("a");
@@ -125,121 +102,110 @@ export default function ModuloZeduPage() {
     };
 
   return (
-    <div className="p-4 md:p-8 max-w-4xl mx-auto">
+    <div className="p-4 md:p-8 max-w-5xl mx-auto space-y-8">
         <header className="mb-10 text-center">
-            <h1 className="text-3xl font-bold tracking-tight text-primary">
-                MODELO DE ZEDU - {projectData.nombre.toUpperCase()} 2025
+            <h1 className="text-4xl font-bold tracking-tight text-primary">
+                Modelo de Proyecto ZEDU
             </h1>
+            <p className="mt-2 text-lg text-muted-foreground">Documentación consolidada del proyecto "{projectData.nombre}"</p>
         </header>
 
-        <div className="space-y-8">
-            <Card className="border-2 border-primary/20">
-                <div className="bg-primary text-primary-foreground p-3">
-                    <CardTitle className="flex items-center gap-3"><Users className="h-5 w-5" />1. IDENTIFICACIÓN DEL PROYECTO</CardTitle>
-                </div>
-                <CardContent className="p-0">
-                    <Table>
-                        <TableBody>
-                            <TableRow><TableCell className="font-semibold w-1/3">NOMBRE DEL PROYECTO</TableCell><TableCell>{projectData.nombre}</TableCell></TableRow>
-                            <TableRow><TableCell className="font-semibold">LÍDER ESTRATÉGICO</TableCell><TableCell>{projectData.lider}</TableCell></TableRow>
-                            <TableRow><TableCell className="font-semibold">PERSONAL DE APOYO</TableCell><TableCell>{projectData.apoyo}</TableCell></TableRow>
-                            <TableRow><TableCell className="font-semibold">INSTITUCIÓN BENEFICIARIA</TableCell><TableCell>{projectData.institucion}</TableCell></TableRow>
-                            <TableRow><TableCell className="font-semibold">UBICACIÓN GEOGRÁFICA</TableCell><TableCell>{projectData.ubicacion}</TableCell></TableRow>
-                        </TableBody>
-                    </Table>
-                </CardContent>
-            </Card>
-
-            <Card className="border-2 border-primary/20">
-                <div className="bg-primary text-primary-foreground p-3">
-                    <CardTitle className="flex items-center gap-3"><School className="h-5 w-5" />2. ESTUDIO DE POBLACIÓN (ZEDU)</CardTitle>
-                </div>
-                <CardContent className="p-0">
-                    <Table>
-                        <TableBody>
-                            <TableRow><TableCell className="font-semibold w-1/3">LOCALIZACIÓN ESPECÍFICA</TableCell><TableCell>{poblacionData.localizacion}</TableCell></TableRow>
-                            <TableRow><TableCell className="font-semibold">NOMBRE DE LA COMUNIDAD</TableCell><TableCell>{poblacionData.comunidad}</TableCell></TableRow>
-                            <TableRow><TableCell className="font-semibold">POBLACIÓN ESTIMADA</TableCell><TableCell>{poblacionData.estimada}</TableCell></TableRow>
-                        </TableBody>
-                    </Table>
-                </CardContent>
-            </Card>
-            
-            <Card className="border-2 border-primary/20">
-                <div className="bg-primary text-primary-foreground p-3">
-                    <CardTitle className="flex items-center gap-3"><HelpCircle className="h-5 w-5" />3. ANÁLISIS DEL PROBLEMA</CardTitle>
-                </div>
-                <CardContent className="p-0">
-                     <Table>
-                        <TableBody>
-                             <TableRow><TableCell className="font-semibold w-1/3">Definición del Problema</TableCell><TableCell>{problemaData.definicion}</TableCell></TableRow>
-                            <TableRow><TableCell className="font-semibold">Importancia</TableCell><TableCell>{problemaData.importancia}</TableCell></TableRow>
-                            <TableRow><TableCell className="font-semibold">Causas</TableCell><TableCell>{problemaData.causas}</TableCell></TableRow>
-                            <TableRow><TableCell className="font-semibold">Consecuencias</TableCell><TableCell>{problemaData.consecuencias}</TableCell></TableRow>
-                            <TableRow><TableCell className="font-semibold">Origen y Evolución</TableCell><TableCell>{problemaData.origen}</TableCell></TableRow>
-                        </TableBody>
-                    </Table>
-                </CardContent>
-            </Card>
-
-            <Card className="border-2 border-primary/20">
-                <div className="bg-primary text-primary-foreground p-3">
-                    <CardTitle className="flex items-center gap-3"><Rocket className="h-5 w-5" />4. SOLUCIÓN PROPUESTA</CardTitle>
-                </div>
-                 <CardContent className="p-0">
-                     <Table>
-                        <TableBody>
-                            <TableRow><TableCell className="font-semibold w-1/3">Desarrolla tu Proyecto</TableCell><TableCell>{solucionData.proyecto}</TableCell></TableRow>
-                        </TableBody>
-                    </Table>
-                </CardContent>
-            </Card>
-
-             <Card className="border-2 border-primary/20">
-                <div className="bg-primary text-primary-foreground p-3">
-                    <CardTitle className="flex items-center gap-3"><History className="h-5 w-5" />5. OTRAS PROPUESTAS EXISTENTES</CardTitle>
-                </div>
-                <CardContent className="p-6">
-                    <p className="text-muted-foreground">{solucionData.propuestasExistentes}</p>
-                </CardContent>
-            </Card>
-            
-             <Card className="border-2 border-primary/20">
-                <div className="bg-primary text-primary-foreground p-3">
-                    <CardTitle className="flex items-center gap-3"><Target className="h-5 w-5" />6. DIFERENCIADORES DE TU SOLUCIÓN</CardTitle>
-                </div>
-                <CardContent className="p-6">
-                    <p className="text-muted-foreground">{solucionData.diferenciadores}</p>
-                </CardContent>
-            </Card>
-
-            <Card className="border-2 border-primary/20">
-                <div className="bg-primary text-primary-foreground p-3">
-                    <CardTitle className="flex items-center gap-3"><TrendingDown className="h-5 w-5" />7. PRESUPUESTO</CardTitle>
-                </div>
-                <CardContent className="p-0">
-                    <Table>
-                        <TableHeader>
-                            <TableRow>
-                                <TableCell className="font-semibold w-[40%]">ITEM</TableCell>
-                                <TableCell className="font-semibold w-[20%]">CANTIDAD</TableCell>
-                                <TableCell className="font-semibold w-[20%]">COSTO</TableCell>
-                                <TableCell className="font-semibold w-[20%]">LUGAR DE COMPRA</TableCell>
-                            </TableRow>
-                        </TableHeader>
-                        <TableBody>
-                            <TableRow><TableCell>&nbsp;</TableCell><TableCell></TableCell><TableCell></TableCell><TableCell></TableCell></TableRow>
-                            <TableRow><TableCell>&nbsp;</TableCell><TableCell></TableCell><TableCell></TableCell><TableCell></TableCell></TableRow>
-                            <TableRow><TableCell>&nbsp;</TableCell><TableCell></TableCell><TableCell></TableCell><TableCell></TableCell></TableRow>
-                        </TableBody>
-                    </Table>
-                </CardContent>
-            </Card>
+        <div className="flex justify-center mb-10">
+            <Button onClick={handleDownloadWord} size="lg" className="shadow-lg">
+                <Download className="mr-2 h-5 w-5"/> Descargar Documento Completo (.doc)
+            </Button>
         </div>
-        
-        <div className="flex justify-center mt-10">
-            <Button onClick={handleDownloadWord}><Download className="mr-2 h-4 w-4"/> Descargar como Word</Button>
-        </div>
+
+        {/* Parte 1: Identificación */}
+        <Card className="shadow-lg">
+            <CardHeader>
+                <CardTitle className="flex items-center gap-3"><Users className="h-6 w-6 text-primary" />1. Identificación del Proyecto</CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-3">
+                <div className="flex justify-between p-3 bg-secondary/50 rounded-md"><strong className="text-muted-foreground">Nombre del Proyecto:</strong> <span className="font-semibold">{projectData.nombre}</span></div>
+                <div className="flex justify-between p-3 bg-secondary/50 rounded-md"><strong className="text-muted-foreground">Líder Estratégico:</strong> <span className="font-semibold">{projectData.lider}</span></div>
+                <div className="flex justify-between p-3 bg-secondary/50 rounded-md"><strong className="text-muted-foreground">Personal de Apoyo:</strong> <span className="font-semibold">{projectData.apoyo}</span></div>
+                <div className="flex justify-between p-3 bg-secondary/50 rounded-md"><strong className="text-muted-foreground">Institución Beneficiaria:</strong> <span className="font-semibold">{projectData.institucion}</span></div>
+                <div className="flex justify-between p-3 bg-secondary/50 rounded-md"><strong className="text-muted-foreground">Ubicación Geográfica:</strong> <span className="font-semibold">{projectData.ubicacion}</span></div>
+            </CardContent>
+        </Card>
+
+        {/* Parte 2: Población */}
+        <Card className="shadow-lg">
+            <CardHeader>
+                <CardTitle className="flex items-center gap-3"><MapPin className="h-6 w-6 text-primary" />2. Estudio de Población (ZEDU)</CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-3">
+                <div className="p-3 bg-secondary/50 rounded-md"><strong className="text-muted-foreground">Localización Específica:</strong><p>{poblacionData.localizacion}</p></div>
+                <div className="flex justify-between p-3 bg-secondary/50 rounded-md"><strong className="text-muted-foreground">Nombre de la Comunidad:</strong> <span className="font-semibold">{poblacionData.comunidad}</span></div>
+                <div className="flex justify-between p-3 bg-secondary/50 rounded-md"><strong className="text-muted-foreground">Población Estimada:</strong> <span className="font-semibold">{poblacionData.estimada}</span></div>
+            </CardContent>
+        </Card>
+
+        {/* Parte 3: Análisis del Problema */}
+        <Card className="shadow-lg">
+            <CardHeader>
+                <CardTitle className="flex items-center gap-3"><HelpCircle className="h-6 w-6 text-primary" />3. Análisis del Problema</CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-4">
+                <div><h4 className="font-semibold">Definición:</h4><p className="text-muted-foreground">{problemaData.definicion}</p></div>
+                <Separator/>
+                <div><h4 className="font-semibold">Importancia:</h4><p className="text-muted-foreground">{problemaData.importancia}</p></div>
+                <Separator/>
+                <div><h4 className="font-semibold">Causas:</h4><p className="text-muted-foreground">{problemaData.causas}</p></div>
+                <Separator/>
+                <div><h4 className="font-semibold">Consecuencias:</h4><p className="text-muted-foreground">{problemaData.consecuencias}</p></div>
+                <Separator/>
+                <div><h4 className="font-semibold">Origen y Evolución:</h4><p className="text-muted-foreground">{problemaData.origen}</p></div>
+            </CardContent>
+        </Card>
+
+        {/* Parte 4: Solución Propuesta */}
+        <Card className="shadow-lg">
+            <CardHeader>
+                <CardTitle className="flex items-center gap-3"><Rocket className="h-6 w-6 text-primary" />4. Solución Propuesta</CardTitle>
+            </CardHeader>
+            <CardContent>
+                <p className="text-muted-foreground">{solucionData.proyecto}</p>
+            </CardContent>
+        </Card>
+
+        {/* Parte 5: Análisis Competitivo */}
+        <Card className="shadow-lg">
+            <CardHeader>
+                <CardTitle className="flex items-center gap-3"><Lightbulb className="h-6 w-6 text-primary" />5. Análisis Competitivo</CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-4">
+                 <div><h4 className="font-semibold">Otras Propuestas Existentes:</h4><p className="text-muted-foreground">{solucionData.propuestasExistentes}</p></div>
+                <Separator/>
+                <div><h4 className="font-semibold">Diferenciadores de tu Solución:</h4><p className="text-muted-foreground">{solucionData.diferenciadores}</p></div>
+            </CardContent>
+        </Card>
+
+        {/* Parte 6: Presupuesto */}
+        <Card className="shadow-lg">
+            <CardHeader>
+                <CardTitle className="flex items-center gap-3"><TrendingUp className="h-6 w-6 text-primary" />6. Presupuesto</CardTitle>
+            </CardHeader>
+            <CardContent>
+                <Table>
+                    <TableHeader>
+                        <TableRow>
+                            <TableHead className="w-1/2">ITEM</TableHead>
+                            <TableHead>CANTIDAD</TableHead>
+                            <TableHead>COSTO</TableHead>
+                            <TableHead>LUGAR DE COMPRA</TableHead>
+                        </TableRow>
+                    </TableHeader>
+                    <TableBody>
+                        <TableRow><TableCell className="text-muted-foreground italic">Ej: Servidor en la Nube</TableCell><TableCell>1</TableCell><TableCell>$100/mes</TableCell><TableCell>Amazon Web Services</TableCell></TableRow>
+                        <TableRow><TableCell className="text-muted-foreground italic">Ej: Licencias de Software</TableCell><TableCell>5</TableCell><TableCell>$50 c/u</TableCell><TableCell>Vendor de Software</TableCell></TableRow>
+                        <TableRow><TableCell className="text-muted-foreground italic">Ej: Marketing Inicial</TableCell><TableCell>1</TableCell><TableCell>$500</TableCell><TableCell>Agencia Digital</TableCell></TableRow>
+                    </TableBody>
+                </Table>
+            </CardContent>
+        </Card>
+
     </div>
   );
 }
