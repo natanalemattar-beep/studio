@@ -2,7 +2,7 @@
 
 import type { ReactNode } from "react";
 import { AppHeader } from "@/components/app-header";
-import { BrainCircuit, Users } from "lucide-react";
+import { BrainCircuit, Users, BookUser } from "lucide-react";
 import { ChatDialog } from "@/components/chat-dialog";
 
 // Minimal navigation for this private section
@@ -11,6 +11,7 @@ const zeduNavGroup = [{
     icon: BrainCircuit,
     items: [
         { href: "/zedu-modelo", label: "Parte 1: Población", icon: Users },
+        { href: "/zedu-equipo", label: "Parte 2: Equipo", icon: BookUser },
     ],
     subGroups: [],
 }];
