@@ -13,34 +13,35 @@ export default function PropuestaProyectoPage() {
     const { toast } = useToast();
 
     const getProposalContent = () => `
-        <h1>PROPUESTA DE PROYECTO: EFICIENCIA Y FINANZAS DEL FUTURO</h1>
+        <h1>PROPUESTA DE PROYECTO: ECOSISTEMA INTEGRAL DE GESTIÓN Y COMUNICACIONES</h1>
         <p><strong>Fecha:</strong> ${formatDate(new Date())}</p>
         <p><strong>Para:</strong> [Nombre del Destinatario / Empresa Cliente]</p>
         <p><strong>De:</strong> Kyron, C.A.</p>
         <br/>
-        <h2>ASUNTO: PROPUESTA PARA LA IMPLEMENTACIÓN DE UN ECOSISTEMA INTEGRADO DE GESTIÓN, TELECOMUNICACIONES Y FINANZAS BLOCKCHAIN</h2>
+        <h2>ASUNTO: PROPUESTA PARA LA IMPLEMENTACIÓN DE UN ECOSISTEMA UNIFICADO: GESTIÓN EMPRESARIAL, LÍNEA TELEFÓNICA PROPIA Y FINANZAS BLOCKCHAIN.</h2>
         <p>Estimados señores de [Nombre de la Empresa Cliente],</p>
-        <p>En Kyron, hemos desarrollado una solución integral que combina una plataforma de automatización administrativa, servicios de telecomunicaciones y una innovadora billetera financiera basada en Blockchain, junto con el suministro de equipos y material de oficina.</p>
+        <p>En Kyron, hemos derribado las barreras entre la gestión administrativa, las telecomunicaciones y las finanzas. Presentamos una solución única en el mercado que integra estos tres pilares en un solo Centro de Mando.</p>
         <br/>
         <h3>1. ENTENDIMIENTO DEL PROBLEMA</h3>
-        <p>Reconocemos los desafíos del entorno actual:</p>
+        <p>Entendemos los desafíos que enfrenta la empresa moderna:</p>
         <ul>
-            <li>La complejidad administrativa y fiscal en Venezuela.</li>
-            <li>La necesidad de soluciones de comunicación eficientes y confiables.</li>
-            <li>La búsqueda de transacciones financieras seguras, transparentes y modernas.</li>
-            <li>La gestión de compras de equipos y suministros de múltiples proveedores.</li>
+            <li>La complejidad fiscal y la necesidad de un cumplimiento normativo a prueba de errores.</li>
+            <li>La dependencia de múltiples proveedores para software, hardware, telefonía y servicios financieros, creando fragmentación y costos ocultos.</li>
+            <li>La necesidad de una comunicación interna y externa robusta, segura y controlada por la propia empresa.</li>
+            <li>La búsqueda de transacciones financieras modernas, seguras y transparentes.</li>
         </ul>
         <br/>
-        <h3>2. SOLUCIÓN PROPUESTA: UN ECOSISTEMA INTEGRAL</h3>
-        <p>Nuestro proyecto se basa en dos pilares que funcionan de manera sinérgica:</p>
-        <p><strong>a) Pilar 1: Software de Automatización y Venta de Equipos:</strong> Una plataforma en la nube que automatiza el 100% de los procesos de su empresa (facturación, inventario, contabilidad), integrada con una oferta comercial que incluye: <strong>equipos fiscales, impresoras, material de oficina</strong>, línea telefónica y venta de equipos de telecomunicaciones (teléfonos, televisores).</p>
-        <p><strong>b) Pilar 2: Implementación Financiera con Billetera Blockchain:</strong> Una solución de tercera generación para la gestión de activos y transacciones seguras, transparentes e inmutables, ideal para el comercio y las finanzas del futuro.</p>
+        <h3>2. SOLUCIÓN PROPUESTA: EL ECOSISTEMA KYRON</h3>
+        <p>Nuestro proyecto se basa en pilares sinérgicos:</p>
+        <p><strong>a) Pilar de Gestión y Automatización:</strong> Una plataforma en la nube que automatiza el 100% de los procesos de su empresa (facturación, inventario, contabilidad), integrada con la venta de equipos fiscales, material de oficina y hardware de telecomunicaciones.</p>
+        <p><strong>b) Pilar de Telecomunicaciones 5G:</strong> Le proporcionamos su <strong>propia línea telefónica 5G oficial y privada</strong>. Esto incluye la gestión de planes de datos y una central telefónica virtual para comunicaciones unificadas, seguras y de misión crítica a nivel global. Complementamos esto con la comercialización de equipos móviles y de telecomunicaciones de marcas líderes.</p>
+        <p><strong>c) Pilar Financiero Blockchain:</strong> Una billetera de tercera generación para la gestión de activos y transacciones con la máxima seguridad e inmutabilidad, preparada para el futuro del comercio.</p>
         <br/>
         <h3>3. BENEFICIOS CLAVE</h3>
         <ul>
-            <li><strong>Gestión 360°:</strong> Centraliza software, hardware, consumibles y finanzas en un único proveedor.</li>
-            <li><strong>Cumplimiento y Seguridad Financiera:</strong> Garantiza el cumplimiento fiscal y ofrece transacciones seguras con tecnología Blockchain.</li>
-            <li><strong>Toma de Decisiones Basada en Datos:</strong> Informes en tiempo real sobre finanzas y operaciones.</li>
+            <li><strong>Soberanía y Control Total:</strong> Unifique software, hardware, consumibles, finanzas y ahora, sus propias comunicaciones, bajo un único ecosistema.</li>
+            <li><strong>Cumplimiento y Seguridad Insuperables:</strong> Garantice el cumplimiento fiscal con nuestra IA y asegure sus transacciones y comunicaciones con tecnología de punta.</li>
+            <li><strong>Inteligencia de Negocio Integrada:</strong> Obtenga informes en tiempo real que cruzan datos financieros, operativos y de comunicación para una toma de decisiones sin precedentes.</li>
         </ul>
         <br/>
         <h3>4. PRÓXIMOS PASOS</h3>
@@ -193,5 +194,3 @@ export default function PropuestaProyectoPage() {
     </div>
   );
 }
-
-    
