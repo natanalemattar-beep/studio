@@ -1,4 +1,3 @@
-
 'use client';
 
 import { useState, useEffect, type FC, type AnchorHTMLAttributes, Fragment } from "react";
@@ -20,6 +19,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { loginGroups, loginOptions } from "@/lib/login-options";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import { ScrollArea } from "../ui/scroll-area";
 
 const SmoothScrollLink: FC<AnchorHTMLAttributes<HTMLAnchorElement> & { onLinkClick?: () => void }> = ({ href, onLinkClick, ...props }) => {
     const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
@@ -119,25 +119,27 @@ export function LandingHeader() {
                                     </Button>
                                 </DropdownMenuTrigger>
                                 <DropdownMenuContent align="end" className="w-80">
-                                  {loginGroups.map((group, groupIndex) => (
-                                    <Fragment key={group.title}>
-                                      <DropdownMenuLabel>{group.title}</DropdownMenuLabel>
-                                      {group.options.map((option) => (
-                                        <DropdownMenuItem key={option.label} asChild>
-                                          <Link href={option.href} className="flex items-start gap-3 p-2">
-                                            <div className="p-1 bg-muted rounded-md mt-1">
-                                              <option.icon className="h-4 w-4 text-muted-foreground" />
-                                            </div>
-                                            <div>
-                                              <p className="font-semibold leading-none">{option.label}</p>
-                                              <p className="text-xs text-muted-foreground leading-tight mt-1">{option.description}</p>
-                                            </div>
-                                          </Link>
-                                        </DropdownMenuItem>
-                                      ))}
-                                      {groupIndex < loginGroups.length - 1 && <DropdownMenuSeparator />}
-                                    </Fragment>
-                                  ))}
+                                  <ScrollArea className="h-[70vh] w-full">
+                                    {loginGroups.map((group, groupIndex) => (
+                                      <Fragment key={group.title}>
+                                        <DropdownMenuLabel>{group.title}</DropdownMenuLabel>
+                                        {group.options.map((option) => (
+                                          <DropdownMenuItem key={option.label} asChild>
+                                            <Link href={option.href} className="flex items-start gap-3 p-2">
+                                              <div className="p-1 bg-muted rounded-md mt-1">
+                                                <option.icon className="h-4 w-4 text-muted-foreground" />
+                                              </div>
+                                              <div>
+                                                <p className="font-semibold leading-none">{option.label}</p>
+                                                <p className="text-xs text-muted-foreground leading-tight mt-1">{option.description}</p>
+                                              </div>
+                                            </Link>
+                                          </DropdownMenuItem>
+                                        ))}
+                                        {groupIndex < loginGroups.length - 1 && <DropdownMenuSeparator />}
+                                      </Fragment>
+                                    ))}
+                                  </ScrollArea>
                                 </DropdownMenuContent>
                             </DropdownMenu>
                             <Button asChild variant="secondary">
