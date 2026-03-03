@@ -1,7 +1,7 @@
 
 "use client";
 
-import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Table, TableBody, TableCell, TableRow } from "@/components/ui/table";
 import { Download, FileText, Printer } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -16,22 +16,25 @@ const informacionEquipo = [
 
 const poblacionTrabajar = [
   { campo: "PAÍS/ CIUDAD/ MUNICIPIO/ LOCALIDAD ESPECÍFICA", valor: "Venezuela, Caracas" },
-  { campo: "NOMBRE DE LA COMUNIDAD", valor: "(No especificado)" },
-  { campo: "NÚMERO DE HABITANTES", valor: "(No especificado)" },
-  { campo: "GÉNERO", valor: "(No especificado)" },
-  { campo: "EDADES COMPRENDIDAS", valor: "(No especificado)" },
-  { campo: "CARACTERÍSTICAS SOCIALES", valor: "(No especificado)" },
-  { campo: "CARACTERÍSTICAS ECONÓMICAS", valor: "(No especificado)" },
-  { campo: "CARACTERÍSTICAS EDUCATIVAS", valor: "(No especificado)" },
-  { campo: "CARACTERÍSTICAS CULTURALES", valor: "(No especificado)" },
+  { campo: "NOMBRE DE LA COMUNIDAD", valor: "Santa Rosa de Lima" },
+  { campo: "CANTIDAD TOTAL DE HABITANTES", valor: "" },
+  { campo: "CANTIDAD DE HABITANTES POR GÉNERO", valor: "" },
+  { campo: "CANTIDAD DE HABITANTES POR EDAD", valor: "" },
+  { campo: "CARACTERISTICAS DE LA POBLACIÓN", valor: "" },
+  { campo: "CLIMA", valor: "" },
 ];
 
 const planteamientoProblema = [
-    { campo: "QUE TAN INFORMADA ESTA LA COMUNIDAD SOBRE LOS IMPUESTOS?", valor: "LA COMUNIDAD EDUCATIVA NO ESTA INFORMADA SOBRE LOS IMPUESTOS, YA QUE ES UN TEMA COMPLEJO Y POCO ATRACTIVO, LO QUE GENERA CONFUSIÓN Y DESINTERÉS EN LA MATERIA." },
-    { campo: "COMO AYUDARIA ESTO A LA COMUNIDAD?", valor: "COMPRENDER LOS IMPUESTOS ES FUNDAMENTAL PARA UNA CIUDADANÍA RESPONSABLE. PERMITE A LAS PERSONAS TOMAR DECISIONES FINANCIERAS MÁS CONSCIENTES, EXIGIR TRANSPARENCIA EN EL USO DE LOS RECURSOS PÚBLICOS Y ENTENDER CÓMO SE FINANCIAN LOS SERVICIOS ESENCIALES, FORTALECIENDO ASÍ LA DEMOCRACIA Y EL BIENESTAR COLECTIVO." },
-    { campo: "QUE OCASIONA ESTE PROBLEMA?", valor: "1. FALTA DE EDUCACIÓN FINANCIERA EN EL SISTEMA EDUCATIVO.\n2. COMPLEJIDAD DEL LENGUAJE TRIBUTARIO.\n3. PERCEPCIÓN NEGATIVA DE LOS IMPUESTOS.\n4. FALTA DE TRANSPARENCIA EN EL USO DE LOS RECURSOS.\n5. POCO INTERÉS DE LOS MEDIOS DE COMUNICACIÓN." },
-    { campo: "QUE CONSECUENCIAS TRAE ESTE PROBLEMA?", valor: "1. EVASIÓN FISCAL Y REDUCCIÓN DE LA RECAUDACIÓN.\n2. DESCONFIANZA EN LAS INSTITUCIONES PÚBLICAS.\n3. DIFICULTAD PARA PLANIFICAR FINANZAS PERSONALES.\n4. POCA PARTICIPACIÓN CIUDADANA EN EL DEBATE FISCAL.\n5. MENOR CALIDAD EN LOS SERVICIOS PÚBLICOS." },
-    { campo: "DE DONDE PROVIENE ESTE PROBLEMA?", valor: "ESTE PROBLEMA SE ORIGINA EN UNA COMBINACIÓN DE FACTORES HISTÓRICOS Y CULTURALES. LA EDUCACIÓN FINANCIERA NO HA SIDO UNA PRIORIDAD, Y LA COMPLEJIDAD DEL SISTEMA TRIBUTARIO HA FOMENTADO UNA DISTANCIA ENTRE LOS CIUDADANOS Y SUS RESPONSABILIDADES FISCALES. ADEMÁS, LA FALTA DE TRANSPARENCIA HA ALIMENTADO LA DESCONFIANZA, CREANDO UN CÍRCULO VICIOSO DE DESINTERÉS Y EVASIÓN." },
+    { campo: "DEFINICIÓN DEL PROBLEMA", valor: "LA COMUNIDAD EDUCATIVA NO ESTA INFORMADA SOBRE LOS IMPUESTOS, YA QUE ES UN TEMA COMPLEJO Y POCO ATRACTIVO, LO QUE GENERA CONFUSIÓN Y DESINTERÉS EN LA MATERIA." },
+    { campo: "IMPORTANCIA DE ATENDER EL PROBLEMA", valor: "COMPRENDER LOS IMPUESTOS ES FUNDAMENTAL PARA UNA CIUDADANÍA RESPONSABLE. PERMITE A LAS PERSONAS TOMAR DECISIONES FINANCIERAS MÁS CONSCIENTES, EXIGIR TRANSPARENCIA EN EL USO DE LOS RECURSOS PÚBLICOS Y ENTENDER CÓMO SE FINANCIAN LOS SERVICIOS ESENCIALES, FORTALECIENDO ASÍ LA DEMOCRACIA Y EL BIENESTAR COLECTIVO." },
+    { campo: "CAUSAS", valor: "1. FALTA DE EDUCACIÓN FINANCIERA EN EL SISTEMA EDUCATIVO.\n2. COMPLEJIDAD DEL LENGUAJE TRIBUTARIO.\n3. PERCEPCIÓN NEGATIVA DE LOS IMPUESTOS.\n4. FALTA DE TRANSPARENCIA EN EL USO DE LOS RECURSOS.\n5. POCO INTERÉS DE LOS MEDIOS DE COMUNICACIÓN." },
+    { campo: "CONSECUENCIAS", valor: "1. EVASIÓN FISCAL Y REDUCCIÓN DE LA RECAUDACIÓN.\n2. DESCONFIANZA EN LAS INSTITUCIONES PÚBLICAS.\n3. DIFICULTAD PARA PLANIFICAR FINANZAS PERSONALES.\n4. POCA PARTICIPACIÓN CIUDADANA EN EL DEBATE FISCAL.\n5. MENOR CALIDAD EN LOS SERVICIOS PÚBLICOS." },
+    { campo: "ORIGEN DEL PROBLEMA", valor: "ESTE PROBLEMA SE ORIGINA EN UNA COMBINACIÓN DE FACTORES HISTÓRICOS Y CULTURALES. LA EDUCACIÓN FINANCIERA NO HA SIDO UNA PRIORIDAD, Y LA COMPLEJIDAD DEL SISTEMA TRIBUTARIO HA FOMENTADO UNA DISTANCIA ENTRE LOS CIUDADANOS Y SUS RESPONSABILIDADES FISCALES. ADEMÁS, LA FALTA DE TRANSPARENCIA HA ALIMENTADO LA DESCONFIANZA, CREANDO UN CÍRCULO VICIOSO DE DESINTERÉS Y EVASIÓN." },
+];
+
+const objetivos = [
+    { campo: "OBJETIVO GENERAL", valor: "CREAR UNA HERRAMIENTA EDUCATIVA ACCESIBLE Y ATRACTIVA QUE SIMPLIFIQUE EL APRENDIZAJE SOBRE IMPUESTOS PARA LA COMUNIDAD EDUCATIVA, UTILIZANDO INTELIGENCIA ARTIFICIAL PARA ADAPTAR EL CONTENIDO A LAS NECESIDADES DE CADA USUARIO." },
+    { campo: "OBJETIVOS ESPECÍFICOS", valor: "1. CREAR UNA APLICACIÓN CON UNA INTERFAZ AMIGABLE E INTUITIVA.\n2. UTILIZAR UNA IA PARA PERSONALIZAR EL CONTENIDO EDUCATIVO.\n3. PROMOVER LA PARTICIPACIÓN CIUDADANA Y LA TRANSPARENCIA FISCAL.\n4. EVALUAR EL IMPACTO EDUCATIVO EN LA COMUNIDAD." },
 ];
 
 const ZeduSection = ({ title, data }: { title: string, data: { campo: string, valor: string }[] }) => (
@@ -59,15 +62,16 @@ export default function ModuloZeduPage() {
 
     const getDocumentContent = () => {
         const createHtmlSection = (title: string, data: {campo: string, valor: string}[]) => `
-            <h2 style="color: #333; font-family: Arial, sans-serif; border-bottom: 2px solid #333; padding-bottom: 5px;">${title}</h2>
-            <ul style="list-style-type: none; padding-left: 0; font-family: Arial, sans-serif;">
+            <h2 style="font-family: Arial, sans-serif; border-bottom: 2px solid #333; padding-bottom: 5px; color: #333;">${title}</h2>
+            <table style="width: 100%; border-collapse: collapse; font-family: Arial, sans-serif;">
                 ${data.map(item => `
-                    <li style="margin-bottom: 15px;">
-                        <p style="margin: 0; font-weight: bold; color: #555;">${item.campo}</p>
-                        <p style="margin: 0; white-space: pre-wrap;">${item.valor}</p>
-                    </li>
+                    <tr style="border-bottom: 1px solid #ddd;">
+                        <td style="padding: 8px; font-weight: bold; width: 30%; background-color: #f2f2f2;">${item.campo}</td>
+                        <td style="padding: 8px; white-space: pre-wrap;">${item.valor}</td>
+                    </tr>
                 `).join('')}
-            </ul>
+            </table>
+            <br/>
         `;
 
         return `
@@ -77,6 +81,7 @@ export default function ModuloZeduPage() {
             ${createHtmlSection('IDENTIFICACIÓN DEL PROYECTO', informacionEquipo)}
             ${createHtmlSection('ESTUDIO DE POBLACIÓN', poblacionTrabajar)}
             ${createHtmlSection('PLANTEAMIENTO DEL PROBLEMA', planteamientoProblema)}
+            ${createHtmlSection('OBJETIVOS', objetivos)}
         `;
     };
 
@@ -119,16 +124,6 @@ export default function ModuloZeduPage() {
 
   return (
     <div className="p-4 md:p-8">
-        <style>
-            {`
-                @media print {
-                    body * { visibility: hidden; }
-                    .no-print { display: none; }
-                    #printable-content, #printable-content * { visibility: visible; }
-                    #printable-content { position: absolute; left: 0; top: 0; width: 100%; }
-                }
-            `}
-        </style>
       <header className="mb-8 flex items-center justify-between no-print">
         <div>
             <h1 className="text-3xl font-bold tracking-tight flex items-center gap-2">
@@ -150,8 +145,9 @@ export default function ModuloZeduPage() {
             <h2 className="text-2xl font-bold">Modelo Zedu</h2>
           </div>
           <ZeduSection title="IDENTIFICACIÓN DEL PROYECTO" data={informacionEquipo} />
-          <ZeduSection title="ESTUDIO DE POBLACIÓN" data={poblacionTrabajar} />
+          <ZeduSection title="POBLACIÓN A TRABAJAR" data={poblacionTrabajar} />
           <ZeduSection title="PLANTEAMIENTO DEL PROBLEMA" data={planteamientoProblema} />
+          <ZeduSection title="OBJETIVOS" data={objetivos} />
       </div>
     </div>
   );
