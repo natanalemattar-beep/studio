@@ -5,21 +5,17 @@ import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
 import { FileText, Printer, Download } from "lucide-react";
 
-// Data from the provided image
+// Data for Part 1
 const informacionEquipo = [
-  { campo: "NOMBRE DEL PROYECTO", valor: "System Kyron" },
-  { campo: "LÍDER ESTRATÉGICO", valor: "Carlos Mattar" },
-  { campo: "PERSONAL DE APOYO (RELLENO)", valor: "Sebastian Garrido, Marcos Sousa" },
-  { campo: "INSTITUCIÓN BENEFICIARIA", valor: "U.E.P. Gabriela Mistral" },
-  { campo: "UBICACIÓN GEOGRÁFICA", valor: "La Guaira, Venezuela" },
+  { campo: "NOMBRE DEL PROYECTO", valor: "AutoMind AI" },
+  { campo: "INTEGRANTES DEL EQUIPO", valor: "Miguel Uzcategui, Miguel Angel Goites, Joaquin de Barros" },
+  { campo: "INSTITUCIÓN EDUCATIVA", valor: "Colegio Santa Rosa de Lima" },
+  { campo: "PAÍS/CIUDAD", valor: "Venezuela, Caracas" },
 ];
 
-const estudioPoblacion = [
-  { campo: "LOCALIZACIÓN ESPECÍFICA", valor: "La Atlántida, entre calle 7 a calle 3, Catia La Mar. Referencias: Pinta Catia, Supermercado Bensica." },
-  { campo: "NOMBRE DE LA COMUNIDAD", valor: "Comunidad Comercial y Residencial La Atlántida" },
-  { campo: "POBLACIÓN ESTIMADA", valor: "500 empresas activas / 5.000 empleados administrativos y civiles." },
-  { campo: "DISTRIBUCIÓN POR GÉNERO", valor: "52% femenino, 48% masculino (en cargos administrativos)" },
-  { campo: "DISTRIBUCIÓN POR EDAD", valor: "25-40 años: 60% / 41-55 años: 30% / mayores de 55: 10%" },
+const poblacionTrabajar = [
+    { campo: "PAÍS/ CIUDAD/ MUNICIPIO/ LOCALIDAD ESPECÍFICA", valor: "Venezuela, Caracas" },
+    { campo: "NOMBRE DE LA COMUNIDAD", valor: "" },
 ];
 
 // Reusable component for each section
@@ -59,12 +55,11 @@ export default function ModuloZeduPage() {
             <br/>`;
         return `
             <div style="font-family: 'Times New Roman', Times, serif; text-align: center;">
-                <h1 style="font-size: 16pt; font-weight: bold; margin-bottom: 0;">MODELO DE ZEDU - SYSTEM KYRON</h1>
-                <h1 style="font-size: 16pt; font-weight: bold; margin-top: 0;">2025</h1>
+                <h1 style="font-size: 16pt; font-weight: bold; margin-bottom: 0;">Modelo Zedu</h1>
             </div>
             <br/>
-            ${createHtmlSection('1. IDENTIFICACIÓN DEL PROYECTO', informacionEquipo)}
-            ${createHtmlSection('2. ESTUDIO DE POBLACIÓN (ZEDU)', estudioPoblacion)}
+            ${createHtmlSection('INFORMACIÓN DEL EQUIPO', informacionEquipo)}
+            ${createHtmlSection('POBLACIÓN A TRABAJAR', poblacionTrabajar)}
         `;
     };
 
@@ -94,7 +89,7 @@ export default function ModuloZeduPage() {
             const fileDownload = document.createElement("a");
             document.body.appendChild(fileDownload);
             fileDownload.href = source;
-            fileDownload.download = 'ZEDU_Modelo_Consolidado.doc';
+            fileDownload.download = 'Modelo_Zedu.doc';
             fileDownload.click();
             document.body.removeChild(fileDownload);
             toast({
@@ -110,7 +105,7 @@ export default function ModuloZeduPage() {
         <div>
             <h1 className="text-3xl font-bold tracking-tight flex items-center gap-2">
                 <FileText className="h-8 w-8" />
-                Modelo ZEDU Consolidado
+                Modelo Zedu
             </h1>
         </div>
         <div className="flex gap-2">
@@ -121,11 +116,10 @@ export default function ModuloZeduPage() {
 
       <div id="printable-content" className="space-y-8 bg-card p-8 rounded-xl border">
           <div className="text-center mb-12">
-            <h1 className="text-2xl font-serif font-bold">MODELO DE ZEDU - SYSTEM KYRON</h1>
-            <h1 className="text-2xl font-serif font-bold">2025</h1>
+            <h1 className="text-2xl font-serif font-bold">Modelo Zedu</h1>
           </div>
-          <ZeduTableSection title="1. IDENTIFICACIÓN DEL PROYECTO" data={informacionEquipo} />
-          <ZeduTableSection title="2. ESTUDIO DE POBLACIÓN (ZEDU)" data={estudioPoblacion} />
+          <ZeduTableSection title="INFORMACIÓN DEL EQUIPO" data={informacionEquipo} />
+          <ZeduTableSection title="POBLACIÓN A TRABAJAR" data={poblacionTrabajar} />
       </div>
     </div>
   );
