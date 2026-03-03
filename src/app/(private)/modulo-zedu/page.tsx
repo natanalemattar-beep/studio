@@ -5,32 +5,37 @@ import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
 import { FileText, Printer, Download } from "lucide-react";
 
+// Data from the provided image
 const informacionEquipo = [
-  { campo: "NOMBRE DEL PROYECTO", valor: "AutoMind AI" },
-  { campo: "INTEGRANTES DEL EQUIPO", valor: "Carlos Mattar, Marcos Sousa, Sebastian Garrido" },
-  { campo: "INSTITUCIÓN EDUCATIVA", valor: "U.E.P. Gabriela Mistral" },
-  { campo: "PAÍS/CIUDAD", valor: "Venezuela, Caracas" },
+  { campo: "NOMBRE DEL PROYECTO", valor: "System Kyron" },
+  { campo: "LÍDER ESTRATÉGICO", valor: "Carlos Mattar" },
+  { campo: "PERSONAL DE APOYO (RELLENO)", valor: "Sebastian Garrido, Marcos Sousa" },
+  { campo: "INSTITUCIÓN BENEFICIARIA", valor: "U.E.P. Gabriela Mistral" },
+  { campo: "UBICACIÓN GEOGRÁFICA", valor: "La Guaira, Venezuela" },
 ];
 
 const estudioPoblacion = [
-  { campo: "PAÍS/ CIUDAD/ MUNICIPIO/ LOCALIDAD ESPECÍFICA", valor: "Venezuela, Caracas" },
-  { campo: "NOMBRE DE LA COMUNIDAD", valor: "Santa Rosa de Lima" },
-  { campo: "NÚMERO DE HABITANTES", valor: "(No especificado)" },
+  { campo: "LOCALIZACIÓN ESPECÍFICA", valor: "La Atlántida, entre calle 7 a calle 3, Catia La Mar. Referencias: Pinta Catia, Supermercado Bensica." },
+  { campo: "NOMBRE DE LA COMUNIDAD", valor: "Comunidad Comercial y Residencial La Atlántida" },
+  { campo: "POBLACIÓN ESTIMADA", valor: "500 empresas activas / 5.000 empleados administrativos y civiles." },
+  { campo: "DISTRIBUCIÓN POR GÉNERO", valor: "52% femenino, 48% masculino (en cargos administrativos)" },
+  { campo: "DISTRIBUCIÓN POR EDAD", valor: "25-40 años: 60% / 41-55 años: 30% / mayores de 55: 10%" },
 ];
 
-const ZeduSection = ({ title, data }: { title: string, data: { campo: string, valor: string }[] }) => (
-    <div className="mb-12">
-        <h2 className="text-2xl font-bold uppercase tracking-wider border-b-2 border-foreground pb-2 mb-6">{title}</h2>
-        <div className="grid grid-cols-[1fr_2fr] items-center gap-x-6">
-            {data.map(item => (
-                <React.Fragment key={item.campo}>
-                    <div className="bg-muted/60 p-3 my-1 rounded-md text-right">
-                        <span className="font-semibold text-sm">{item.campo}</span>
+// Reusable component for each section
+const ZeduTableSection = ({ title, data }: { title: string, data: { campo: string, valor: string }[] }) => (
+    <div className="mb-10">
+        <h2 className="text-lg font-bold text-white bg-[#4472c4] p-2 rounded-t-md">{title}</h2>
+        <div className="border-x border-b border-gray-400 dark:border-gray-600 rounded-b-md overflow-hidden">
+            {data.map((item, index) => (
+                <div key={index} className="grid grid-cols-[35%_65%] border-b border-gray-400 dark:border-gray-600 last:border-b-0 text-sm">
+                    <div className="font-semibold bg-gray-100 dark:bg-white/5 p-3 flex items-center border-r border-gray-400 dark:border-gray-600">
+                        <span>{item.campo}</span>
                     </div>
-                    <div className="p-3 my-1">
-                        <p className="text-muted-foreground whitespace-pre-line">{item.valor}</p>
+                    <div className="p-3 text-muted-foreground flex items-center">
+                        <span className="whitespace-pre-line">{item.valor}</span>
                     </div>
-                </React.Fragment>
+                </div>
             ))}
         </div>
     </div>
@@ -42,20 +47,24 @@ export default function ModuloZeduPage() {
 
     const getWordContent = () => {
         const createHtmlSection = (title: string, data: {campo: string, valor: string}[]) => `
-            <h2 style="font-family: Arial, sans-serif; border-bottom: 1px solid #000; padding-bottom: 2px; font-size: 16pt; margin-top: 20px;">${title}</h2>
-            <table style="width: 100%; border-collapse: collapse; font-family: Arial, sans-serif; margin-top: 10px;">
+            <h2 style="font-family: Arial, sans-serif; background-color: #4472c4; color: white; padding: 8px; font-size: 14pt; margin-top: 20px;">${title}</h2>
+            <table style="width: 100%; border-collapse: collapse; font-family: Arial, sans-serif; border: 1px solid #bfbfbf;">
                 ${data.map(item => `
-                    <tr>
-                        <td style="padding: 8px; font-weight: bold; width: 40%; background-color: #f2f2f2; border: 1px solid #ddd;">${item.campo}</td>
-                        <td style="padding: 8px; width: 60%; border: 1px solid #ddd;">${item.valor.replace(/\n/g, '<br/>')}</td>
+                    <tr style="border-bottom: 1px solid #bfbfbf;">
+                        <td style="padding: 8px; font-weight: bold; width: 35%; background-color: #f2f2f2; border-right: 1px solid #bfbfbf; vertical-align: top;">${item.campo}</td>
+                        <td style="padding: 8px; width: 65%; vertical-align: top;">${item.valor}</td>
                     </tr>
                 `).join('')}
             </table>
             <br/>`;
         return `
-            <h1 style="font-family: Arial, sans-serif; text-align: center; font-size: 20pt;">Modelo ZEDU Consolidado</h1><br/>
-            ${createHtmlSection('IDENTIFICACIÓN DEL PROYECTO', informacionEquipo)}
-            ${createHtmlSection('ESTUDIO DE POBLACIÓN', estudioPoblacion)}
+            <div style="font-family: 'Times New Roman', Times, serif; text-align: center;">
+                <h1 style="font-size: 16pt; font-weight: bold; margin-bottom: 0;">MODELO DE ZEDU - SYSTEM KYRON</h1>
+                <h1 style="font-size: 16pt; font-weight: bold; margin-top: 0;">2025</h1>
+            </div>
+            <br/>
+            ${createHtmlSection('1. IDENTIFICACIÓN DEL PROYECTO', informacionEquipo)}
+            ${createHtmlSection('2. ESTUDIO DE POBLACIÓN (ZEDU)', estudioPoblacion)}
         `;
     };
 
@@ -112,10 +121,11 @@ export default function ModuloZeduPage() {
 
       <div id="printable-content" className="space-y-8 bg-card p-8 rounded-xl border">
           <div className="text-center mb-12">
-            <h1 className="text-3xl font-bold">Modelo ZEDU Consolidado</h1>
+            <h1 className="text-2xl font-serif font-bold">MODELO DE ZEDU - SYSTEM KYRON</h1>
+            <h1 className="text-2xl font-serif font-bold">2025</h1>
           </div>
-          <ZeduSection title="IDENTIFICACIÓN DEL PROYECTO" data={informacionEquipo} />
-          <ZeduSection title="ESTUDIO DE POBLACIÓN" data={estudioPoblacion} />
+          <ZeduTableSection title="1. IDENTIFICACIÓN DEL PROYECTO" data={informacionEquipo} />
+          <ZeduTableSection title="2. ESTUDIO DE POBLACIÓN (ZEDU)" data={estudioPoblacion} />
       </div>
     </div>
   );
