@@ -9,16 +9,30 @@ import { useToast } from "@/hooks/use-toast";
 
 const informacionEquipo = [
   { campo: "NOMBRE DEL PROYECTO", valor: "AutoMind AI" },
-  { campo: "INTEGRANTES DEL EQUIPO", valor: "Miguel Uzcategui, Miguel Angel Goites, Joaquin de Barros" },
-  { campo: "INSTITUCIÓN EDUCATIVA", valor: "Colegio Santa Rosa de Lima" },
+  { campo: "INTEGRANTES DEL EQUIPO", valor: "Carlos Mattar, Marcos Sousa, Sebastian Garrido" },
+  { campo: "INSTITUCIÓN EDUCATIVA", valor: "U.E.P. Gabriela Mistral" },
   { campo: "PAÍS/CIUDAD", valor: "Venezuela, Caracas" },
 ];
 
 const poblacionTrabajar = [
   { campo: "PAÍS/ CIUDAD/ MUNICIPIO/ LOCALIDAD ESPECÍFICA", valor: "Venezuela, Caracas" },
-  { campo: "NOMBRE DE LA COMUNIDAD", valor: "" },
+  { campo: "NOMBRE DE LA COMUNIDAD", valor: "(No especificado)" },
+  { campo: "NÚMERO DE HABITANTES", valor: "(No especificado)" },
+  { campo: "GÉNERO", valor: "(No especificado)" },
+  { campo: "EDADES COMPRENDIDAS", valor: "(No especificado)" },
+  { campo: "CARACTERÍSTICAS SOCIALES", valor: "(No especificado)" },
+  { campo: "CARACTERÍSTICAS ECONÓMICAS", valor: "(No especificado)" },
+  { campo: "CARACTERÍSTICAS EDUCATIVAS", valor: "(No especificado)" },
+  { campo: "CARACTERÍSTICAS CULTURALES", valor: "(No especificado)" },
 ];
 
+const planteamientoProblema = [
+    { campo: "QUE TAN INFORMADA ESTA LA COMUNIDAD SOBRE LOS IMPUESTOS?", valor: "LA COMUNIDAD EDUCATIVA NO ESTA INFORMADA SOBRE LOS IMPUESTOS, YA QUE ES UN TEMA COMPLEJO Y POCO ATRACTIVO, LO QUE GENERA CONFUSIÓN Y DESINTERÉS EN LA MATERIA." },
+    { campo: "COMO AYUDARIA ESTO A LA COMUNIDAD?", valor: "COMPRENDER LOS IMPUESTOS ES FUNDAMENTAL PARA UNA CIUDADANÍA RESPONSABLE. PERMITE A LAS PERSONAS TOMAR DECISIONES FINANCIERAS MÁS CONSCIENTES, EXIGIR TRANSPARENCIA EN EL USO DE LOS RECURSOS PÚBLICOS Y ENTENDER CÓMO SE FINANCIAN LOS SERVICIOS ESENCIALES, FORTALECIENDO ASÍ LA DEMOCRACIA Y EL BIENESTAR COLECTIVO." },
+    { campo: "QUE OCASIONA ESTE PROBLEMA?", valor: "1. FALTA DE EDUCACIÓN FINANCIERA EN EL SISTEMA EDUCATIVO.\n2. COMPLEJIDAD DEL LENGUAJE TRIBUTARIO.\n3. PERCEPCIÓN NEGATIVA DE LOS IMPUESTOS.\n4. FALTA DE TRANSPARENCIA EN EL USO DE LOS RECURSOS.\n5. POCO INTERÉS DE LOS MEDIOS DE COMUNICACIÓN." },
+    { campo: "QUE CONSECUENCIAS TRAE ESTE PROBLEMA?", valor: "1. EVASIÓN FISCAL Y REDUCCIÓN DE LA RECAUDACIÓN.\n2. DESCONFIANZA EN LAS INSTITUCIONES PÚBLICAS.\n3. DIFICULTAD PARA PLANIFICAR FINANZAS PERSONALES.\n4. POCA PARTICIPACIÓN CIUDADANA EN EL DEBATE FISCAL.\n5. MENOR CALIDAD EN LOS SERVICIOS PÚBLICOS." },
+    { campo: "DE DONDE PROVIENE ESTE PROBLEMA?", valor: "ESTE PROBLEMA SE ORIGINA EN UNA COMBINACIÓN DE FACTORES HISTÓRICOS Y CULTURALES. LA EDUCACIÓN FINANCIERA NO HA SIDO UNA PRIORIDAD, Y LA COMPLEJIDAD DEL SISTEMA TRIBUTARIO HA FOMENTADO UNA DISTANCIA ENTRE LOS CIUDADANOS Y SUS RESPONSABILIDADES FISCALES. ADEMÁS, LA FALTA DE TRANSPARENCIA HA ALIMENTADO LA DESCONFIANZA, CREANDO UN CÍRCULO VICIOSO DE DESINTERÉS Y EVASIÓN." },
+];
 
 const ZeduSection = ({ title, data }: { title: string, data: { campo: string, valor: string }[] }) => (
     <Card>
@@ -44,31 +58,31 @@ export default function ModuloZeduPage() {
     const { toast } = useToast();
 
     const getDocumentContent = () => {
-        const createTable = (title: string, data: {campo: string, valor: string}[]) => `
-            <br/>
-            <table border="1" cellpadding="5" style="width:100%; border-collapse: collapse; font-family: Arial, sans-serif; font-size: 12px;">
-                <thead style="background-color:#4F81BD; color:white;">
-                    <tr><th colspan="2" style="text-align:left; padding: 8px;">${title}</th></tr>
-                </thead>
-                <tbody>
-                    ${data.map(row => `<tr><td style="width:30%; font-weight:bold; padding: 8px; border: 1px solid #ddd;">${row.campo}</td><td style="padding: 8px; border: 1px solid #ddd;">${row.valor.replace(/\n/g, '<br/>')}</td></tr>`).join('')}
-                </tbody>
-            </table>
-            <br/>
+        const createHtmlSection = (title: string, data: {campo: string, valor: string}[]) => `
+            <h2 style="color: #333; font-family: Arial, sans-serif; border-bottom: 2px solid #333; padding-bottom: 5px;">${title}</h2>
+            <ul style="list-style-type: none; padding-left: 0; font-family: Arial, sans-serif;">
+                ${data.map(item => `
+                    <li style="margin-bottom: 15px;">
+                        <p style="margin: 0; font-weight: bold; color: #555;">${item.campo}</p>
+                        <p style="margin: 0; white-space: pre-wrap;">${item.valor}</p>
+                    </li>
+                `).join('')}
+            </ul>
         `;
 
         return `
             <div style="text-align:center;">
-                <h1>Modelo Zedu</h1>
+                <h1 style="font-family: Arial, sans-serif; font-size: 24px; color: #111;">Modelo ZEDU Consolidado</h1>
             </div>
-            ${createTable('INFORMACIÓN DEL EQUIPO', informacionEquipo)}
-            ${createTable('POBLACIÓN A TRABAJAR', poblacionTrabajar)}
+            ${createHtmlSection('IDENTIFICACIÓN DEL PROYECTO', informacionEquipo)}
+            ${createHtmlSection('ESTUDIO DE POBLACIÓN', poblacionTrabajar)}
+            ${createHtmlSection('PLANTEAMIENTO DEL PROBLEMA', planteamientoProblema)}
         `;
     };
 
     const handleAction = (action: 'print' | 'word') => {
         const content = getDocumentContent();
-        const header = "<html xmlns:o='urn:schemas-microsoft-com:office:office' xmlns:w='urn:schemas-microsoft-com:office:word' xmlns='http://www.w3.org/TR/REC-html40'><head><meta charset='utf-8'><title>Modelo ZEDU Consolidado</title></head><body>";
+        const header = "<!DOCTYPE html><html><head><meta charset='utf-8'><title>Modelo ZEDU Consolidado</title></head><body>";
         const footer = "</body></html>";
         const sourceHTML = header + content + footer;
 
@@ -135,8 +149,9 @@ export default function ModuloZeduPage() {
           <div className="text-center">
             <h2 className="text-2xl font-bold">Modelo Zedu</h2>
           </div>
-          <ZeduSection title="INFORMACIÓN DEL EQUIPO" data={informacionEquipo} />
-          <ZeduSection title="POBLACIÓN A TRABAJAR" data={poblacionTrabajar} />
+          <ZeduSection title="IDENTIFICACIÓN DEL PROYECTO" data={informacionEquipo} />
+          <ZeduSection title="ESTUDIO DE POBLACIÓN" data={poblacionTrabajar} />
+          <ZeduSection title="PLANTEAMIENTO DEL PROBLEMA" data={planteamientoProblema} />
       </div>
     </div>
   );
