@@ -10,6 +10,13 @@ import { Logo } from "@/components/logo";
 import { cn } from "@/lib/utils";
 import { motion } from "framer-motion";
 import { ThemeToggle } from "@/components/theme-toggle";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import { loginOptions } from "@/lib/login-options";
 
 const SmoothScrollLink: FC<AnchorHTMLAttributes<HTMLAnchorElement> & { onLinkClick?: () => void }> = ({ href, onLinkClick, ...props }) => {
     const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
@@ -101,11 +108,23 @@ export function LandingHeader() {
                         </nav>
                         <div className="hidden md:flex items-center gap-2">
                             <ThemeToggle />
-                            <Button variant="outline" asChild>
-                                <Link href="/login" className="flex items-center gap-2">
-                                    Acceder <LogIn className="h-4 w-4" />
-                                </Link>
-                            </Button>
+                            <DropdownMenu>
+                                <DropdownMenuTrigger asChild>
+                                    <Button variant="outline">
+                                    Acceder <LogIn className="ml-2 h-4 w-4" />
+                                    </Button>
+                                </DropdownMenuTrigger>
+                                <DropdownMenuContent align="end" className="w-64">
+                                    {loginOptions.map((option) => (
+                                    <DropdownMenuItem key={option.href} asChild>
+                                        <Link href={option.href} className="flex items-center gap-3">
+                                        <option.icon className="h-4 w-4 text-muted-foreground" />
+                                        <span>{option.label}</span>
+                                        </Link>
+                                    </DropdownMenuItem>
+                                    ))}
+                                </DropdownMenuContent>
+                            </DropdownMenu>
                             <Button asChild>
                                 <Link href="/register">Registrarse</Link>
                             </Button>
@@ -133,11 +152,19 @@ export function LandingHeader() {
                                     <div className="flex gap-2">
                                         <ThemeToggle />
                                     </div>
-                                    <Button variant="outline" className="w-full" asChild>
-                                      <Link href="/login" className="flex items-center justify-center gap-2">
-                                        Acceder <LogIn className="h-4 w-4" />
-                                      </Link>
-                                    </Button>
+                                    <div className="pt-4 border-t">
+                                        <h4 className="px-2 py-1.5 text-sm font-semibold">Acceder</h4>
+                                        <div className="flex flex-col gap-1 pl-4">
+                                            {loginOptions.map((option) => (
+                                                <Button asChild variant="ghost" className="justify-start h-auto py-1.5" key={option.href} onClick={() => setIsMobileMenuOpen(false)}>
+                                                    <Link href={option.href}>
+                                                        <option.icon className="mr-2 h-4 w-4 text-muted-foreground" />
+                                                        {option.label}
+                                                    </Link>
+                                                </Button>
+                                            ))}
+                                        </div>
+                                    </div>
                                     <Button asChild className="w-full">
                                         <Link href="/register">Registrarse</Link>
                                     </Button>
